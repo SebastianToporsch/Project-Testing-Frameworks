@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 const functions = require("firebase-functions");
 
 // // Create and Deploy Your First Cloud Functions
