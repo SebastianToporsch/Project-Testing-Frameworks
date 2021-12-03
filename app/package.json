@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test_mocha": "mocha mocha",
-    "test_jest": "jest jest",
-    "test_jasmine": "npx jasmine"
+    "test_mocha": "mocha tests/mocha",
+    "test_jest": "jest tests/jest",
+    "test_jasmine": "jasmine"
   },
   "author": "Sebastian Toporsch",
   "license": "ISC",
