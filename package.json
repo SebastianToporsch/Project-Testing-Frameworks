@@ -2,14 +2,14 @@
   "name": "testing_frameworks",
   "version": "1.0.0",
   "description": "This project serves the purpose of testing Mocha, Jest and Jasmine for testing a WebApp.",
-  "main": "app/src/app.ts",
+  "main": "server.ts",
   "scripts": {
     "build":"tsc",
     "start": "nodemon build/server.js",
-    "create-db": "node build/db/create-db.js",
-    "test_mocha": "mocha app/tests/mocha",
-    "test_jest": "jest app/tests/jest",
-    "test_jasmine": "cd app/tests && jasmine"
+    "create-db": "tsc && node build/db/create-db.js",
+    "test_mocha": "mocha tests/mocha",
+    "test_jest": "jest tests/jest",
+    "test_jasmine": "cd tests && jasmine"
   },
   "author": "Sebastian Toporsch",
   "license": "ISC",

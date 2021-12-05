@@ -1,7 +1,7 @@
 //Setup express and firebase
 import express  from "express";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({path:'config/.env'});
 
 const app = express();
 const port = process.env.PORT || 3000;
