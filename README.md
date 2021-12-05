@@ -4,24 +4,18 @@ Comparing Mocha, Jest and Jasmine via Express App
 
 ## Setup
 
-If you are not already in the /app folder then change into the /app folder.
-
-Install dependencies via "npm install".
-
-To use firebase copy the ".env.example" and rename it to .env.
-
-Then input your firebase credentails in the .env file and save it.
-
-To start the project use "npm start"
-
-And open service on address: http://localhost:3000
-
 
 ## Sources
 
+### TypeScript
+
+* Setup TypeScript:
+  * https://www.digitalocean.com/community/tutorials/typescript-new-project
+
 ### Node:
 
-* Setup and examples: https://www.pluralsight.com/guides/getting-started-with-nodejs
+* Setup and examples:
+  * https://www.pluralsight.com/guides/getting-started-with-nodejs
 
 ### PUG:
 
@@ -33,23 +27,25 @@ And open service on address: http://localhost:3000
 
 ### Mocha
 
-* Setup and Usage: https://mochajs.org/ (sroll down)
+* Setup and Usage:
+  * https://mochajs.org/ (sroll down)
 
 ### Jest
 
-* Setup: https://jestjs.io/docs/getting-started
+* Setup:
+  * https://jestjs.io/docs/getting-started
 
 ### Jasmine
 
-* Setup with node: https://jasmine.github.io/pages/getting_started.html
-
-### Firebase
-
-* Setup Firebase: https://firebase.google.com/docs/web/setup
-* Setup Firestore: https://firebase.google.com/docs/firestore/quickstart
-  * Add and update Data Firebase: https://firebase.google.com/docs/firestore/manage-data/add-data
-  * Delete Data Firebase: https://firebase.google.com/docs/firestore/manage-data/delete-data
+* Setup with node:
+  * https://jasmine.github.io/pages/getting_started.html
 
 ### Dotenv
 
-* Setup and use with import: https://www.npmjs.com/package/dotenv
+* Setup and use with import:
+  * https://www.npmjs.com/package/dotenv
+
+### MYSQL
+
+* Use MYSQL with Node Typescript to implement REST:
+  *  https://livecodestream.dev/post/your-guide-to-building-a-nodejs-typescript-rest-api-with-mysql/

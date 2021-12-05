@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "rootDir": "./app",
+    "esModuleInterop": true,
+  },
+  "include": [
+    "app/server.ts",
+    "app/db/create-db.ts"
+  ],
+  "exclude": []
+}
