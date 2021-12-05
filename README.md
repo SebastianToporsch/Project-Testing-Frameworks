@@ -23,6 +23,12 @@ At first copy the [.env.exmaple](https://) file and rename it to ".env". Then en
 
 If you are satisfied with the infos you have entered then run the followin commands in your terminal/cmd:
 
+`npm run create-db`
+
+## Run/Execute
+
+Run the command in terminal/cmd:
+
 `npm run start`
 
 ## Sources
