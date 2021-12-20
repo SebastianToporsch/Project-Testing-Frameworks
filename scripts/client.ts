@@ -9,15 +9,13 @@ import ws from "ws";
   }
 
   //WebSocket at ws://localhost:8081
-  var ws = new WebSocket(
-    `ws://${window.location.host}`,
-    'testing'
-  );
+  var ws = new WebSocket(`ws://${window.location.host}`);
 
 
   //Message that the connection is open now
-  ws.onopen = function () {
-    console.log("Connection open");
+  ws.onopen = () => {
+    console.log("connection established");
+    
   };
 
   //sends the data to showMessage so that the data can be displayed

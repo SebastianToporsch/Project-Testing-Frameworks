@@ -1,5 +1,5 @@
 import { User } from "../types/userType";
-import { database } from '../server';
+import { database } from '../rest_server';
 import { OkPacket, RowDataPacket } from "mysql2";
 
 export const create = (user: User, callback: Function) => {

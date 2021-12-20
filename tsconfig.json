@@ -5,9 +5,9 @@
     "esModuleInterop": true,
   },
   "include": [
-    "server.ts",
+    "rest_server.ts",
     "ws_server.ts",
-    "client.ts",
+    "scripts/client.ts",
     "db/create-db.ts"
   ],
   "exclude": []
