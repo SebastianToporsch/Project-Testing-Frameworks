@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 dotenv.config({ path: "config/.env" });
 
@@ -27,14 +27,17 @@ connection.connect(function (err: any) {
 });
 
 function createTable() {
+
   // sql for creating tables
   const sql_user = `
   CREATE TABLE IF NOT EXISTS users (
     id int NOT NULL AUTO_INCREMENT,
     username varchar(255) NOT NULL,
+    age int NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT UNIQ_username UNIQUE (username)
   );`;
+
   // create connection to the database
   connection = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -54,6 +57,7 @@ function createTable() {
   connection.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
+
     // execute the sql string
     // tslint:disable-next-line: no-shadowed-variable
     connection.query(sql_user, function (err: any, result: any) {
@@ -63,6 +67,8 @@ function createTable() {
     });
   });
 }
+
+
 
 
 

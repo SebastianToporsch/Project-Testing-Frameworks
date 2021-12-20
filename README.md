@@ -2,12 +2,12 @@
 
 Comparing Mocha, Jest and Jasmine via Express App
 
-## Setup
-
-## Prerequisites
+## Prerequisites 
 
 * [Node.js](https://nodejs.org/en/)
 * A instance of a [MySQL-Database](#2-Setting-up-the-database)
+
+## Setup
 
 ### 1. Install dependencies
 
@@ -19,7 +19,7 @@ Run the following command in the terminal/cmd:
 
 To run the REST-API you need a running MySQL installation.
 
-At first copy the [.env.exmaple](./config/.env.example) file and rename it to ".env". Then enter the name for the database etc. that you want to use for the project. Don't  forget to enter the password for your MySQL if you use one.
+At first copy the [.env.exmaple](./config/.env.example) file and rename the copy to ".env". Then enter the name for the database etc. that you want to use for the project. Don't  forget to enter the password for your MySQL if you use one.
 
 If you are satisfied with the parameters/information you have entered then run the following command in your terminal/cmd:
 
@@ -31,11 +31,9 @@ Run the command in terminal/cmd:
 
 `npm run start`
 
-
 ## General Information about the Project
 
 This project serves the purpose of comparing the three JavaScript Frameworks: Mocha, Jest and Jamsine. Using TypeScript and Node with express I intend to compare the Frameworks in several aspects. The aspects in question are: Setup, Runtime, Limitaions and Features.
-
 
 ## Framework Comparison
 
