@@ -4,11 +4,13 @@ import dotenv from "dotenv";
 import mysql from "mysql2";
 import { userRoute } from './routes/routes';
 import bodyParser from "body-parser";
+import ws from 'ws';
+
 dotenv.config({path:'config/.env'});
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const rest_port = process.env.REST_PORT || 3000;
 
 //Setup pug
 app.set('view engine', 'pug');
@@ -16,12 +18,14 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use("",userRoute);
 
+app.get("/ws", (req, res) => {
+res.render("index");
+});
 
-// Start listening on port 3000.
-app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}/users `));
+// Start listening
+const api_server = app.listen(rest_port, () =>
+  console.log(`Example app listening at http://localhost:${rest_port}/users `));
   console.log("Database connection established!");
-
 
 // create connection to the database
 export const database = mysql.createConnection({

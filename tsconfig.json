@@ -6,6 +6,8 @@
   },
   "include": [
     "server.ts",
+    "ws_server.ts",
+    "client.ts",
     "db/create-db.ts"
   ],
   "exclude": []
