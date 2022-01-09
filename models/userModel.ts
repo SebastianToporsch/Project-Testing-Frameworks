@@ -1,43 +1,23 @@
 import { User } from "../types/userType";
 import { database } from '../rest_server';
-import { OkPacket, RowDataPacket } from "mysql2";
+import { RowDataPacket } from "mysql2";
 
 export const create = (user: User, callback: Function) => {
-  const queryString = "INSERT INTO users (id, username, age) VALUES (?, ?, ?)";
+  const queryString = `INSERT INTO users (id, username, age) VALUES (?, ?, ?)`;
 
   database.query(
     queryString,
     [user.id, user.username, user.age],
     (err, result) => {
 
-      if(err){
-        callback(err);
-      }
-      console.log("inserted");
-      
-    }
-  );
-};
-
-export const readOne = (userId: number, callback: Function) => {
-
-  const queryString = "SELECT * from users WHERE id=?";
-
-  database.query(
-    queryString, userId, (err, result) => {
-
       if (err) {
         callback(err);
       }
 
-      const row = (<RowDataPacket>result)[0];
-      const user: User = {
-        id: row.id,
-        username: row.username,
-        age: row.age
-      };
       callback(null, user);
-    });
+
+    }
+  );
 };
 
 export const readAll = (callback: Function) => {
@@ -68,17 +48,53 @@ export const readAll = (callback: Function) => {
 
 };
 
-export const update = (user:User, callback: Function) => {
-  const queryString = `UPDATE users SET id=?, username=?, age=? WHERE id=?`;
+export const readOne = (userId: number, callback: Function) => {
+
+  const queryString = `SELECT * from users WHERE id=?`;
+
+  database.query(
+    queryString, userId, (err, result) => {
+
+      if (err) {
+        callback(err);
+      }
+
+      const row = (<RowDataPacket>result)[0];
+      const user: User = {
+        id: row.id,
+        username: row.username,
+        age: row.age
+      };
+      callback(null, user);
+    });
+};
+
+export const update = (user: User, userId, callback: Function) => {
+  const queryString = `UPDATE users SET username=?, age=? WHERE id=?`;
 
   database.query(
     queryString,
-    [user.id,user.username,user.age],
-    (err,result) => {
+    [user.username, user.age, userId],
+    (err, result) => {
 
-      if(err) {
+      if (err) {
         callback(err);
       }
-      callback(null);
+      callback("Name and Age update successful");
+    });
+};
+
+export const del = (userId, callback: Function) => {
+  const queryString = `DELETE FROM users WHERE id=?`;
+
+  database.query(
+    queryString,
+    [userId],
+    (err, result) => {
+
+      if (err) {
+        callback(err);
+      }
+      callback("User successfully deleted");
     });
 };

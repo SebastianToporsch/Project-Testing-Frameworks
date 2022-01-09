@@ -2,7 +2,7 @@
 
 Comparing Mocha, Jest and Jasmine via Express App
 
-## Prerequisites 
+## Prerequisites
 
 * [Node.js](https://nodejs.org/en/)
 * A instance of a [MySQL-Database](#2-Setting-up-the-database)
