@@ -19,11 +19,12 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-ws": "^5.0.2",
+    "http": "*",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.14",
     "path": "^0.12.7",
     "pug": "^3.0.2",
-    "typescript": "^4.5.2"
+    "socket.io": "^4.4.1"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.1",
@@ -35,6 +36,7 @@
     "jasmine": "^3.10.0",
     "jest": "^27.3.1",
     "mocha": "^9.1.3",
-    "typescript": "^4.0.3"
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4"
   }
 }

@@ -1,33 +1,32 @@
-import ws from "ws";
+import ws from 'ws';
+window.WebSocket = window.WebSocket;
 
+(function () {
 
-  //initial function that sets the inital values of the websocket functions
-  function init() {
-    if (ws) {
-      ws.onerror = ws.onopen = ws.onclose = null;
-    }
+function init() {
+  if (ws) {
+    ws.onerror = ws.onopen = ws.onclose = null;
+    ws.close;
   }
+}
 
+let ws;
   //WebSocket at ws://localhost:8081
-  var ws = new WebSocket(`ws://${window.location.host}`);
+  ws = new WebSocket(
+    `ws://${window.location.host}`,
+    'dubble'
+  );
 
 
-  //Message that the connection is open now
-  ws.onopen = () => {
-    console.log("connection established");
-    
-  };
+//Message that the connection is open now
+ws.onopen = function () {
+  console.log("Connection open");
+};
 
-  //sends the data to showMessage so that the data can be displayed
-  ws.onmessage = () => {
-    console.log("test");
-    
-  };
+//Message that the connection is open now
+ws.onopen = function () {
+  console.log("Connection open");
+};
 
-  ws.onclose = function () {
-    ws = null;
-  };
-
-
-  //setup the function
-  init();
+init();
+})();
