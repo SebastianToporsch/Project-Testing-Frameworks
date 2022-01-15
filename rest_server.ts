@@ -1,12 +1,9 @@
 //Setup express and firebase
 import express  from "express";
-import dotenv from "dotenv";
 import mysql from "mysql2";
 import { userRoute } from './routes/routes';
 import bodyParser from "body-parser";
-
-
-
+import dotenv from "dotenv";
 dotenv.config({path:'config/.env'});
 
 const app = express();
