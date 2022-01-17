@@ -3,7 +3,12 @@ import * as userModel from '../models/userModel';
 import { User } from '../types/userType';
 
 
+
 const userRoute = express.Router();
+
+userRoute.get('/', function (req, res) {
+  return res.render('index', { title: 'Hey', message: 'Hello there!' });
+});
 
 userRoute.post("/user", async (req: Request, res: Response) => {
 
@@ -26,11 +31,10 @@ userRoute.get("/users", async (req: Request, res: Response) => {
   userModel.readAll((err: Error, users: User[]) => {
 
     if (err) {
-      return res.status(500).json({
-      });
+      return res.status(500).json({"statusCode": 500});
     }
 
-    res.status(200).json({ "data": users });
+    return res.render('users', { title: 'Users', message: users });
   });
 });
 
@@ -41,7 +45,7 @@ userRoute.get("/user/:id", async (req: Request, res: Response) => {
     if (err) {
       return res.status(500).json({ "message": err.message });
     }
-    res.status(200).json({ "data": user });
+    return res.render('user', { title: 'User', message: user });
   });
 
 });

@@ -5,6 +5,9 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title= title
   body
-    h1= "The message is:" + message
+  h1="Id/Username/Age"
+    ul
+    for item in message
+      li= item.id +" / "+ item.username +" / " + item.age
     // script(type="commonjs" src='./scripts/client.js')
   

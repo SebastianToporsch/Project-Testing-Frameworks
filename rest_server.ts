@@ -15,9 +15,6 @@ app.use("",userRoute);
 // setup view engine
 app.set('view engine', 'pug');
 
-app.get('/', function (req, res) {
-  return res.render('index', { title: 'Hey', message: 'Hello there!' });
-});
 
 // Start listening
 const api_server = app.listen(rest_port, () =>
