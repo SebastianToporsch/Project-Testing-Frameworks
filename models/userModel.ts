@@ -1,7 +1,6 @@
 import { User } from "../types/userType";
 import { database } from '../rest_server';
 import { RowDataPacket } from "mysql2";
-import { throws } from "assert";
 
 export const create = (user: User, callback: Function) => {
   const queryString = `INSERT INTO users (id, username, age) VALUES (?, ?, ?)`;
@@ -47,11 +46,11 @@ export const readAll = (callback: Function) => {
   }
 };
 
-export const readOne = (userId: number, callback: Function) => {
-  const queryString = `SELECT * from users WHERE id=?`;
+export const readOne = (userName: String, callback: Function) => {
+  const queryString = `SELECT * from users WHERE username=?`;
 
   database.query(
-    queryString, userId, (err, result) => {
+    queryString, userName, (err, result) => {
 
       try {
         const row = (<RowDataPacket>result)[0];
@@ -69,7 +68,7 @@ export const readOne = (userId: number, callback: Function) => {
     });
 };
 
-export const update = (user: User, userId, callback: Function) => {
+export const update = (user: User, userId: number, callback: Function) => {
   const queryString = `UPDATE users SET username=?, age=? WHERE id=?`;
 
   try {
@@ -86,21 +85,21 @@ export const update = (user: User, userId, callback: Function) => {
   }
 };
 
-export const del = (userId, callback: Function) => {
-  const queryString = `DELETE FROM users WHERE id=?`;
+export const del = (userName: String, callback: Function) => {
+  const queryString = `DELETE FROM users WHERE username=?`;
 try {
   database.query(
     queryString,
-    [userId],
+    [userName],
     (err, result) => {
 
       if (err) {
-        callback(err);
+        callback("ERROR");
       }
       callback("User successfully deleted");
     });
 
   } catch (error) {
-    callback(error);
+    callback("ERROR");
   }
 };

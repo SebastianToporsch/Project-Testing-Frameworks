@@ -2,8 +2,6 @@ import express, { Request, Response } from "express";
 import * as userModel from '../models/userModel';
 import { User } from '../types/userType';
 
-
-
 const userRoute = express.Router();
 
 userRoute.get('/', function (req, res) {
@@ -38,16 +36,15 @@ userRoute.get("/users", async (req: Request, res: Response) => {
   });
 });
 
-userRoute.get("/user/:id", async (req: Request, res: Response) => {
-  const userId: number = Number(req.params.id);
-  userModel.readOne(userId, (err: Error, user: User) => {
+userRoute.get("/user/:username", async (req: Request, res: Response) => {
+  let userName: String = String(req.params.username);
+  userModel.readOne(userName, (err: Error, user: User) => {
 
     if (err) {
       return res.status(500).json({ "message": err.message });
     }
     return res.render('user', { title: 'User', message: user });
   });
-
 });
 
 userRoute.put("/user/:id", async (req: Request, res: Response) => {
@@ -63,12 +60,12 @@ userRoute.put("/user/:id", async (req: Request, res: Response) => {
   });
 });
 
-userRoute.delete("/user/:id", async (req: Request, res: Response) => {
-  const userId: number = Number(req.params.id);
-  userModel.del(userId, (err: Error) => {
+userRoute.delete("/user", async (req: Request, res: Response) => {
+  const userName: String = String(req.body.username);
+  userModel.del(userName, (err: Error) => {
 
-    if (err) {
-      return res.status(500).json({ "message": err });
+    if (userName.length==0) {
+      return res.status(500).json({ "message": "Empty username" });
     }
 
     res.status(200).json({ "message": err });
