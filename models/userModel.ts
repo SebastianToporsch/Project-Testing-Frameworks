@@ -5,6 +5,11 @@ import { RowDataPacket } from "mysql2";
 export const create = (user: User, callback: Function) => {
   const queryString = `INSERT INTO users (id, username, age) VALUES (?, ?, ?)`;
 
+  if(user.username =="" || user.age<=0){
+    callback(null, user);
+    return;
+  }
+
   try {
     database.query(
       queryString,
@@ -30,6 +35,7 @@ export const readAll = (callback: Function) => {
         const users: User[] = [];
 
         rows.forEach(row => {
+          
           const user: User = {
             id: row.id,
             username: row.username,
@@ -68,13 +74,13 @@ export const readOne = (userName: String, callback: Function) => {
     });
 };
 
-export const update = (user: User, userId: number, callback: Function) => {
-  const queryString = `UPDATE users SET username=?, age=? WHERE id=?`;
+export const update = (user: User, callback: Function) => {
+  const queryString = `UPDATE users SET username=?, age=? WHERE username=?`;
 
   try {
     database.query(
       queryString,
-      [user.username, user.age, userId],
+      [user.username, user.age, user.username],
       (err, result) => {
 
         callback("Name and Age update successful");

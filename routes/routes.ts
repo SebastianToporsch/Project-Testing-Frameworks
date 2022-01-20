@@ -15,10 +15,9 @@ userRoute.post("/user", async (req: Request, res: Response) => {
 
   userModel.create(newUser, (err: Error) => {
 
-    if (err) {
-      return res.status(500).json({
-      });
-    }
+    if (newUser.username == "" ||  newUser.age <= 0) {
+      return res.status(204).json({ "data": "Empty username or age" });
+  }
 
     res.status(200).json({ "data": newUser });
   });
@@ -27,9 +26,13 @@ userRoute.post("/user", async (req: Request, res: Response) => {
 
 userRoute.get("/users", async (req: Request, res: Response) => {
   userModel.readAll((err: Error, users: User[]) => {
+    
+    if(users.length ==0){
+      return res.render("404");
+    }
 
     if (err) {
-      return res.status(500).json({"statusCode": 500});
+      return res.status(500);
     }
 
     return res.render('users', { title: 'Users', message: users });
@@ -40,6 +43,11 @@ userRoute.get("/user/:username", async (req: Request, res: Response) => {
   let userName: String = String(req.params.username);
   userModel.readOne(userName, (err: Error, user: User) => {
 
+    if(user == undefined){
+      return res.render("404") ;
+    }
+    
+
     if (err) {
       return res.status(500).json({ "message": err.message });
     }
@@ -47,13 +55,13 @@ userRoute.get("/user/:username", async (req: Request, res: Response) => {
   });
 });
 
-userRoute.put("/user/:id", async (req: Request, res: Response) => {
-  const userId: number = Number(req.params.id);
+userRoute.put("/user/:username", async (req: Request, res: Response) => {
   const newUser: User = req.body;
-  userModel.update(newUser, userId, (err: Error, user: User) => {
+  userModel.update(newUser, (err: Error, user: User) => {
+    
 
-    if (err) {
-      return res.status(500).json({ "data": user });
+    if (newUser.username == "" ||  newUser.age <= 0) {
+      return res.status(204).json({ "data": user });
     }
 
     res.status(200).json({ "message": err });
@@ -63,9 +71,9 @@ userRoute.put("/user/:id", async (req: Request, res: Response) => {
 userRoute.delete("/user", async (req: Request, res: Response) => {
   const userName: String = String(req.body.username);
   userModel.del(userName, (err: Error) => {
-
-    if (userName.length==0) {
-      return res.status(500).json({ "message": "Empty username" });
+    
+    if (userName.length == 0) {
+      return res.status(404).json({ "message": "Empty username" });
     }
 
     res.status(200).json({ "message": err });
