@@ -23,8 +23,6 @@ const wsServer = new ws.Server({server});
 wsServer.on('connection', (ws,req) => {
   console.log("test");
 
-  ws.on("message",()=>
-  console.log("message"));
+  ws.on("message",(data)=>
+  console.log(data));
 });
-
-
