@@ -7,7 +7,7 @@
   "include": [
     "rest_server.ts",
     "ws_server.ts",
-    "scripts/client.ts",
+    "public/scripts/client.tsient.ts",
     "db/create-db.ts"
   ],
   "exclude": []

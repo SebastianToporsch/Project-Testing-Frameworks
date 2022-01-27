@@ -23,10 +23,10 @@ describe('Test if server contains expected text', () => {
   });
 
   it('Should return 404 if no users are in the database', async () => {
-    request.get(baseURL)
+    request.get(baseURL +"/users")
       .then(res => {
         expect(res.statusCode).toBe(200);
-        expect(res.text).toContain("Hello there")
+        expect(res.text).toContain("No user")
       })
   });
 });
@@ -49,25 +49,34 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if read all route works', async () => {
     await request.get(baseURL + "/users")
       .then(res => {
-
         expect(res.statusCode).toBe(200);
+        expect(res.text).toContain("Id/Username/Age");
         expect(res.text).toContain("CREATE");
+      })
+  });
 
+  it('Should return 200 if update route works', async () => {
+    await request
+      .put(baseURL + "/user/CREATE")
+      .send({ username: 'CREATE2', age: 12 })
+      .then(res => {
+        expect(res.statusCode).toBe(200);
+        expect(res.text).toContain("Name and Age update successful");
       })
   });
 
   it('Should return 200 if read one route works', async () => {
-    await request.get(baseURL + "/user/CREATE")
+    await request.get(baseURL + "/user/CREATE2")
       .then(res => {
         expect(res.statusCode).toBe(200);
-        expect(res.text).toContain("CREATE");
-
+        expect(res.text).toContain("The user is");
+        expect(res.text).toContain("CREATE2");
       })
   });
 
   it('Should return 200 if delete route works', async () => {
     await request.delete(baseURL + "/user")
-      .send({ username: 'CREATE' })
+      .send({ username: 'CREATE2' })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
@@ -80,7 +89,7 @@ describe('Test if rest routes return 200 on success', () => {
 
 
 describe('Test if rest routes catch error cases', () => {
-  it('Should return 204 if create rotue works', async () => {
+  it('Should return 204 if create request has empty parameters', async () => {
     await request
       .post(baseURL + "/user")
       .send({ username: 'CREATE', age: 0 })
@@ -92,7 +101,7 @@ describe('Test if rest routes catch error cases', () => {
       })
   });
 
-  it('Should return 404 page if read returns no user', async () => {
+  it('Should return 404 page if read all route returns no user', async () => {
     await request.get(baseURL + "/users")
       .then(res => {
 
@@ -101,7 +110,7 @@ describe('Test if rest routes catch error cases', () => {
       })
   });
 
-  it('Should return  page if read one rotue returns no user', async () => {
+  it('Should return 404 page if read one route returns no user', async () => {
     await request.get(baseURL + "/user/CREATE")
       .then(res => {
         expect(res.statusCode).toBe(200);
@@ -109,15 +118,27 @@ describe('Test if rest routes catch error cases', () => {
       })
   });
 
-  /*it('Should return an error if ', async () => {
+  it('Should return 204 if update request has empty parameters', async () => {
+    await request
+      .put(baseURL + "/user/CREATE2")
+      .send({ username: '', age: 0 })
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .then(res => {
+        expect(res.statusCode).toBe(204);
+        expect(res.text).not.toContain("CREATE");
+      })
+  });
+
+  it('Should return 204 if delete request has empty parameters', async () => {
     await request.delete(baseURL + "/user")
       .send({ username: '' })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
-        expect(res.statusCode).toBe(404);
+        expect(res.statusCode).toBe(204);
       })
-  });*/
+  });
 });
 
 afterAll(async () => {

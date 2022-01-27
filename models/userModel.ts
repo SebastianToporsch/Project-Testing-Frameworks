@@ -74,14 +74,22 @@ export const readOne = (userName: String, callback: Function) => {
     });
 };
 
-export const update = (user: User, callback: Function) => {
-  const queryString = `UPDATE users SET username=?, age=? WHERE username=?`;
+export const update = (newUser: User, oldUser:String, callback: Function) => {
+  const queryString = `UPDATE users SET username=?,age=? WHERE username=?`;
+
+  if(newUser.username =="" || newUser.age<=0){
+    callback("Invalid username or age");
+    return;
+  }
 
   try {
     database.query(
       queryString,
-      [user.username, user.age, user.username],
+      [newUser.username, newUser.age, oldUser],
       (err, result) => {
+        if(err){
+          callback(err);
+        }
 
         callback("Name and Age update successful");
       });

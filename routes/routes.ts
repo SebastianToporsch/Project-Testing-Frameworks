@@ -5,7 +5,7 @@ import { User } from '../types/userType';
 const userRoute = express.Router();
 
 userRoute.get('/', function (req, res) {
-  return res.render('index', { title: 'Hey', message: 'Hello there!' });
+  return res.render('rest_index', { title: 'Hey', message: 'Hello there!' });
 });
 
 userRoute.post("/user", async (req: Request, res: Response) => {
@@ -57,11 +57,11 @@ userRoute.get("/user/:username", async (req: Request, res: Response) => {
 
 userRoute.put("/user/:username", async (req: Request, res: Response) => {
   const newUser: User = req.body;
-  userModel.update(newUser, (err: Error, user: User) => {
+  const oldUser: String = req.params.username;
+  userModel.update(newUser, oldUser, (err: Error) => {
     
-
     if (newUser.username == "" ||  newUser.age <= 0) {
-      return res.status(204).json({ "data": user });
+      return res.status(204).json({ "data": err });
     }
 
     res.status(200).json({ "message": err });
@@ -73,7 +73,7 @@ userRoute.delete("/user", async (req: Request, res: Response) => {
   userModel.del(userName, (err: Error) => {
     
     if (userName.length == 0) {
-      return res.status(404).json({ "message": "Empty username" });
+      return res.status(204).json({ "message": "Empty username" });
     }
 
     res.status(200).json({ "message": err });

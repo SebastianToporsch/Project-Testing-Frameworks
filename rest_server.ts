@@ -17,6 +17,8 @@ app.use("",userRoute);
 // setup view engine
 app.set('view engine', 'pug');
 
+app.use('/', express.static('public'));
+
 
 // Start listening
 app.listen(rest_port);
