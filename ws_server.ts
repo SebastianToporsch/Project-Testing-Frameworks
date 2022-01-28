@@ -27,23 +27,16 @@ const server = app.listen(ws_port, () =>
 const wss = new ws.Server({ server });
 wss.on('connection', (ws) => {
   ws.isAlive = true;
-  console.log("Connected to the server ");
 
   ws.on("message", (data: any) => {
-    console.log(data);
-    
     ws.send(data);
   });
 
 
   ws.on("ping",(data: any)=> {
-    console.log("PING is called");
-    console.log("result of ping is " + data.toString());
     ws.send(data.toString());
   });
   ws.on("pong",(data: any)=> {
-    console.log("PONG is called");
-    console.log("result of pong is " + data.toString());
     ws.send(data.toString());
   });
 
@@ -51,7 +44,7 @@ wss.on('connection', (ws) => {
     console.log("upgrade server");
   });
 
-  ws.on("test",(data)=> {
+  ws.on("error",(data)=> {
       console.log("error");
       ws.send(data);
       clearInterval(ws.timer);

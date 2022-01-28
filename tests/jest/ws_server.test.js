@@ -1,4 +1,4 @@
-const request = require('superagent');
+require('superagent');
 const WebSocket = require('ws');
 require('dotenv').config({ path: 'config/.env' });
 const ws_port = process.env.WS_PORT || 3000;
@@ -13,32 +13,33 @@ function heartbeat() {
 }
 
 describe('Test if client can connect to websocket', () => {
-  it('Should trigger WebSocketServer on connect', (done) => {
+  it('Should trigger WebSocketServer on connect', async() => {
     const ws = new WebSocket(baseURL);
     ws.on("open", () => {
       expect(ws.readyState).toBe(1);
       ws.close();
-    }).on('close', () => done());
-  });
-
-
-  it('Should trigger WebSocketServer on close', (done) => {
-    const ws = new WebSocket(baseURL);
-    var message;
-
-    ws.on("open", () => {
-      expect(ws.readyState).toBe(1);
-
-      ws.close();
-    }).on('close', () => {
-      done()
     });
   });
 
+  it('Should trigger WebSocketServer on connect with multiple connections', async () => {
+    const ws = new WebSocket(baseURL); 
+    const ws2 = new WebSocket(baseURL);
+    ws.on("open", () => {
+      expect(ws.readyState).toBe(1);
+      ws.close();
+    });
+    
+    ws2.on("open", () => {
+      expect(ws2.readyState).toBe(1);
+      ws2.close();
+    });
+  });
 
-  it('Should trigger WebSocketServer on message', (done) => {
+  
+
+  it('Should trigger WebSocketServer on message', async() => {
     const ws = new WebSocket(baseURL);
-    var message;
+    let message;
 
     ws.on("open", () => {
       expect(ws.readyState).toBe(1);
@@ -51,29 +52,46 @@ describe('Test if client can connect to websocket', () => {
       ws.close();
     }).on('close', () => {
       expect(message).toBe("test")
-      done()
     });
   });
 
-  it('Should trigger WebSocketServer on upgrade', (done) => {
-    const ws = new WebSocket(baseURL);
+  it('Should trigger WebSocketServer on message with multiple connections', async () => {
     var message;
-
+    var message2;
+    const ws = new WebSocket(baseURL); 
+    const ws2 = new WebSocket(baseURL);
     
-
     ws.on("open", () => {
       expect(ws.readyState).toBe(1);
 
-    
+      ws.send("test");
+      ws.on("message", (data) => {
+        message = data;
+      })
+      ws.close(); 
+    })
 
-      ws.close();
-    }).on('close', () => {
-      done()
+    ws.on("close", () => {
+      expect(message).toBe("test");
+      
+    })
+
+    ws2.on("open", () => {
+      expect(ws2.readyState).toBe(1);
+      ws2.send("test2");
+      ws2.on("message", (data) => {
+        message2 = data;
+      })
+      ws2.close();
     });
+
+    ws2.on("close", () => {
+      expect(message2).toBe("test2");
+      
+    })
   });
 
-
-  it('Should trigger WebSocketServer on ping', (done) => {
+  it('Should trigger WebSocketServer on ping', async() => {
     const ws = new WebSocket(baseURL);
     let message;
 
@@ -90,12 +108,50 @@ describe('Test if client can connect to websocket', () => {
     ws.on('close', () => {
       expect(message).toBe("test");
       clearTimeout(this.pingTimeout);
-      done()
     });
   });
 
+  it('Should trigger WebSocketServer on ping with multiple connections', async() => {
+    const ws = new WebSocket(baseURL);
+    const ws2 = new WebSocket(baseURL);
+    let message;
+    let message2;
 
-  it('Should trigger WebSocketServer on pong', (done) => {
+    ws.on("open", () => {
+      ws.ping("test");
+      ws.on("ping", heartbeat);
+
+      ws.on("message", (data) => {
+        message = data;
+      })
+      ws.close();
+    });
+
+    ws.on('close', () => {
+      expect(message).toBe("test");
+      clearTimeout(this.pingTimeout);
+    });
+
+
+    ws2.on("open", () => {
+      ws2.ping("test2");
+      ws2.on("ping", heartbeat);
+
+      ws2.on("message", (data) => {
+        message2 = data;
+      })
+      ws2.close();
+    });
+
+    ws2.on('close', () => {
+      expect(message2).toBe("test2");
+      clearTimeout(this.pingTimeout);
+    });
+
+  });
+
+
+  it('Should trigger WebSocketServer on pong', async () => {
     const ws = new WebSocket(baseURL);
     let message;
 
@@ -112,54 +168,47 @@ describe('Test if client can connect to websocket', () => {
     ws.on('close', () => {
       expect(message).toBe("test");
       clearTimeout(this.pingTimeout);
-      done()
     });
   });
 
-
-  /*it('Should trigger WebSocketServer on error', (done) => {
-      const ws = new WebSocket(baseURL);
-      var message;
-
-      ws.on("open", () => {
-        expect(ws.readyState).toBe(1);
-
-
-
-        ws.on("message", (data) => {
-          message = data;
-        })
-
-        ws.close();
-      }).on('close', () => {
-        //expect(message).toBe("test")
-        done()
-      });
-  });*/
-
-  /*it('Should trigger WebSocketServer on unexpected-response', (done) => {
+  it('Should trigger WebSocketServer on pong', async () => {
     const ws = new WebSocket(baseURL);
-    var message;
+    const ws2 = new WebSocket(baseURL);
+    let message;
+    let message2;
 
     ws.on("open", () => {
-      expect(ws.readyState).toBe(1);
-
-      ws.send("test");
+      ws.pong("test");
+      ws.on("pong", heartbeat);
 
       ws.on("message", (data) => {
         message = data;
       })
-
       ws.close();
-    }).on('close', () => {
-      expect(message).toBe("test")
-      done()
     });
-  });*/
+
+    ws.on('close', () => {
+      expect(message).toBe("test");
+      clearTimeout(this.pingTimeout);
+    });
 
 
 
+    ws2.on("open", () => {
+      ws2.pong("test2");
+      ws2.on("pong", heartbeat);
 
+      ws2.on("message", (data) => {
+        message2 = data;
+      })
+      ws2.close();
+    });
 
+    ws2.on('close', () => {
+      expect(message2).toBe("test2");
+      clearTimeout(this.pingTimeout);
+    });
+
+  });
 });
 
