@@ -13,33 +13,48 @@ app.set('view engine', 'pug');
 app.use('/', express.static('build'));
 
 app.get('/', function (req, res) {
-  return res.render('ws_index', { title: 'Hey', message: 'Hello there WebSocket!' });
+  return res.render('ws/ws_index', { title: 'Hey', message: 'Hello there WebSocket!' });
 });
+
+app.get('/ws', function (req, res) {
+  return res.render('ws/test', { title: 'Hey', message: 'Hello there WebSocket!' });
+});
+
 
 const server = app.listen(ws_port, () =>
   console.log(`Example app listening at http://localhost:${ws_port}`));
 
-const wsServer = new ws.Server({ server });
-wsServer.on('connection', (ws) => {
+const wss = new ws.Server({ server });
+wss.on('connection', (ws) => {
+  ws.isAlive = true;
+  console.log("Connected to the server ");
 
   ws.on("message", (data: any) => {
+    console.log(data);
+    
     ws.send(data);
   });
 
+
   ws.on("ping",(data: any)=> {
-    ws.ping(data);
-    
+    console.log("PING is called");
+    console.log("result of ping is " + data.toString());
+    ws.send(data.toString());
   });
   ws.on("pong",(data: any)=> {
-    ws.pong("pong");
+    console.log("PONG is called");
+    console.log("result of pong is " + data.toString());
+    ws.send(data.toString());
   });
 
   ws.on("upgrade",()=> {
-    console.log("upgrade");
+    console.log("upgrade server");
   });
 
-  ws.on("error",(data)=> {
-    ws.send(data);
+  ws.on("test",(data)=> {
+      console.log("error");
+      ws.send(data);
+      clearInterval(ws.timer);
   });
 
   ws.on("unexpected-response",()=>{
@@ -47,7 +62,22 @@ wsServer.on('connection', (ws) => {
   });
 
   ws.on("close", () => {
+    console.log("CLOSING\n");
+    
     clearInterval(ws.timer);
   });
 
+});
+
+const interval = setInterval(function ping() {
+  wss.clients.forEach(function each(ws) {
+    if (ws.isAlive === false) return ws.terminate();
+
+    ws.isAlive = false;
+    ws.ping();
+  });
+}, 30000);
+
+wss.on("close",()=> {
+  clearInterval(interval);
 });
