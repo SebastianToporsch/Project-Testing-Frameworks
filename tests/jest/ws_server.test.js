@@ -21,6 +21,17 @@ describe('Test if client can connect to websocket', () => {
     });
   });
 
+  it('Should trigger WebSocketServer and check up on readystate during test', async () => {
+    const ws = new WebSocket(baseURL);
+    expect(ws.readyState).toBe(0);
+    ws.on("open", () => {
+      expect(ws.readyState).toBe(1);
+      ws.close();
+      expect(ws.readyState).toBe(2);
+    });
+  });
+
+
   it('Should trigger WebSocketServer on connect with multiple connections', async () => {
     const ws = new WebSocket(baseURL); 
     const ws2 = new WebSocket(baseURL);

@@ -9,12 +9,13 @@
     "start_ws": "tsc && nodemon build/ws_server.js",
     "create-db": "tsc && node build/db/create-db.js",
     "test_mocha": "mocha tests/mocha",
-    "test_jest": "jest tests/jest",
+    "test_jest": "jest --detectOpenHandles tests/jest",
     "test_jasmine": "cd tests && npx jasmine"
   },
   "author": "Sebastian Toporsch",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "chai": "^4.3.4",
     "dotenv": "^10.0.0",

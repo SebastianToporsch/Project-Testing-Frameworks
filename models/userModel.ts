@@ -51,7 +51,7 @@ export function readAll(callback: Function){
   } catch (error) {
     callback(error);
   }
-};
+}
 
 export function readOne(userName: String, callback: Function){
   const queryString = `SELECT * from users WHERE username=?`;
@@ -73,7 +73,7 @@ export function readOne(userName: String, callback: Function){
         callback(error);
       }
     });
-};
+}
 
 export function update(newUser: User, oldUser:String, callback: Function){
   const queryString = `UPDATE users SET username=?,age=? WHERE username=?`;
@@ -98,7 +98,7 @@ export function update(newUser: User, oldUser:String, callback: Function){
   } catch (error) {
     callback(error);
   }
-};
+}
 
 export function del(userName: String, callback: Function){
   const queryString = `DELETE FROM users WHERE username=?`;
@@ -117,4 +117,4 @@ try {
   } catch (error) {
     callback("ERROR");
   }
-};
+}
