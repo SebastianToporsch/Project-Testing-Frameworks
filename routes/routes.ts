@@ -12,18 +12,17 @@ userRoute.get('/', function (req, res) {
 userRoute.post("/user", async (req: Request, res: Response) => {
   const newUser: UserwithPassword = req.body;
 
-  userModel.create(newUser, (err: Error) => {
+    userModel.create(newUser, (err: Error) => {
+      if (Object.keys(req.body).length === 0) {
+        return res.status(204).json({ "data": err });
+      }
 
-    if (Object.keys(req.body).length === 0) {
-      return res.status(204).json({ "data": err });
-    }
+      if (newUser.username == "" || newUser.age <= 0) {
+        return res.status(400).json({ "data": "Empty username or age" });
+      }
 
-    if (newUser.username == "" || newUser.age <= 0) {
-      return res.status(400).json({ "data": "Empty username or age" });
-    }
-
-    res.status(200).json({ "data": newUser });
-  });
+      res.status(200).json({ "data": newUser });
+    });
 });
 
 
@@ -47,7 +46,6 @@ userRoute.get("/user/:username", async (req: Request, res: Response) => {
   let userName: String = String(req.params.username);
   userModel.readOne(userName, (err: Error, user: User) => {
 
-
     if (user == undefined) {
       return res.render("404");
     }
@@ -55,6 +53,7 @@ userRoute.get("/user/:username", async (req: Request, res: Response) => {
     if (err) {
       return res.status(500).json({ "message": err.message });
     }
+
     return res.render('user', { title: 'User', message: user });
   });
 });
@@ -86,7 +85,6 @@ userRoute.put("/user/:username/email", async (req: Request, res: Response) => {
       return res.status(204).json({ "data": err });
     }
 
-
     if (await validateEmail(newEmail) == false) {
       return res.status(400).json({ "data": err });
     }
@@ -98,8 +96,7 @@ userRoute.put("/user/:username/email", async (req: Request, res: Response) => {
 userRoute.put("/user/:username/password", async (req: Request, res: Response) => {
   const newPassword: String = req.body.password;
   const oldUser: String = req.params.username;
-  userModel.updateEmail(newPassword, oldUser, (err: Error) => {
-
+  userModel.updatePassword(newPassword, oldUser, (err: Error) => {
 
     if (Object.keys(req.body).length === 0) {
       return res.status(204).json({ "data": err });

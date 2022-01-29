@@ -1,8 +1,7 @@
 import { User, UserwithPassword } from '../types/userType';
 import { database } from '../rest_server';
 import { RowDataPacket } from "mysql2";
-import { validateEmail } from '../util/database-functions';
-import { userInfo } from 'os';
+import { encryptPassword, validateEmail } from '../util/database-functions';
 /**
  *
  *
@@ -11,7 +10,7 @@ import { userInfo } from 'os';
  * @param {Function} callback
  * @return {*} 
  */
-export function create(user: UserwithPassword, callback: Function) {
+export async function create(user: UserwithPassword, callback: Function) {
   const queryString = `INSERT INTO users (id, username, age, email, password) VALUES (?, ?, ?, ?, ?)`;
 
   if (user.username == "" || user.age <= 0) {
@@ -22,7 +21,7 @@ export function create(user: UserwithPassword, callback: Function) {
   try {
     database.query(
       queryString,
-      [user.id, user.username, user.age, user.email, user.password],
+      [user.id, user.username, user.age, user.email, await encryptPassword(user.password)],
       (err, result) => {
         callback(null, user);
       }
@@ -108,8 +107,8 @@ export function readOne(userName: String, callback: Function) {
 export function updateInformation(newUser: User, oldUser: String, callback: Function) {
   const queryString = `UPDATE users SET username=?,age=? WHERE username=?`;
 
-  if (!validateEmail(newUser.email)) {
-    callback("Invalid username or age");
+  if (newUser.username =="" || newUser.age<=0) {
+    callback("Empty username or age");
     return;
   }
 
@@ -133,6 +132,11 @@ export function updateInformation(newUser: User, oldUser: String, callback: Func
 export async function updateEmail(newEmail: String, oldUser: String, callback: Function) {
   const queryString = `UPDATE users SET email=? WHERE username=?`;
 
+  if(newEmail ==""){
+    callback("Empty email.");
+    return;
+  }
+
   if (await validateEmail(newEmail) == false) {
     callback("Invalid email.");
     return;
@@ -155,18 +159,18 @@ export async function updateEmail(newEmail: String, oldUser: String, callback: F
   }
 }
 
-export function updatePassword(newPassword: String, oldUser: String, callback: Function) {
+export async function updatePassword(newPassword: String, oldUser: String, callback: Function) {
   const queryString = `UPDATE users SET password=? WHERE username=?`;
 
-  if (newPassword.length <= 0) {
-    callback("Invalid password.");
+  if (newPassword == "") {
+    callback("Empty password.");
     return;
   }
 
   try {
     database.query(
       queryString,
-      [newPassword, oldUser],
+      [await encryptPassword(newPassword), oldUser],
       (err, result) => {
         if (err) {
           callback(err);
@@ -190,6 +194,12 @@ export function updatePassword(newPassword: String, oldUser: String, callback: F
  */
 export function del(userName: String, callback: Function) {
   const queryString = `DELETE FROM users WHERE username=?`;
+
+  if (userName =="") {
+    callback("Empty username");
+    return;
+  }
+
   try {
     database.query(
       queryString,

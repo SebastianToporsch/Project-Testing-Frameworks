@@ -222,4 +222,3 @@ describe('Test if client can connect to websocket', () => {
 
   });
 });
-

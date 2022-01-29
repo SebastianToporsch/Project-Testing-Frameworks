@@ -1,8 +1,8 @@
-const request = require('superagent');
+require('superagent');
 require('dotenv').config({ path: 'config/.env' });
-const rest_port = process.env.REST_PORT || 3000;
+const rest_port = process.env.REST_PORT || 8081;
 const baseURL = `http://localhost:${rest_port}`
-const {decryptPassword, encryptPassword, validateEmail} = require("../../build/util/database-functions")
+const {decryptPassword, encryptPassword, validateEmail} = require("../../../build/util/database-functions")
 
 
 describe('Test encrypt function',  () => {
