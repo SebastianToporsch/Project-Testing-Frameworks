@@ -5,4 +5,9 @@ export interface BasicUser {
 export interface User extends BasicUser{
   username:string;
   age:number;
+  email:string;
+}
+
+export interface UserwithPassword extends User{
+  password:string;
 }

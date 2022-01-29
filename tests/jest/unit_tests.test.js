@@ -2,10 +2,10 @@ const request = require('superagent');
 require('dotenv').config({ path: 'config/.env' });
 const rest_port = process.env.REST_PORT || 3000;
 const baseURL = `http://localhost:${rest_port}`
-const {decryptPassword, encryptPassword} = require("../../build/util/database-functions")
+const {decryptPassword, encryptPassword, validateEmail} = require("../../build/util/database-functions")
 
 
-describe('Name of the group',  () => {
+describe('Test decrypt and encrypt functions',  () => {
   it('Should encrypt a password ', async() => {
     var pw = "test";
     pw = await encryptPassword(pw);
@@ -31,4 +31,45 @@ describe('Name of the group',  () => {
     checkPW = await decryptPassword(pw,"test");
     expect(checkPW).toBe(false);
   });
+
+});
+
+describe('Test validate mail function', () => {
+  it('should return true for valid email', async () => {
+    let email = await validateEmail("something@someting.com")
+    expect(email).toBe(true);
+  });
+  
+  it('should return false for mail without @ or domain', async () => {
+    let email = await validateEmail("something");
+    expect(email).toBe(false);
+  }); 
+  
+  it('should return false for mail with two @', async () => {
+    let email = await validateEmail("something@@something.com");
+    expect(email).toBe(false);
+  });
+
+  it('should return false for mail with  mail server', async () => {
+    let email = await validateEmail("something@.com");
+    expect(email).toBe(false);
+  }); 
+
+
+  it('should return false for mail with no name', async () => {
+    let email = await validateEmail("@something.com");
+    expect(email).toBe(false);
+  }); 
+
+  it('should return false for mail with no name or mail server', async () => {
+    let email = await validateEmail("@.com");
+    expect(email).toBe(false);
+  }); 
+
+
+  it('should return false for empty mail', async () => {
+    let email = await validateEmail("");
+    expect(email).toBe(false);
+  });
+
 });

@@ -6,7 +6,7 @@ html(lang="en")
     title= title
   body
   a.btn(href="/users") Press to see all users
-  h1="Id/Username/Age"
+  h1="Id / Username / Age / Email"
     ul
     for item in message
-      li= item.id +" / "+ item.username +" / " + item.age
+      li= "ID: " + item.id +" /  Username: "+ item.username +" / Age: " + item.age +" / Email: " +item.email

@@ -37,7 +37,7 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if create route works', async () => {
     await request
       .post(baseURL + "/user")
-      .send({ username: 'CREATE', age: 10 })
+      .send({ username: 'CREATE', age: 10, email:"test@test.com",password:"test" })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
@@ -50,7 +50,7 @@ describe('Test if rest routes return 200 on success', () => {
     await request.get(baseURL + "/users")
       .then(res => {
         expect(res.statusCode).toBe(200);
-        expect(res.text).toContain("Id/Username/Age");
+        expect(res.text).toContain("Id / Username / Age / Email");
         expect(res.text).toContain("CREATE");
       })
   });
@@ -125,7 +125,7 @@ describe('Test if rest routes catch error cases', () => {
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
-        expect(res.statusCode).toBe(204);
+        expect(res.statusCode).toBe(400);
         expect(res.text).not.toContain("CREATE");
       })
   });
@@ -140,6 +140,8 @@ describe('Test if rest routes catch error cases', () => {
       })
   });
 });
+
+
 
 afterAll(async () => {
   await request.delete(baseURL + "/user")

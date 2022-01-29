@@ -55,8 +55,6 @@ wss.on('connection', (ws) => {
   });
 
   ws.on("close", () => {
-    console.log("CLOSING\n");
-    
     clearInterval(ws.timer);
   });
 

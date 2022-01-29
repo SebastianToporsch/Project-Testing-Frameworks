@@ -34,8 +34,11 @@ function createTable() {
     id int NOT NULL AUTO_INCREMENT,
     username varchar(255) NOT NULL,
     age int NOT NULL,
+    email varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT UNIQ_username UNIQUE (username)
+    CONSTRAINT UNIQ_username UNIQUE (username),
+    CONSTRAINT UNIQ_email UNIQUE (email)
   );`;
 
   // create connection to the database

@@ -44,7 +44,7 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if create route works', async () => {
       await request
         .post(baseURL + "/user")
-        .send({ username: 'CREATE', age: 10 })
+        .send({ username: 'CREATE', age: 10, email:"test@test.com",password:"test" })
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .then(res => {
