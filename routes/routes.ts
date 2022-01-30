@@ -12,16 +12,16 @@ userRoute.get('/', function (req, res) {
 userRoute.post("/user", async (req: Request, res: Response) => {
   const newUser: UserwithPassword = req.body;
 
-    userModel.create(newUser, (err: Error) => {
-      if (Object.keys(req.body).length === 0) {
-        return res.status(204).json({ "data": err });
-      }
+  userModel.create(newUser, (err: Error) => {
+    if (Object.keys(req.body).length === 0) {
+      return res.status(204).json({ "data": err });
+    }
 
-      if (newUser.username == "" || newUser.age <= 0) {
-        return res.status(400).json({ "data": "Empty username or age" });
-      }
-      res.status(200).json({ "data": newUser });
-    });
+    if (newUser.username == "" || newUser.age <= 0) {
+      return res.status(400).json({ "data": "Empty username or age" });
+    }
+    res.status(200).json({ "data": newUser });
+  });
 });
 
 
@@ -94,7 +94,7 @@ userRoute.put("/user/:id/email", async (req: Request, res: Response) => {
 
 userRoute.put("/user/:id/password", async (req: Request, res: Response) => {
   const newPassword: String = req.body.password;
-  const id : String = req.params.id;
+  const id: String = req.params.id;
   userModel.updatePassword(newPassword, id, (err: Error) => {
 
     if (Object.keys(req.body).length === 0) {

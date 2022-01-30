@@ -13,11 +13,11 @@ app.set('view engine', 'pug');
 app.use('/', express.static('build'));
 
 app.get('/', function (req, res) {
-  return res.render('ws/ws_index', {message: 'Hello there WebSocket!' });
+  return res.render('ws/ws_index', { message: 'Hello there WebSocket!' });
 });
 
 app.get('/ws', function (req, res) {
-  return res.render('ws/test', {message: 'Hello there WebSocket!' });
+  return res.render('ws/test', { message: 'Hello there WebSocket!' });
 });
 
 
@@ -33,24 +33,24 @@ wss.on('connection', (ws) => {
   });
 
 
-  ws.on("ping",(data: any)=> {
+  ws.on("ping", (data: any) => {
     ws.send(data.toString());
   });
-  ws.on("pong",(data: any)=> {
+  ws.on("pong", (data: any) => {
     ws.send(data.toString());
   });
 
-  ws.on("upgrade",()=> {
+  ws.on("upgrade", () => {
     console.log("upgrade server");
   });
 
-  ws.on("error",(data)=> {
-      console.log("error");
-      ws.send(data);
-      clearInterval(ws.timer);
+  ws.on("error", (data) => {
+    console.log("error");
+    ws.send(data);
+    clearInterval(ws.timer);
   });
 
-  ws.on("unexpected-response",()=>{
+  ws.on("unexpected-response", () => {
     console.log("unexpected-response");
   });
 
@@ -69,6 +69,6 @@ const interval = setInterval(function ping() {
   });
 }, 30000);
 
-wss.on("close",()=> {
+wss.on("close", () => {
   clearInterval(interval);
 });

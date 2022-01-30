@@ -9,8 +9,13 @@
     "start_ws": "tsc && nodemon build/ws_server.js",
     "create-db": "tsc && node build/db/create-db.js",
     "test_mocha": "mocha tests/mocha",
-    "test_jest": "jest tests/jest",
-    "test_jasmine": "cd tests && npx jasmine"
+    "test_jest_cache": "jest --clearCache",
+    "test_jest_details":"jest --clearCache && jest --verbose tests/jest",
+    "test_jest": "jest --clearCache && jest tests/jest",
+    "test_jest_workers_50": "jest --clearCache && jest --maxWorkers=50% tests/jest",
+    "test_jest_workers_25": "jest --clearCache && jest --maxWorkers=25% tests/jest",
+    "test_jest_inBand": "jest --clearCache && jest --runInBand tests/jest",
+    "test_jasmine": "cd tests && npx --verbose jasmine "
   },
   "author": "Sebastian Toporsch",
   "license": "ISC",

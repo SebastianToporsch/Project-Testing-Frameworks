@@ -2,11 +2,11 @@ const request = require('superagent');
 require('dotenv').config({ path: 'config/.env' });
 const rest_port = process.env.REST_PORT || 3000;
 const baseURL = `http://localhost:${rest_port}`
-const {decryptPassword, encryptPassword, validateEmail} = require("../../build/util/database-functions")
+const { decryptPassword, encryptPassword, validateEmail } = require("../../build/util/database-functions")
 
 
-describe('Test encrypt function',  () => {
-  it('Should encrypt a password ', async() => {
+describe('Test encrypt function', () => {
+  it('Should encrypt a password ', async () => {
     var pw = "test";
     pw = await encryptPassword(pw);
     expect(pw).not.toBe("test");
@@ -18,7 +18,7 @@ describe('Test encrypt function',  () => {
     pw = await encryptPassword(pw);
     expect(pw).not.toBe("test");
 
-    checkPW = await decryptPassword(pw,"test");
+    checkPW = await decryptPassword(pw, "test");
     expect(checkPW).toBe(true);
   });
 
@@ -28,7 +28,7 @@ describe('Test encrypt function',  () => {
     pw = await encryptPassword(pw);
     expect(pw).not.toBe("test");
 
-    checkPW = await decryptPassword(pw,"test");
+    checkPW = await decryptPassword(pw, "test");
     expect(checkPW).toBe(false);
   });
 
@@ -39,12 +39,12 @@ describe('Test validate mail function', () => {
     let email = await validateEmail("something@someting.com")
     expect(email).toBe(true);
   });
-  
+
   it('should return false for mail without @ or domain', async () => {
     let email = await validateEmail("something");
     expect(email).toBe(false);
-  }); 
-  
+  });
+
   it('should return false for mail with two @', async () => {
     let email = await validateEmail("something@@something.com");
     expect(email).toBe(false);
@@ -53,18 +53,18 @@ describe('Test validate mail function', () => {
   it('should return false for mail with  mail server', async () => {
     let email = await validateEmail("something@.com");
     expect(email).toBe(false);
-  }); 
+  });
 
 
   it('should return false for mail with no name', async () => {
     let email = await validateEmail("@something.com");
     expect(email).toBe(false);
-  }); 
+  });
 
   it('should return false for mail with no name or mail server', async () => {
     let email = await validateEmail("@.com");
     expect(email).toBe(false);
-  }); 
+  });
 
 
   it('should return false for empty mail', async () => {

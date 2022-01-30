@@ -1,10 +1,10 @@
 //Setup express and firebase
-import express  from "express";
+import express from "express";
 import mysql from "mysql2";
 import { userRoute } from './routes/routes';
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-dotenv.config({path:'config/.env'});
+dotenv.config({ path: 'config/.env' });
 
 const app = express();
 app.use(express.json());
@@ -12,7 +12,7 @@ app.use(express.json());
 const rest_port = process.env.REST_PORT || 3000;
 
 app.use(bodyParser.json());
-app.use("",userRoute);
+app.use("", userRoute);
 
 // setup view engine
 app.set('view engine', 'pug');

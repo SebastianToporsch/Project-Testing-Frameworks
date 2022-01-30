@@ -13,7 +13,7 @@ function heartbeat() {
 }
 
 describe('Test if client can connect to websocket', () => {
-  it('Should trigger WebSocketServer on connect', async() => {
+  it('Should trigger WebSocketServer on connect', async () => {
     const ws = new WebSocket(baseURL);
     ws.on("open", () => {
       expect(ws.readyState).toBe(1);
@@ -33,22 +33,22 @@ describe('Test if client can connect to websocket', () => {
 
 
   it('Should trigger WebSocketServer on connect with multiple connections', async () => {
-    const ws = new WebSocket(baseURL); 
+    const ws = new WebSocket(baseURL);
     const ws2 = new WebSocket(baseURL);
     ws.on("open", () => {
       expect(ws.readyState).toBe(1);
       ws.close();
     });
-    
+
     ws2.on("open", () => {
       expect(ws2.readyState).toBe(1);
       ws2.close();
     });
   });
 
-  
 
-  it('Should trigger WebSocketServer on message', async() => {
+
+  it('Should trigger WebSocketServer on message', async () => {
     const ws = new WebSocket(baseURL);
     let message;
 
@@ -69,9 +69,9 @@ describe('Test if client can connect to websocket', () => {
   it('Should trigger WebSocketServer on message with multiple connections', async () => {
     var message;
     var message2;
-    const ws = new WebSocket(baseURL); 
+    const ws = new WebSocket(baseURL);
     const ws2 = new WebSocket(baseURL);
-    
+
     ws.on("open", () => {
       expect(ws.readyState).toBe(1);
 
@@ -79,12 +79,12 @@ describe('Test if client can connect to websocket', () => {
       ws.on("message", (data) => {
         message = data;
       })
-      ws.close(); 
+      ws.close();
     })
 
     ws.on("close", () => {
       expect(message).toBe("test");
-      
+
     })
 
     ws2.on("open", () => {
@@ -98,11 +98,11 @@ describe('Test if client can connect to websocket', () => {
 
     ws2.on("close", () => {
       expect(message2).toBe("test2");
-      
+
     })
   });
 
-  it('Should trigger WebSocketServer on ping', async() => {
+  it('Should trigger WebSocketServer on ping', async () => {
     const ws = new WebSocket(baseURL);
     let message;
 
@@ -122,7 +122,7 @@ describe('Test if client can connect to websocket', () => {
     });
   });
 
-  it('Should trigger WebSocketServer on ping with multiple connections', async() => {
+  it('Should trigger WebSocketServer on ping with multiple connections', async () => {
     const ws = new WebSocket(baseURL);
     const ws2 = new WebSocket(baseURL);
     let message;

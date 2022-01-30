@@ -19,7 +19,7 @@ export async function decryptPassword(hashedPassword: String, password: String) 
   return validPassword;
 }
 
-export async function validateEmail(email:String) {
+export async function validateEmail(email: String) {
 
   let regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
 

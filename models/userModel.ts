@@ -107,7 +107,7 @@ export function readOne(id: number, callback: Function) {
 export function updateInformation(newUser: User, id: String, callback: Function) {
   const queryString = `UPDATE users SET username=?,age=? WHERE id=?`;
 
-  if (newUser.username =="" || newUser.age<=0) {
+  if (newUser.username == "" || newUser.age <= 0) {
     callback("Empty username or age");
     return;
   }
@@ -132,7 +132,7 @@ export function updateInformation(newUser: User, id: String, callback: Function)
 export async function updateEmail(newEmail: String, id: String, callback: Function) {
   const queryString = `UPDATE users SET email=? WHERE id=?`;
 
-  if(newEmail ==""){
+  if (newEmail == "") {
     callback("Empty email.");
     return;
   }
@@ -195,7 +195,7 @@ export async function updatePassword(newPassword: String, id: String, callback: 
 export function del(userName: String, callback: Function) {
   const queryString = `DELETE FROM users WHERE username=?`;
 
-  if (userName =="") {
+  if (userName == "") {
     callback("Empty username");
     return;
   }

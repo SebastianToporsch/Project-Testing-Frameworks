@@ -1,13 +1,13 @@
 export interface BasicUser {
-  id:number;
+  id: number;
 }
 
-export interface User extends BasicUser{
-  username:string;
-  age:number;
-  email:string;
+export interface User extends BasicUser {
+  username: string;
+  age: number;
+  email: string;
 }
 
-export interface UserwithPassword extends User{
-  password:string;
+export interface UserwithPassword extends User {
+  password: string;
 }

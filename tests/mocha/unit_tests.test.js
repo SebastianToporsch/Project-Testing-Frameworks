@@ -1,12 +1,12 @@
 var request = require("superagent");
 var chai = require('chai');
-require('dotenv').config({path:'config/.env'})
+require('dotenv').config({ path: 'config/.env' })
 var expect = chai.expect;
-const {decryptPassword, encryptPassword, validateEmail} = require("../../build/util/database-functions")
+const { decryptPassword, encryptPassword, validateEmail } = require("../../build/util/database-functions")
 
 
-describe('Test encrypt function',  () => {
-  it('Should encrypt a password ', async() => {
+describe('Test encrypt function', () => {
+  it('Should encrypt a password ', async () => {
     var pw = "test";
     pw = await encryptPassword(pw);
     expect(pw).not.to.equal("test");
@@ -18,7 +18,7 @@ describe('Test encrypt function',  () => {
     pw = await encryptPassword(pw);
     expect(pw).not.to.equal("test");
 
-    checkPW = await decryptPassword(pw,"test");
+    checkPW = await decryptPassword(pw, "test");
     expect(checkPW).to.equal(true);
   });
 
@@ -28,7 +28,7 @@ describe('Test encrypt function',  () => {
     pw = await encryptPassword(pw);
     expect(pw).not.to.equal("test");
 
-    checkPW = await decryptPassword(pw,"test");
+    checkPW = await decryptPassword(pw, "test");
     expect(checkPW).to.equal(false);
   });
 
@@ -39,12 +39,12 @@ describe('Test validate mail function', () => {
     let email = await validateEmail("something@someting.com")
     expect(email).to.equal(true);
   });
-  
+
   it('should return false for mail without @ or domain', async () => {
     let email = await validateEmail("something");
     expect(email).to.equal(false);
-  }); 
-  
+  });
+
   it('should return false for mail with two @', async () => {
     let email = await validateEmail("something@@something.com");
     expect(email).to.equal(false);
@@ -53,18 +53,18 @@ describe('Test validate mail function', () => {
   it('should return false for mail with  mail server', async () => {
     let email = await validateEmail("something@.com");
     expect(email).to.equal(false);
-  }); 
+  });
 
 
   it('should return false for mail with no name', async () => {
     let email = await validateEmail("@something.com");
     expect(email).to.equal(false);
-  }); 
+  });
 
   it('should return false for mail with no name or mail server', async () => {
     let email = await validateEmail("@.com");
     expect(email).to.equal(false);
-  }); 
+  });
 
 
   it('should return false for empty mail', async () => {
