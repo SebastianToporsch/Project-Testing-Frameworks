@@ -53,7 +53,7 @@ describe('Test if rest routes return 200 on success', () => {
     await request.get(baseURL + "/users")
       .then(res => {
         expect(res.statusCode).to.equal(200);
-        expect(res.text).contains("Id / Username / Age / Email");
+        expect(res.text).contains("Id / Username ");
         expect(res.text).contains("CREATE");
       })
   });
