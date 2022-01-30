@@ -13,11 +13,11 @@ app.set('view engine', 'pug');
 app.use('/', express.static('build'));
 
 app.get('/', function (req, res) {
-  return res.render('ws/ws_index', { title: 'Hey', message: 'Hello there WebSocket!' });
+  return res.render('ws/ws_index', {message: 'Hello there WebSocket!' });
 });
 
 app.get('/ws', function (req, res) {
-  return res.render('ws/test', { title: 'Hey', message: 'Hello there WebSocket!' });
+  return res.render('ws/test', {message: 'Hello there WebSocket!' });
 });
 
 

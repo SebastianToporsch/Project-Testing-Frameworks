@@ -6,7 +6,7 @@ import { validateEmail } from "../util/database-functions";
 const userRoute = express.Router();
 
 userRoute.get('/', function (req, res) {
-  return res.render('rest_index', { title: 'Hey', message: 'Hello there!' });
+  return res.render('rest/rest_index', { message: 'Hello there!' });
 });
 
 userRoute.post("/user", async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ userRoute.get("/users", async (req: Request, res: Response) => {
 
 
     if (users.length == 0) {
-      return res.render("404");
+      return res.render("rest/404");
     }
 
     if (err) {
@@ -46,7 +46,7 @@ userRoute.get("/user/:id", async (req: Request, res: Response) => {
   userModel.readOne(id, (err: Error, user: User) => {
 
     if (user == undefined) {
-      return res.render("404");
+      return res.render("rest/404");
     }
 
     if (err) {
