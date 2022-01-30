@@ -8,7 +8,6 @@
     "util/database-functions.ts",
     "rest_server.ts",
     "ws_server.ts",
-    "public/scripts/client.tsient.ts",
     "db/create-db.ts"
   ],
   "exclude": []

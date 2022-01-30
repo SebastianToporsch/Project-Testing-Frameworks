@@ -9,7 +9,7 @@
     "start_ws": "tsc && nodemon build/ws_server.js",
     "create-db": "tsc && node build/db/create-db.js",
     "test_mocha": "mocha tests/mocha",
-    "test_jest": "jest --detectOpenHandles tests/jest",
+    "test_jest": "jest tests/jest",
     "test_jasmine": "cd tests && npx jasmine"
   },
   "author": "Sebastian Toporsch",
