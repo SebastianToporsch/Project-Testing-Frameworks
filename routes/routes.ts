@@ -37,7 +37,7 @@ userRoute.get("/users", async (req: Request, res: Response) => {
       return res.status(500);
     }
 
-    return res.render('users', { title: 'Users', message: users });
+    return res.render('rest/users', { title: 'Users', message: users });
   });
 });
 
@@ -53,7 +53,7 @@ userRoute.get("/user/:id", async (req: Request, res: Response) => {
       return res.status(500).json({ "message": err.message });
     }
 
-    return res.render('user', { title: 'User', message: user });
+    return res.render('rest/user', { title: 'User', message: user });
   });
 });
 
