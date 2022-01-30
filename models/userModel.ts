@@ -73,11 +73,11 @@ export function readAll(callback: Function) {
  * @param {String} userName
  * @param {Function} callback
  */
-export function readOne(userName: String, callback: Function) {
-  const queryString = `SELECT * from users WHERE username=?`;
+export function readOne(id: number, callback: Function) {
+  const queryString = `SELECT * from users WHERE id=?`;
 
   database.query(
-    queryString, userName, (err, result) => {
+    queryString, id, (err, result) => {
 
       try {
         const row = (<RowDataPacket>result)[0];
@@ -104,8 +104,8 @@ export function readOne(userName: String, callback: Function) {
  * @param {Function} callback
  * @return {*} 
  */
-export function updateInformation(newUser: User, oldUser: String, callback: Function) {
-  const queryString = `UPDATE users SET username=?,age=? WHERE username=?`;
+export function updateInformation(newUser: User, id: String, callback: Function) {
+  const queryString = `UPDATE users SET username=?,age=? WHERE id=?`;
 
   if (newUser.username =="" || newUser.age<=0) {
     callback("Empty username or age");
@@ -115,7 +115,7 @@ export function updateInformation(newUser: User, oldUser: String, callback: Func
   try {
     database.query(
       queryString,
-      [newUser.username, newUser.age, oldUser],
+      [newUser.username, newUser.age, id],
       (err, result) => {
         if (err) {
           callback(err);
@@ -129,8 +129,8 @@ export function updateInformation(newUser: User, oldUser: String, callback: Func
   }
 }
 
-export async function updateEmail(newEmail: String, oldUser: String, callback: Function) {
-  const queryString = `UPDATE users SET email=? WHERE username=?`;
+export async function updateEmail(newEmail: String, id: String, callback: Function) {
+  const queryString = `UPDATE users SET email=? WHERE id=?`;
 
   if(newEmail ==""){
     callback("Empty email.");
@@ -145,7 +145,7 @@ export async function updateEmail(newEmail: String, oldUser: String, callback: F
   try {
     database.query(
       queryString,
-      [newEmail, oldUser],
+      [newEmail, id],
       (err, result) => {
         if (err) {
           callback(err);
@@ -159,8 +159,8 @@ export async function updateEmail(newEmail: String, oldUser: String, callback: F
   }
 }
 
-export async function updatePassword(newPassword: String, oldUser: String, callback: Function) {
-  const queryString = `UPDATE users SET password=? WHERE username=?`;
+export async function updatePassword(newPassword: String, id: String, callback: Function) {
+  const queryString = `UPDATE users SET password=? WHERE id=?`;
 
   if (newPassword == "") {
     callback("Empty password.");
@@ -170,7 +170,7 @@ export async function updatePassword(newPassword: String, oldUser: String, callb
   try {
     database.query(
       queryString,
-      [await encryptPassword(newPassword), oldUser],
+      [await encryptPassword(newPassword), id],
       (err, result) => {
         if (err) {
           callback(err);

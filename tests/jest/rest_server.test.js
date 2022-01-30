@@ -3,6 +3,7 @@ require('dotenv').config({ path: 'config/.env' });
 const rest_port = process.env.REST_PORT || 3000;
 const baseURL = `http://localhost:${rest_port}`
 
+var id="1";
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {
@@ -51,11 +52,13 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.statusCode).toBe(200);
         expect(res.text).toContain("Id / Username");
         expect(res.text).toContain("CREATE");
+        let match = new RegExp("<li>ID: ([0-9].*).\/.*CREATE<").exec(res.text);
+        id = match[1]
       })
   });
 
   it('Should return 200 if read one route works', async () => {
-    await request.get(baseURL + "/user/CREATE")
+    await request.get(baseURL + `/user/${id}`)
       .then(res => {
         expect(res.statusCode).toBe(200);
         expect(res.text).toContain("The user is");
@@ -65,7 +68,7 @@ describe('Test if rest routes return 200 on success', () => {
 
   it('Should return 200 if update information route works', async () => {
     await request
-      .put(baseURL + "/user/CREATE")
+      .put(baseURL + `/user/${id}`)
       .send({ username: 'CREATE2', age: 12 })
       .then(res => {
         expect(res.statusCode).toBe(200);
@@ -75,7 +78,7 @@ describe('Test if rest routes return 200 on success', () => {
 
   it('Should return 200 if update email route works', async () => {
     await request
-      .put(baseURL + "/user/CREATE2/email")
+      .put(baseURL + `/user/${id}/email`)
       .send({ email:"test2@test2.com" })
       .then(res => {
         expect(res.statusCode).toBe(200);
@@ -85,7 +88,7 @@ describe('Test if rest routes return 200 on success', () => {
 
   it('Should return 200 if update password route works', async () => {
     await request
-      .put(baseURL + "/user/CREATE2/password")
+      .put(baseURL + `/user/${id}/password`)
       .send({ password:"test2" })
       .then(res => {
         expect(res.statusCode).toBe(200);
@@ -118,7 +121,7 @@ describe('Test if rest routes return 204 on empty content ', () => {
 
   it('Should return 204 if update information route has empty body', async () => {
     await request
-      .put(baseURL + "/user/CREATE")
+      .put(baseURL + `/user/${id}`)
       .send()
       .then(res => {
         expect(res.statusCode).toBe(204);
@@ -127,7 +130,7 @@ describe('Test if rest routes return 204 on empty content ', () => {
 
   it('Should return 204 if update email route has empty body', async () => {
     await request
-      .put(baseURL + "/user/CREATE/email")
+      .put(baseURL + `/user/${id}/email`)
       .send()
       .then(res => {
         expect(res.statusCode).toBe(204);
@@ -136,7 +139,7 @@ describe('Test if rest routes return 204 on empty content ', () => {
 
   it('Should return 204 if update password route has empty body', async () => {
     await request
-      .put(baseURL + "/user/CREATE/password")
+      .put(baseURL + `/user/${id}/password`)
       .send()
       .then(res => {
         expect(res.statusCode).toBe(204);
@@ -180,7 +183,7 @@ describe('Test if rest routes catch error cases', () => {
   });
 
   it('Should return 404 page if read one route returns no user', async () => {
-    await request.get(baseURL + "/user/CREATE")
+    await request.get(baseURL + `/user/${id}`)
       .then(res => {
         expect(res.statusCode).toBe(200);
         expect(res.text).toContain("No user found");
@@ -189,7 +192,7 @@ describe('Test if rest routes catch error cases', () => {
 
   it('Should return 400 if update information request has empty parameters', async () => {
     await request
-      .put(baseURL + "/user/CREATE2")
+      .put(baseURL + `/user/${id}`)
       .send({ username: '', age: 0 })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
@@ -203,7 +206,7 @@ describe('Test if rest routes catch error cases', () => {
 
   it('Should return 400 if update email request has empty parameters', async () => {
     await request
-      .put(baseURL + "/user/CREATE2/email")
+      .put(baseURL + `/user/${id}/email`)
       .send({ email:"" })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
@@ -217,7 +220,7 @@ describe('Test if rest routes catch error cases', () => {
 
   it('Should return 400 if update password request has empty parameters', async () => {
     await request
-      .put(baseURL + "/user/CREATE2/password")
+      .put(baseURL + `/user/${id}/password`)
       .send({ password:"" })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
