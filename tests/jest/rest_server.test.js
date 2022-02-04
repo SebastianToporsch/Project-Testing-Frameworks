@@ -3,7 +3,7 @@ require('dotenv').config({ path: 'config/.env' });
 const rest_port = process.env.REST_PORT || 3000;
 const baseURL = `http://localhost:${rest_port}`
 
-var id = "1";
+var id;
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {
@@ -24,7 +24,7 @@ describe('Test if server contains expected text', () => {
   });
 
   it('Should return 404 page if no users are in the database', async () => {
-    request.get(baseURL + "/users")
+    request.get(baseURL + "/user/0")
       .then(res => {
         expect(res.statusCode).toBe(200);
         expect(res.text).toContain("No user")
@@ -37,7 +37,7 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if create route works', async () => {
     await request
       .post(baseURL + "/user")
-      .send({ username: 'CREATE', age: 10, email: "test@test.com", password: "test" })
+      .send({ username: 'CREATE', age: 20, email: "test@test.com", password: "test" })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {

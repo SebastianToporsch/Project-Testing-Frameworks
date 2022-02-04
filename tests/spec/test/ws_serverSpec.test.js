@@ -4,13 +4,6 @@ require('dotenv').config({ path: 'config/.env' });
 const ws_port = process.env.WS_PORT || 8081;
 const baseURL = `ws://localhost:${ws_port}`
 
-function heartbeat() {
-  clearTimeout(this.pingTimeout);
-
-  this.pingTimeout = setTimeout(() => {
-    this.terminate();
-  }, 100000 + 1000);
-}
 
 describe('Test if client can connect to websocket', () => {
   it('Should trigger WebSocketServer on connect', async () => {
@@ -108,7 +101,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on("open", () => {
       ws.ping("test");
-      ws.on("ping", heartbeat);
 
       ws.on("message", (data) => {
         message = data;
@@ -118,7 +110,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on('close', () => {
       expect(message).toBe("test");
-      clearTimeout(this.pingTimeout);
     });
   });
 
@@ -130,7 +121,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on("open", () => {
       ws.ping("test");
-      ws.on("ping", heartbeat);
 
       ws.on("message", (data) => {
         message = data;
@@ -140,13 +130,11 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on('close', () => {
       expect(message).toBe("test");
-      clearTimeout(this.pingTimeout);
     });
 
 
     ws2.on("open", () => {
       ws2.ping("test2");
-      ws2.on("ping", heartbeat);
 
       ws2.on("message", (data) => {
         message2 = data;
@@ -156,7 +144,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws2.on('close', () => {
       expect(message2).toBe("test2");
-      clearTimeout(this.pingTimeout);
     });
 
   });
@@ -168,7 +155,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on("open", () => {
       ws.pong("test");
-      ws.on("pong", heartbeat);
 
       ws.on("message", (data) => {
         message = data;
@@ -178,7 +164,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on('close', () => {
       expect(message).toBe("test");
-      clearTimeout(this.pingTimeout);
     });
   });
 
@@ -190,7 +175,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on("open", () => {
       ws.pong("test");
-      ws.on("pong", heartbeat);
 
       ws.on("message", (data) => {
         message = data;
@@ -200,14 +184,12 @@ describe('Test if client can connect to websocket', () => {
 
     ws.on('close', () => {
       expect(message).toBe("test");
-      clearTimeout(this.pingTimeout);
     });
 
 
 
     ws2.on("open", () => {
       ws2.pong("test2");
-      ws2.on("pong", heartbeat);
 
       ws2.on("message", (data) => {
         message2 = data;
@@ -217,7 +199,6 @@ describe('Test if client can connect to websocket', () => {
 
     ws2.on('close', () => {
       expect(message2).toBe("test2");
-      clearTimeout(this.pingTimeout);
     });
 
   });
