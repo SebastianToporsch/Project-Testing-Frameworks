@@ -189,21 +189,21 @@ export async function updatePassword(newPassword: String, id: String, callback: 
  *
  *
  * @export
- * @param {String} userName
+ * @param {number} id
  * @param {Function} callback
  */
-export function del(userName: String, callback: Function) {
-  const queryString = `DELETE FROM users WHERE username=?`;
+export function del(id: number, callback: Function) {
+  const queryString = `DELETE FROM users WHERE id=?`;
 
-  if (userName == "") {
-    callback("Empty username");
+  if (id <= 0) {
+    callback("Empty id");
     return;
   }
 
   try {
     database.query(
       queryString,
-      [userName],
+      [id],
       (err, result) => {
 
         if (err) {

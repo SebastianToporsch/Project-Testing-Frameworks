@@ -25,7 +25,7 @@ userRoute.post("/user", async (req: Request, res: Response) => {
 });
 
 
-userRoute.get("/users", async (req: Request, res: Response) => {
+userRoute.get("/user", async (req: Request, res: Response) => {
   userModel.readAll((err: Error, users: User[]) => {
 
 
@@ -74,50 +74,15 @@ userRoute.put("/user/:id", async (req: Request, res: Response) => {
   });
 });
 
-
-userRoute.put("/user/:id/email", async (req: Request, res: Response) => {
-  const newEmail: String = req.body.email;
-  const id: String = req.params.id;
-  userModel.updateEmail(newEmail, id, async (err: Error) => {
-
-    if (Object.keys(req.body).length === 0) {
-      return res.status(204).json({ "data": err });
-    }
-
-    if (await validateEmail(newEmail) == false) {
-      return res.status(400).json({ "data": err });
-    }
-
-    res.status(200).json({ "message": err });
-  });
-});
-
-userRoute.put("/user/:id/password", async (req: Request, res: Response) => {
-  const newPassword: String = req.body.password;
-  const id: String = req.params.id;
-  userModel.updatePassword(newPassword, id, (err: Error) => {
-
-    if (Object.keys(req.body).length === 0) {
-      return res.status(204).json({ "data": err });
-    }
-
-    if (newPassword.length <= 0) {
-      return res.status(400).json({ "data": err });
-    }
-
-    res.status(200).json({ "message": err });
-  });
-});
-
 userRoute.delete("/user", async (req: Request, res: Response) => {
-  const userName: String = req.body.username;
-  userModel.del(userName, (err: Error) => {
+  let id: number = Number(req.params.id);
+  userModel.del(id, (err: Error) => {
 
     if (Object.keys(req.body).length === 0) {
       return res.status(204).json({ "data": err });
     }
 
-    if (userName.length == 0) {
+    if (id <= 0) {
       return res.status(400).json({ "message": "Empty username" });
     }
 
