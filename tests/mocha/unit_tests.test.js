@@ -1,4 +1,3 @@
-var request = require("superagent");
 var chai = require('chai');
 require('dotenv').config({ path: 'config/.env' })
 var expect = chai.expect;

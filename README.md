@@ -13,7 +13,7 @@ Comparing Mocha, Jest and Jasmine via Express App
 
 Run the following command in the terminal/cmd:
 
-`npm run install`
+`npm install`
 
 ### 2. Setting up the database
 

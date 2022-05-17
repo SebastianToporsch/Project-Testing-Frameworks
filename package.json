@@ -8,6 +8,7 @@
     "start_rest": "tsc && nodemon build/rest_server.js",
     "start_ws": "tsc && nodemon build/ws_server.js",
     "create-db": "tsc && node build/db/create-db.js",
+    "delete-users-table": "tsc && node build/db/delete-users-table.js",
     "mocha_version": "mocha --version",
     "test_mocha": "mocha tests/mocha",
     "test_jest": "jest --clearCache && jest tests/jest",
@@ -30,6 +31,7 @@
     "express": "^4.17.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.14",
+    "npm": "^8.10.0",
     "pug": "^3.0.2",
     "superagent": "^7.0.2"
   },

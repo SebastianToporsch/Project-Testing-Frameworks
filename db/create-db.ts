@@ -63,7 +63,7 @@ function createTable() {
 
     // execute the sql string
     // tslint:disable-next-line: no-shadowed-variable
-    connection.query(sql_user, function (err: any, result: any) {
+    connection.query(sql_user, function (err: any) {
       if (err) throw err;
       console.log("Tables created");
       connection.destroy();

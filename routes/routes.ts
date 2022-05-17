@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import * as userModel from '../models/userModel';
-import { User, UserwithPassword } from '../types/userType';
-import { validateEmail } from "../util/database-functions";
+import { User, UserwithPassword as UserWithPassword } from '../types/userType';
 
 const userRoute = express.Router();
 
@@ -10,7 +9,7 @@ userRoute.get('/', function (req, res) {
 });
 
 userRoute.post("/user", async (req: Request, res: Response) => {
-  const newUser: UserwithPassword = req.body;
+  const newUser: UserWithPassword = req.body;
 
   userModel.create(newUser, (err: Error) => {
     if (Object.keys(req.body).length === 0) {
@@ -74,7 +73,7 @@ userRoute.put("/user/:id", async (req: Request, res: Response) => {
   });
 });
 
-userRoute.delete("/user", async (req: Request, res: Response) => {
+userRoute.delete("/user/:id", async (req: Request, res: Response) => {
   let id: number = Number(req.params.id);
   userModel.del(id, (err: Error) => {
 

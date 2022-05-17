@@ -1,7 +1,4 @@
-const request = require('superagent');
 require('dotenv').config({ path: 'config/.env' });
-const rest_port = process.env.REST_PORT || 3000;
-const baseURL = `http://localhost:${rest_port}`
 const { decryptPassword, encryptPassword, validateEmail } = require("../../build/util/database-functions")
 
 
