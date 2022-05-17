@@ -8,6 +8,6 @@ export interface User extends BasicUser {
   email: string;
 }
 
-export interface UserwithPassword extends User {
+export interface UserWithPassword extends User {
   password: string;
 }

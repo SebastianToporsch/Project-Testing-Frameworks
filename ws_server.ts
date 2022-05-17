@@ -25,7 +25,8 @@ const server = app.listen(ws_port, () =>
   console.log(`Example app listening at http://localhost:${ws_port}`));
 
 const wss = new ws.Server({ server });
-wss.on('connection', (ws) => {
+// tslint:disable-next-line: no-shadowed-variable
+wss.on('connection', (ws: any) => {
   ws.isAlive = true;
 
   ws.on("message", (data: any) => {
@@ -57,11 +58,11 @@ wss.on('connection', (ws) => {
   ws.on("close", () => {
     clearInterval(ws.timer);
   });
-
 });
 
 const interval = setInterval(function ping() {
-  wss.clients.forEach(function each(ws) {
+  // tslint:disable-next-line: no-shadowed-variable
+  wss.clients.forEach(function each(ws: { isAlive: boolean; terminate: () => any; ping: () => void; }) {
     if (ws.isAlive === false) return ws.terminate();
 
     ws.isAlive = false;

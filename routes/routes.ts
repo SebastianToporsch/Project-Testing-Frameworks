@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import * as userModel from '../models/userModel';
-import { User, UserwithPassword as UserWithPassword } from '../types/userType';
+import { User, UserWithPassword as UserWithPassword } from '../types/userType';
 
 const userRoute = express.Router();
 

@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 
-export async function encryptPassword(pw) {
+export async function encryptPassword(pw: string) {
   const hashedPassword = await new Promise((resolve, reject) => {
-    bcrypt.hash(pw, 10, (err, hash) => {
-      resolve(hash);
+    bcrypt.hash(pw, 10, (_err: any, _hash: unknown) => {
+      resolve(_hash);
     });
   });
 
@@ -12,8 +12,8 @@ export async function encryptPassword(pw) {
 
 export async function decryptPassword(hashedPassword: String, password: String) {
   const validPassword = await new Promise((resolve, reject) => {
-    bcrypt.compare(password, hashedPassword, (err, hash) => {
-      resolve(hash);
+    bcrypt.compare(password, hashedPassword, (_err: any, _hash: unknown) => {
+      resolve(_hash);
     });
   });
   return validPassword;
