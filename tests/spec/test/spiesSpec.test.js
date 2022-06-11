@@ -1,9 +1,9 @@
 var sinon = require("sinon");
-var functions = require("../../build/util/database-functions.js")
+var functions = require("../../../build/util/database-functions.js")
 
 var test = {
     logName: function test(param1, param2) {
-        console.log(param1 + " " + param2);
+        return param1 + " " + param2
     }
 }
 
