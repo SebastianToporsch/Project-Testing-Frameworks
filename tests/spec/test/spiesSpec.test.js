@@ -2,13 +2,13 @@ var sinon = require("sinon");
 var functions = require("../../../build/util/database-functions.js")
 
 var test = {
-    logName: function test(param1, param2) {
-        return param1 + " " + param2
+    testFunction: function test(param1, param2) {
+        return param1 + " " + param2;
     }
 }
 
 describe('Test if sinon works', () => {
-    let testSpy = sinon.spy(test, "logName")
+    let testSpy = sinon.spy(test, "testFunction")
     let testVariable1 = "This is a"
     let testVariable2 = "test"
 
@@ -17,30 +17,30 @@ describe('Test if sinon works', () => {
     });
 
     it('should test if spy was called once', () => {
-        test.logName(testVariable1)
-        sinon.assert.calledOnce(testSpy)
+        test.testFunction(testVariable1)
+        sinon.assert.calledOnceWithExactly(testSpy, testVariable1)
     });
 
     it('should test if spy was called twice and with the correct parameters', () => {
-        test.logName(testVariable1)
+        test.testFunction(testVariable1)
         sinon.assert.calledTwice(testSpy)
         sinon.assert.calledWith(testSpy, testVariable1)
     });
 
     it('should test if spy called thrice with wrong parameters', () => {
-        test.logName(testVariable1)
+        test.testFunction(testVariable1)
         sinon.assert.calledThrice(testSpy)
         sinon.assert.neverCalledWith(testSpy, "test")
     });
 
     it('should test if spy called four times with two parameters', () => {
-        test.logName(testVariable1, testVariable2)
+        test.testFunction(testVariable1, testVariable2)
         sinon.assert.callCount(testSpy, 4);
         sinon.assert.calledWithExactly(testSpy, testVariable1, testVariable2)
     });
 
     it('should test if spy called five times with two parameters and one was never used', () => {
-        test.logName(testVariable1, testVariable2)
+        test.testFunction(testVariable1, testVariable2)
         sinon.assert.callCount(testSpy, 5);
         sinon.assert.neverCalledWithMatch(testSpy, testVariable1, "x")
     });
