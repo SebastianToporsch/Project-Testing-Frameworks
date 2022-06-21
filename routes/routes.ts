@@ -8,7 +8,7 @@ userRoute.get('/', function (req, res) {
   return res.render('rest/rest_index', { message: 'Hello there!' });
 });
 
-userRoute.post("/user", async (req: Request, res: Response) => {
+userRoute.post("/user", async (req, res) => {
   const newUser: UserWithPassword = req.body;
 
   userModel.create(newUser, (err: Error) => {

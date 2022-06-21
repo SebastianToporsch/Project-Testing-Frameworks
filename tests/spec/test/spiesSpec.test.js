@@ -47,7 +47,7 @@ describe('Test if sinon works', () => {
 
 });
 
-describe('Test encryptedPassword', () => {
+describe('Test encryptPassword', () => {
     let encryptSpy = sinon.spy(functions, "encryptPassword")
     let testPassword = "test123"
     it('should test if encryptPassword gets called', () => {
