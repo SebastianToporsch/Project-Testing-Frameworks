@@ -15,10 +15,10 @@ connection.on('error', function () {
   console.log('An ERROR occured!');
 });
 
-connection.connect(function (err: any) {
+connection.connect(function (err) {
   if (err) throw err;
   // tslint:disable-next-line: no-shadowed-variable
-  connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME};`, (err: any) => {
+  connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME};`, (err) => {
     if (err) throw err;
     console.log("Database created");
     connection.destroy();
@@ -63,7 +63,7 @@ function createTable() {
 
     // execute the sql string
     // tslint:disable-next-line: no-shadowed-variable
-    connection.query(sql_user, function (err: any) {
+    connection.query(sql_user, function (err) {
       if (err) throw err;
       console.log("Tables created");
       connection.destroy();

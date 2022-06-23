@@ -26,18 +26,18 @@ const server = app.listen(ws_port, () =>
 
 const wss = new ws.Server({ server });
 // tslint:disable-next-line: no-shadowed-variable
-wss.on('connection', (ws: any) => {
+wss.on('connection', (ws) => {
   ws.isAlive = true;
 
-  ws.on("message", (data: any) => {
+  ws.on("message", (data) => {
     ws.send(data);
   });
 
 
-  ws.on("ping", (data: any) => {
+  ws.on("ping", (data) => {
     ws.send(data.toString());
   });
-  ws.on("pong", (data: any) => {
+  ws.on("pong", (data) => {
     ws.send(data.toString());
   });
 
@@ -62,7 +62,7 @@ wss.on('connection', (ws: any) => {
 
 const interval = setInterval(function ping() {
   // tslint:disable-next-line: no-shadowed-variable
-  wss.clients.forEach(function each(ws: { isAlive: boolean; terminate: () => any; ping: () => void; }) {
+  wss.clients.forEach(function each(ws) {
     if (ws.isAlive === false) return ws.terminate();
 
     ws.isAlive = false;

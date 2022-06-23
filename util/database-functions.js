@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 
-export async function encryptPassword(pw: string) {
+export async function encryptPassword(pw) {
   const hashedPassword = await new Promise((resolve, reject) => {
-    bcrypt.hash(pw, 10, (_err: any, _hash: unknown) => {
+    bcrypt.hash(pw, 10, (_err, _hash) => {
       resolve(_hash);
     });
   });
@@ -10,16 +10,16 @@ export async function encryptPassword(pw: string) {
   return hashedPassword;
 }
 
-export async function decryptPassword(hashedPassword: String, password: String) {
+export async function decryptPassword(hashedPassword, password) {
   const validPassword = await new Promise((resolve, reject) => {
-    bcrypt.compare(password, hashedPassword, (_err: any, _hash: unknown) => {
+    bcrypt.compare(password, hashedPassword, (_err, _hash) => {
       resolve(_hash);
     });
   });
   return validPassword;
 }
 
-export async function validateEmail(email: String) {
+export async function validateEmail(email) {
 
   let regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
 
