@@ -1,6 +1,9 @@
 import express from "express";
 import { DBConnection } from './db/db-connection.js';
 
+const app = express();
+app.use(express.json());
+
 export const userRoute = express.Router();
 
 //home screen
@@ -18,10 +21,11 @@ userRoute.post("/user", async (req, res) => {
   }
 
   if (Object.keys(req.body).length === 0) {
-    return res.status(204).json({ "data": err })
+    return res.status(204).json({ "data": "Empty body" })
   }
 
-  if (newUser.username != null && newUser.age != null && newUser.email != null && newUser.password != null) {
+  if (newUser.username != null && newUser.username  && newUser.age != null && newUser.email != null && newUser.password != null) {
+    if( newUser.username !="" && newUser.age != "" && newUser.email != "" && newUser.password != "")
     DBConnection.addUser(newUser)
     return res.status(200).json({ "data": newUser })
   } else {
@@ -83,7 +87,7 @@ userRoute.put("/user/:id", async (req, res) => {
     }
 
     if (Object.keys(req.body).length === 0) {
-      return res.status(204).json({ "data": "test" });
+      return res.status(204).json({ "data": "Empty body" });
     }
 
     if (newUser.username == "" || newUser.age <= 0 || newUser.email <= 0 || newUser.password <= 0) {
@@ -108,3 +112,5 @@ userRoute.delete("/user/:id", async (req, res) => {
     return res.status(500).send({ error: "Internal Server Error" })
   }
 });
+
+export default app;

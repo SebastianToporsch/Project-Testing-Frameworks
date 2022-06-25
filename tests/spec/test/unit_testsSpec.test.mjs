@@ -1,7 +1,6 @@
-require('superagent');
-require('dotenv').config({ path: 'config/.env' });
-const { decryptPassword, encryptPassword, validateEmail } = require("../../../build/util/database-functions")
-
+import dotenv from "dotenv";
+dotenv.config({ path: 'config/.env' });
+import { decryptPassword, encryptPassword, validateEmail } from "../../../util/database-functions.js"
 
 describe('Test encrypt function', () => {
   it('Should encrypt a password ', async () => {

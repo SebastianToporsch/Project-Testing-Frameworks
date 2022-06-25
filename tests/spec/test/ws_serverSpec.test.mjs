@@ -1,6 +1,7 @@
-require('superagent');
-const WebSocket = require('ws');
-require('dotenv').config({ path: 'config/.env' });
+import 'superagent';
+import WebSocket from 'ws';
+import dotenv from "dotenv";
+dotenv.config({ path: 'config/.env' });
 const ws_port = process.env.WS_PORT || 8082;
 const baseURL = `ws://localhost:${ws_port}`
 

@@ -1,37 +1,13 @@
+import dotenv from "dotenv";
+import request from "superagent";
+dotenv.config({ path: 'config/.env' });
 const rest_port = process.env.REST_PORT || 3000;
 const baseURL = `http://localhost:${rest_port}`
-jest.useFakeTimers()
-import { jest } from '@jest/globals'
-import app from "../../rest_server.js"
-import request from "supertest";
-import { DBConnection, connectionPool } from "../../db/db-connection.js";
-
-
-const username = "test";
-//require('dotenv').config({ path: 'config/.env' });
 
 
 var id;
 
-/* beforeAll(() => {
-  return  DBConnection.deleteUserByUsername(username).then(() => {
-      return DBConnection.addUser({
-          username: username,
-          age:20,
-          email:"test@test.com",
-          password: "test"
-      });
-  });
-}); */
-
 describe('Test if server is available', () => {
-  it('Should return 200 if server available', async () => {
-    request(app).get(baseURL + '')
-
-  })
-})
-
-/* describe('Test if server contains expected text', () => {
   it('Should return 200 if server available', async () => {
     request.get(baseURL)
       .then(res => {
@@ -39,14 +15,15 @@ describe('Test if server is available', () => {
         expect(res.text).toContain("Hello there")
       })
   })
+})
 
-  it('Should return 404 page if no users are in the database', async () => {
-    request.get(baseURL + "/user/0")
-      .then(res => {
-        expect(res.statusCode).toBe(200);
-        expect(res.text).toContain("No user")
-      })
-  })
+
+it('Should return 404 page if no users are in the database', async () => {
+  request.get(baseURL + "/user/0")
+    .then(res => {
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain("No user")
+    })
 })
 
 
@@ -86,16 +63,16 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if update information route works', async () => {
     await request
       .put(baseURL + `/user/${id}`)
-      .send({ username: 'CREATE2', age: 12 })
+      .send({ username: 'CREATE2', age: 12, email:"test2@test.com",password:"test2" })
       .then(res => {
         expect(res.statusCode).toBe(200);
-        expect(res.text).toContain("Name and Age update successful")
+        expect(res.body.data.username).toContain("CREATE2");
+        expect(res.body.data.age).toBe(12)
       })
   })
 
   it('Should return 200 if delete route works', async () => {
     await request.delete(baseURL + `/user/${id}`)
-      .send({ username: 'CREATE2' })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
@@ -125,15 +102,6 @@ describe('Test if rest routes return 204 on empty content ', () => {
       })
   })
 
-  it('Should return 204 if delete has empty body', async () => {
-    await request.delete(baseURL + `/user/${id}`)
-      .send()
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .then(res => {
-        expect(res.statusCode).toBe(204)
-      })
-  })
 })
 
 describe('Test if rest routes catch error cases', () => {
@@ -147,7 +115,7 @@ describe('Test if rest routes catch error cases', () => {
         expect(res.text).not.toContain("CREATE");
       }).catch((error) => {
         expect(error.status).toBe(400)
-        expect(error.response.text).toContain("Empty username or age")
+        expect(error.response.text).toContain("Empty field")
       })
   })
 
@@ -160,7 +128,7 @@ describe('Test if rest routes catch error cases', () => {
   })
 
   it('Should return 404 page if read one route returns no user', async () => {
-    await request.get(baseURL + `/user/${id}`)
+    await request.get(baseURL + `/user/0`)
       .then(res => {
         expect(res.statusCode).toBe(200)
         expect(res.text).toContain("No user found")
@@ -169,19 +137,24 @@ describe('Test if rest routes catch error cases', () => {
 
   it('Should return 400 if update information request has empty parameters', async () => {
     await request
-      .put(baseURL + `/user/${id}`)
-      .send({ username: '', age: 0 })
+      .put(baseURL + `/user/0`)
+      .send({ username: '', age: 0,email:'',password:'' })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
         expect(res.text).not.toContain("CREATE");
       }).catch((error) => {
         expect(error.status).toBe(400)
-        expect(error.response.text).toContain("Empty username or age")
+        expect(error.response.text).toContain("One or multiple fields are empty!")
       })
   })
 })
- */
-afterAll( (done) => {
-  done()
+afterAll(async () => {
+  await request.delete(baseURL + `/user/${id}`)
+    .set('Accept', 'application/json')
+    .set('Content-Type', 'application/json')
+
+  await request.delete(baseURL + `/user/${id}`)
+    .set('Accept', 'application/json')
+    .set('Content-Type', 'application/json')
 })

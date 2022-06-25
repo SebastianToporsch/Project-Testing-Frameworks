@@ -1,5 +1,5 @@
-var sinon = require("sinon");
-var functions = require("../../../build/util/database-functions.js")
+import sinon, {assert,spy} from 'sinon';
+import functions from "../../../util/database-functions.js";
 
 var test = {
     testFunction: function test(param1, param2) {
@@ -13,36 +13,36 @@ describe('Test if sinon works', () => {
     let testVariable2 = "test"
 
     it('should test if spy was never called', () => {
-        sinon.assert.notCalled(testSpy)
+        assert.notCalled(testSpy)
     });
 
     it('should test if spy was called once', () => {
         test.testFunction(testVariable1)
-        sinon.assert.calledOnceWithExactly(testSpy, testVariable1)
+        assert.calledOnceWithExactly(testSpy, testVariable1)
     });
 
     it('should test if spy was called twice and with the correct parameters', () => {
         test.testFunction(testVariable1)
-        sinon.assert.calledTwice(testSpy)
-        sinon.assert.calledWith(testSpy, testVariable1)
+        assert.calledTwice(testSpy)
+        assert.calledWith(testSpy, testVariable1)
     });
 
     it('should test if spy called thrice with wrong parameters', () => {
         test.testFunction(testVariable1)
-        sinon.assert.calledThrice(testSpy)
-        sinon.assert.neverCalledWith(testSpy, "test")
+        assert.calledThrice(testSpy)
+        assert.neverCalledWith(testSpy, "test")
     });
 
     it('should test if spy called four times with two parameters', () => {
         test.testFunction(testVariable1, testVariable2)
-        sinon.assert.callCount(testSpy, 4);
-        sinon.assert.calledWithExactly(testSpy, testVariable1, testVariable2)
+        assert.callCount(testSpy, 4);
+        assert.calledWithExactly(testSpy, testVariable1, testVariable2)
     });
 
     it('should test if spy called five times with two parameters and one was never used', () => {
         test.testFunction(testVariable1, testVariable2)
-        sinon.assert.callCount(testSpy, 5);
-        sinon.assert.neverCalledWithMatch(testSpy, testVariable1, "x")
+        assert.callCount(testSpy, 5);
+        assert.neverCalledWithMatch(testSpy, testVariable1, "x")
     });
 
 });

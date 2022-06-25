@@ -19,7 +19,7 @@
     "test_jest_workers_25": "jest --clearCache && jest --maxWorkers=25% tests/jest",
     "test_jest_workers_50": "jest --clearCache && jest --maxWorkers=50% tests/jest",
     "test_jest_inBand": "jest --clearCache && jest --runInBand tests/jest",
-    "test_jasmine": "cd tests && npx jasmine "
+    "test_jasmine": "cd tests && npx jasmine  "
   },
   "author": "Sebastian Toporsch",
   "license": "ISC",

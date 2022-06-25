@@ -28,3 +28,11 @@ export async function validateEmail(email) {
   } else
     return false;
 }
+
+const functions = {
+  encryptPassword: encryptPassword,
+  decryptPassword: decryptPassword,
+  validateEmail: validateEmail,
+}
+
+export default functions;
