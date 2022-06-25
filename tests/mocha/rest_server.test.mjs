@@ -1,9 +1,8 @@
-var request = require("superagent");
-var chai = require('chai');
-var expect = chai.expect;
-require('dotenv').config({ path: 'config/.env' })
-
-const rest_port = process.env.REST_PORT || 3000;
+import {expect} from "chai";
+import dotenv from "dotenv";
+dotenv.config({ path: './config/.env' });
+import request from "superagent";
+const rest_port = process.env.REST_PORT || 8083;
 const baseURL = `http://localhost:${rest_port}`
 
 var id;
@@ -45,7 +44,7 @@ describe('Test if rest routes return 200 on success', () => {
       .set('Content-Type', 'application/json')
       .then(res => {
         expect(res.statusCode).to.equal(200)
-        expect(res.text).contains("CREATE")
+        expect(res.body.data.username).contains("CREATE")
       })
   })
 
@@ -67,21 +66,21 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.text).contains("The user is")
         expect(res.text).contains("CREATE")
       })
-  })
+  }) 
 
   it('Should return 200 if update information route works', async () => {
     await request
       .put(baseURL + `/user/${id}`)
-      .send({ username: 'CREATE2', age: 12 })
+      .send({ username: 'CREATE2', age: 12, email:"test2@test.com",password:"test2" })
       .then(res => {
-        expect(res.statusCode).to.equal(200)
-        expect(res.text).contains("Name and Age update successful")
+        expect(res.statusCode).to.equal(200);
+        expect(res.body.data.username).to.equal("CREATE2")
+        expect(res.body.data.age).to.equal(12)
       })
   })
 
   it('Should return 200 if delete route works', async () => {
     await request.delete(baseURL + `/user/${id}`)
-      .send({ username: 'CREATE2' })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
@@ -110,17 +109,7 @@ describe('Test if rest routes return 204 on empty content ', () => {
         expect(res.statusCode).to.equal(204)
       })
   })
-
-  it('Should return 204 if delete has empty body', async () => {
-    await request.delete(baseURL + `/user/${id}`)
-      .send()
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
-      .then(res => {
-        expect(res.statusCode).to.equal(204)
-      })
-  })
-})
+})  
 
 
 describe('Test if rest routes catch error cases', () => {
@@ -134,7 +123,7 @@ describe('Test if rest routes catch error cases', () => {
         expect(res.text).not.contains("CREATE");
       }).catch((error) => {
         expect(error.status).to.equal(400)
-        expect(error.response.text).contains("Empty username or age")
+        expect(error.response.text).contains("One or multiple fields are empty!")
       });
   })
 
@@ -165,13 +154,13 @@ describe('Test if rest routes catch error cases', () => {
         expect(res.text).not.contains("CREATE");
       }).catch((error) => {
         expect(error.status).to.equal(400)
-        expect(error.response.text).contains("Empty username or age")
+        expect(error.response.text).contains("One or multiple fields are empty!")
       })
   })
 })
 
 after(async () => {
-  await request.delete(baseURL + `/user/${id}`)
+  /*await request.delete(baseURL + `/user/${id}`)
     .send({ username: 'CREATE' })
     .set('Accept', 'application/json')
     .set('Content-Type', 'application/json')
@@ -179,5 +168,5 @@ after(async () => {
   await request.delete(baseURL + `/user/${id}`)
     .send({ username: 'CREATE2' })
     .set('Accept', 'application/json')
-    .set('Content-Type', 'application/json')
+    .set('Content-Type', 'application/json')*/
 })

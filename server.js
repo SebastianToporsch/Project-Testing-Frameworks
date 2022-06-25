@@ -5,10 +5,10 @@ import cors from 'cors';
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 dotenv.config({ path: 'config/.env' });
-import { userRoute } from './rest_server.js';
+import makeApp from './rest_server.js';
+import { DBConnection } from './db/db-connection.js';
 
-
-const app = express();
+const app = makeApp(DBConnection)
 app.use(express.json());
 
 const rest_port = process.env.REST_PORT || 3000;
@@ -23,7 +23,6 @@ var corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(bodyParser.json());
-app.use("", userRoute);
 
 // setup view engine
 app.set('view engine', 'pug');

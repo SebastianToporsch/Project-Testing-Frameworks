@@ -1,18 +1,16 @@
 import express from "express";
-import { DBConnection } from './db/db-connection.js';
 
+export default function makeApp (DBConnection) { 
 const app = express();
 app.use(express.json());
 
-export const userRoute = express.Router();
-
 //home screen
-userRoute.get('/', function (req, res) {
+app.get('/', function (req, res) {
   return res.render('rest/rest_index', { message: 'Hello there!' });
 });
 
 //create
-userRoute.post("/user", async (req, res) => {
+app.post("/user", async (req, res) => {
   const newUser = {
     username: req.body.username,
     age: req.body.age,
@@ -29,12 +27,12 @@ userRoute.post("/user", async (req, res) => {
     DBConnection.addUser(newUser)
     return res.status(200).json({ "data": newUser })
   } else {
-    return res.status(400).json({ "data": "Empty field" })
+    return res.status(400).json({ "data": "One or multiple fields are empty!" })
   }
 });
 
 //readOne
-userRoute.get("/user/:id", async (req, res) => {
+app.get("/user/:id", async (req, res) => {
   try {
     let id = Number(req.params.id)
 
@@ -59,7 +57,7 @@ userRoute.get("/user/:id", async (req, res) => {
 });
 
 //read all
-userRoute.get("/user", async (req, res) => {
+app.get("/user", async (req, res) => {
   try {
     DBConnection.getUsers({}).then(r => {
       if (r.length == 0) {
@@ -76,7 +74,7 @@ userRoute.get("/user", async (req, res) => {
 });
 
 //update
-userRoute.put("/user/:id", async (req, res) => {
+app.put("/user/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const newUser = {
@@ -103,7 +101,7 @@ userRoute.put("/user/:id", async (req, res) => {
 });
 
 //delete
-userRoute.delete("/user/:id", async (req, res) => {
+app.delete("/user/:id", async (req, res) => {
   let id = Number(req.params.id)
   try {
     DBConnection.deleteUser(id)
@@ -113,4 +111,5 @@ userRoute.delete("/user/:id", async (req, res) => {
   }
 });
 
-export default app;
+  return app;
+}

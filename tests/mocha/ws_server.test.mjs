@@ -1,9 +1,9 @@
-require('superagent');
-require('dotenv').config({ path: 'config/.env' });
-var chai = require('chai');
-var expect = chai.expect;
-const WebSocket = require('ws');
-const ws_port = process.env.WS_PORT || 3000;
+import {expect} from "chai";
+import 'superagent';
+import WebSocket from 'ws';
+import dotenv from "dotenv";
+dotenv.config({ path: 'config/.env' });
+const ws_port = process.env.WS_PORT || 8082;
 const baseURL = `ws://localhost:${ws_port}`
 
 

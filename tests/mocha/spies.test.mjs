@@ -1,5 +1,5 @@
-var sinon = require("sinon");
-var functions = require("../../build/util/database-functions.js")
+import sinon, {assert,spy} from 'sinon';
+import functions from "../../util/database-functions.js";
 
 var test = {
     testFunction: function test(param1, param2) {

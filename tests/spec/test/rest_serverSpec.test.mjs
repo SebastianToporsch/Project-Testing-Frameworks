@@ -114,7 +114,7 @@ describe('Test if rest routes catch error cases', () => {
         expect(res.text).not.toContain("CREATE");
       }).catch((error) => {
         expect(error.status).toBe(400)
-        expect(error.response.text).toContain("Empty field")
+        expect(error.response.text).toContain("One or multiple fields are empty!")
       })
   })
 

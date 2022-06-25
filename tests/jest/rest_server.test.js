@@ -1,5 +1,6 @@
-import dotenv from "dotenv";
 import request from "superagent";
+import { expect } from '@jest/globals'
+import dotenv from "dotenv";
 dotenv.config({ path: 'config/.env' });
 const rest_port = process.env.REST_PORT || 3000;
 const baseURL = `http://localhost:${rest_port}`
@@ -31,7 +32,12 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if create route works', async () => {
     await request
       .post(baseURL + "/user")
-      .send({ username: 'CREATE', age: 20, email: "test@test.com", password: "test" })
+      .send({
+        username: 'CREATE',
+        age: 20,
+        email: "test@test.com",
+        password: "test"
+      })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
@@ -63,7 +69,12 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if update information route works', async () => {
     await request
       .put(baseURL + `/user/${id}`)
-      .send({ username: 'CREATE2', age: 12, email:"test2@test.com",password:"test2" })
+      .send({
+        username: 'CREATE2',
+        age: 12,
+        email: "test2@test.com",
+        password: "test2"
+      })
       .then(res => {
         expect(res.statusCode).toBe(200);
         expect(res.body.data.username).toContain("CREATE2");
@@ -108,14 +119,17 @@ describe('Test if rest routes catch error cases', () => {
   it('Should return 400 if create request has empty parameters', async () => {
     await request
       .post(baseURL + "/user")
-      .send({ username: 'CREATE', age: 0 })
+      .send({
+        username: 'CREATE',
+        age: 0
+      })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {
         expect(res.text).not.toContain("CREATE");
       }).catch((error) => {
         expect(error.status).toBe(400)
-        expect(error.response.text).toContain("Empty field")
+        expect(error.response.text).toContain("One or multiple fields are empty!")
       })
   })
 
@@ -138,7 +152,11 @@ describe('Test if rest routes catch error cases', () => {
   it('Should return 400 if update information request has empty parameters', async () => {
     await request
       .put(baseURL + `/user/0`)
-      .send({ username: '', age: 0,email:'',password:'' })
+      .send({
+        username: '',
+        age: 0, email: '',
+        password: ''
+      })
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .then(res => {

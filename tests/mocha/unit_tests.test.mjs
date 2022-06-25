@@ -1,7 +1,7 @@
-var chai = require('chai');
-require('dotenv').config({ path: 'config/.env' })
-var expect = chai.expect;
-const { decryptPassword, encryptPassword, validateEmail } = require("../../build/util/database-functions")
+import {expect} from "chai";
+import dotenv from "dotenv";
+dotenv.config({ path: 'config/.env' });
+import { decryptPassword, encryptPassword, validateEmail } from "../../util/database-functions.js"
 
 
 describe('Test encrypt function', () => {
