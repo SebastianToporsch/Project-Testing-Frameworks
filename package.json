@@ -5,7 +5,7 @@
   "main": "rest_server.ts",
   "type": "module",
   "scripts": {
-    "start_rest": "nodemon rest_server.js",
+    "start_rest": "nodemon server.js",
     "start_ws": "nodemon ws_server.js",
     "create-db": "node db/create-db.js",
     "test_mocha": "mocha tests/mocha",

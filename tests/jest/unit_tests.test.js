@@ -1,5 +1,5 @@
 require('dotenv').config({ path: 'config/.env' });
-const { decryptPassword, encryptPassword, validateEmail } = require("../../build/util/database-functions")
+const { decryptPassword, encryptPassword, validateEmail } = require("../../util/database-functions")
 
 
 describe('Test encrypt function', () => {

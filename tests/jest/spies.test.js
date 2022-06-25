@@ -1,4 +1,4 @@
-var functions = require("../../build/util/database-functions.js")
+var functions = require("../../util/database-functions.js")
 
 var test = {
     testFunction: function test(param1, param2) {

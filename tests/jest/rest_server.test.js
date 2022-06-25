@@ -4,7 +4,7 @@ jest.useFakeTimers()
 import { jest } from '@jest/globals'
 import app from "../../rest_server.js"
 import request from "supertest";
-import { DBConnection } from "../../db/db-connection.js";
+import { DBConnection, connectionPool } from "../../db/db-connection.js";
 
 
 const username = "test";
@@ -26,6 +26,7 @@ var id;
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {
+    request(app).get(baseURL + '')
 
   })
 })
@@ -181,5 +182,6 @@ describe('Test if rest routes catch error cases', () => {
   })
 })
  */
-afterAll(async () => {
-}) 
+afterAll( (done) => {
+  done()
+})

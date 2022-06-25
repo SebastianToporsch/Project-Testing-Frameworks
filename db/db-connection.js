@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: "config/.env" });
 import { User } from '../models/userModel.js';
 
-const connectionPool = mysql.createPool({
+export const connectionPool = mysql.createPool({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
@@ -22,10 +22,6 @@ function getConnection() {
                 if (err) reject(err);
                 resolve(connection);
             });
-    });
-};
-function destroyConnection() {
-    return new Promise(function (resolve, reject) {
     });
 };
 
@@ -208,7 +204,6 @@ function deleteUserByUsername(username) {
 
 const DBConnection = {
     getConnection: getConnection,
-    destroyConnection : destroyConnection,
     getUser: getUser,
     getUsers: getUsers,
     addUser: addUser,
