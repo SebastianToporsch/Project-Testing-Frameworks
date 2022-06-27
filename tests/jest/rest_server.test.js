@@ -10,12 +10,12 @@ var id;
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {
-    request.get(baseURL)
+    request.get(baseURL +"/health")
       .then(res => {
         expect(res.statusCode).toBe(200)
-        expect(res.text).toContain("Hello there")
-      })
-  })
+        expect(res.text).toBe("Hello there")
+      })  
+  }) 
 })
 
 
@@ -23,7 +23,7 @@ it('Should return 404 page if no users are in the database', async () => {
   request.get(baseURL + "/user/0")
     .then(res => {
       expect(res.statusCode).toBe(200);
-      expect(res.text).toContain("No user")
+      expect(res.text).toBe("No user found");
     })
 })
 
@@ -39,11 +39,14 @@ describe('Test if rest routes return 200 on success', () => {
         password: "test"
       })
       .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
+      .set('Content-Type', 'application/json')  
       .then(res => {
-        expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(200) 
         expect(res.text).toContain("CREATE")
-      })
+        expect(res.body.data.age).toBe(20)
+        expect(res.body.data.email).toBe("test@test.com")
+        expect(res.body.data.password).toBe("test")
+      })  
   })
 
   it('Should return 200 if read all route works', async () => {
@@ -54,7 +57,7 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.text).toContain("CREATE")
         let match = new RegExp("<li>ID: ([0-9].*).\/.*CREATE<").exec(res.text)
         id = match[1]
-      })
+      })  
   })
 
   it('Should return 200 if read one route works', async () => {
@@ -79,6 +82,9 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.statusCode).toBe(200);
         expect(res.body.data.username).toContain("CREATE2");
         expect(res.body.data.age).toBe(12)
+        expect(res.body.data.email).toBe("test2@test.com")
+        expect(res.body.data.password).toBe("test2")
+        
       })
   })
 
@@ -92,7 +98,7 @@ describe('Test if rest routes return 200 on success', () => {
   })
 })
 
-describe('Test if rest routes return 204 on empty content ', () => {
+describe('Test if rest routes return 204 on empty content', () => {
   it('Should return 204 if create route has empty body', async () => {
     await request
       .post(baseURL + "/user")
@@ -168,11 +174,11 @@ describe('Test if rest routes catch error cases', () => {
   })
 })
 afterAll(async () => {
-  await request.delete(baseURL + `/user/${id}`)
+  /* await request.delete(baseURL + `/user/${id}`)
     .set('Accept', 'application/json')
     .set('Content-Type', 'application/json')
 
   await request.delete(baseURL + `/user/${id}`)
     .set('Accept', 'application/json')
-    .set('Content-Type', 'application/json')
+    .set('Content-Type', 'application/json') */
 })

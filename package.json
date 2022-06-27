@@ -2,10 +2,11 @@
   "name": "testing_frameworks",
   "version": "1.0.0",
   "description": "This project serves the purpose of testing Mocha, Jest and Jasmine with a WebApp.",
-  "main": "rest_server.ts",
+  "main": "rest_server.js",
   "type": "module",
   "scripts": {
-    "start_rest": "nodemon server.js",
+    "start_server": "nodemon server.js",
+    "start_rest": "nodemon rest_server.js",
     "start_ws": "nodemon ws_server.js",
     "create-db": "node db/create-db.js",
     "test_mocha": "mocha tests/mocha",

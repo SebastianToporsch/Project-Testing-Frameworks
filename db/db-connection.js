@@ -40,7 +40,7 @@ function getUser(user) {
         }
 
         const sqlString = `
-            SELECT id, username
+            SELECT id, username, age, email
             FROM users
             ${condition}
             LIMIT 1;
@@ -53,7 +53,7 @@ function getUser(user) {
                 } else {
                     var itemList = [];
                     result.forEach(element => {
-                        itemList.push(new User(element.id, element.username))
+                        itemList.push(new User(element.id, element.username, element.age, element.email))
                     });
                     resolve(itemList);
                 }
@@ -84,7 +84,7 @@ function getUsers() {
                 } else {
                     var itemList = [];
                     result.forEach(element => {
-                        itemList.push(new User(element.id, element.username))
+                        itemList.push(new User(element.id, element.username, element.age, element.email))
                     });
                     resolve(itemList);
                 }
