@@ -1,8 +1,10 @@
 import express from "express";
+import bodyParser from "body-parser";
 
 export default function makeApp (DBConnection) {
   const app = express();
   app.use(express.json());
+  app.use(bodyParser.json());
 
   app.get("/health", async (req, res) => {
     return res.status(200).send("Hello there");
@@ -18,7 +20,7 @@ app.post("/user", async (req, res) => {
   }
 
   if (Object.keys(req.body).length === 0) {
-    return res.status(204).json({ "data": "Empty body" })
+    return res.status(204).json({ message: "Empty body" })
   }
 
   if (newUser.username != null && newUser.username  && newUser.age != null && newUser.email != null && newUser.password != null) {
@@ -26,7 +28,7 @@ app.post("/user", async (req, res) => {
     DBConnection.addUser(newUser)
     return res.status(200).json({ "data": newUser })
   } else {
-    return res.status(400).json({ "data": "One or multiple fields are empty!" })
+    return res.status(400).json({ message: "One or multiple fields are empty!" })
   }
 });
 
@@ -34,44 +36,37 @@ app.post("/user", async (req, res) => {
 app.get("/user/:id", async (req, res) => {
   try {
     let id = Number(req.params.id)
-    
-    
-    DBConnection.getUser({
-      id: id
-    })
-      .then(r => {
 
-        if (r[0] === undefined) {
-          //res.render("rest/404");
+    const user = await DBConnection.getUser(id);
+    if (user == undefined || user == null ||user.length == 0) {
           return res.status(404).send({message: "No user found"})
         }
-
-        //res.render('rest/user', { title: 'User', message: r[0] })
-        return res.status(200).send({data: r[0]})
-      })
+        return res.status(200).send({data: user})
       .catch(e => {
         return res.status(400).send({ error: e }) 
       });
   } catch (error) {
-    return res.status(500).send({ error: "Internal Server Error" })
+    return 
   }
 });
 
 //read all
 app.get("/user", async (req, res) => {
   try {
-    DBConnection.getUsers({}).then(r => {
-      if (r.length == 0) {
+
+    const users = await DBConnection.getUsers();
+      if (users == undefined || users == null ||users.length == 0) {
         return res.status(404).send({message: "No user found"})
       }
-      //res.render('rest/users', { title: 'Users', message: r })
-      return res.status(200).send({data: r})  
-    })
+      return res.status(200).send({data: users})
+
       .catch(e => {
-        return res.status(500).send({ error: e })
+        return res.status(400).send({ error: e })
       });
+
+
   } catch (error) {
-    return res.status(500).send({ error: "Internal Server Error" }) 
+    return
   }
 });
 
@@ -107,7 +102,7 @@ app.delete("/user/:id", async (req, res) => {
   let id = Number(req.params.id)
   try {
     DBConnection.deleteUser(id)
-    return res.status(200).json({ data: "User deleted" })
+    return res.status(200).json({ message: "User deleted" })
   } catch (error) {
     return res.status(500).send({ error: "Internal Server Error" })
   }

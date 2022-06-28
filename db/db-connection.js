@@ -30,19 +30,15 @@ function getConnection() {
  * @param user User
  * @returns Promise that resolves to User
  */
-function getUser(user) {
+function getUser(id) {
     return new Promise(function (resolve, reject) {
-        let condition = '';
-        if (typeof user.id != 'undefined' && user.id != null && user.id != '') {
-            condition = `WHERE id=${user.id}`;
-        } else if (typeof user.username != 'undefined' && user.username != null && user.username != '') {
-            condition = `WHERE username="${user.username}"`;
-        }
-
+        if (id != 'undefined' && id != null && id != '') {
+            resolve()
+        } 
         const sqlString = `
             SELECT id, username, age, email
             FROM users
-            ${condition}
+            WHERE id=${id}
             LIMIT 1;
         `;
         getConnection().then(function (connection) {
@@ -59,6 +55,7 @@ function getUser(user) {
                 }
             });
         }).catch(function (error) {
+            console.log("test");
             reject(error);
         });
     });

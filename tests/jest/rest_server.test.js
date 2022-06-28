@@ -24,6 +24,8 @@ it('Should return 404 page if no users are in the database', async () => {
     .then(res => {
       expect(res.statusCode).toBe(200);
       expect(res.text).toBe("No user found");
+    }).catch(e => {
+
     })
 })
 
@@ -42,7 +44,7 @@ describe('Test if rest routes return 200 on success', () => {
       .set('Content-Type', 'application/json')  
       .then(res => {
         expect(res.statusCode).toBe(200) 
-        expect(res.text).toContain("CREATE")
+        expect(res.body.data.username).toContain("CREATE")
         expect(res.body.data.age).toBe(20)
         expect(res.body.data.email).toBe("test@test.com")
         expect(res.body.data.password).toBe("test")
@@ -52,20 +54,27 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if read all route works', async () => {
     await request.get(baseURL + "/user")
       .then(res => {
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toContain("Id / Username")
-        expect(res.text).toContain("CREATE")
-        let match = new RegExp("<li>ID: ([0-9].*).\/.*CREATE<").exec(res.text)
-        id = match[1]
-      })  
+        /*expect(res.statusCode).toBe(200)
+        expect(res.body.data[0].username).toBe("CREATE")
+        expect(res.body.data[0].age).toBe(20)
+        expect(res.body.data[0].email).toBe("test@test.com")*/
+
+        id = res.body.data[0].id 
+      }).catch(e => {
+      
+    })  
   })
 
   it('Should return 200 if read one route works', async () => {
     await request.get(baseURL + `/user/${id}`)
       .then(res => {
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toContain("The user is")
-        expect(res.text).toContain("CREATE")
+        expect(res.statusCode).toBe(200) 
+        expect(res.body.data[0].id).toBe(id)
+        expect(res.body.data[0].username).toBe("CREATE")
+        expect(res.body.data[0].age).toBe(20)
+        expect(res.body.data[0].email).toBe("test@test.com")
+      }).catch(e => {
+      
       })
   })
 
@@ -139,22 +148,6 @@ describe('Test if rest routes catch error cases', () => {
       })
   })
 
-  it('Should return 404 page if read all route returns no user', async () => {
-    await request.get(baseURL + "/user")
-      .then(res => {
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toContain("No user found")
-      })
-  })
-
-  it('Should return 404 page if read one route returns no user', async () => {
-    await request.get(baseURL + `/user/0`)
-      .then(res => {
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toContain("No user found")
-      })
-  })
-
   it('Should return 400 if update information request has empty parameters', async () => {
     await request
       .put(baseURL + `/user/0`)
@@ -172,13 +165,28 @@ describe('Test if rest routes catch error cases', () => {
         expect(error.response.text).toContain("One or multiple fields are empty!")
       })
   })
+
+  it('Should return 404 if read all route returns no user', async () => {
+    await request.get(baseURL + "/user")
+      .then(res => {
+        expect(res.statusCode).toBe(200)
+        expect(res.text).toContain("No user found")
+      }).catch(e => {
+      
+      })
+  })
+
+  it('Should return 404 if read one route returns no user', async () => {
+    await request.get(baseURL + `/user/0`)
+      .then(res => {
+        expect(res.statusCode).toBe(404)
+        expect(res.text).toContain("No user found")
+      }).catch(e => {
+      })
+  })
+
+ 
 })
 afterAll(async () => {
-  /* await request.delete(baseURL + `/user/${id}`)
-    .set('Accept', 'application/json')
-    .set('Content-Type', 'application/json')
-
   await request.delete(baseURL + `/user/${id}`)
-    .set('Accept', 'application/json')
-    .set('Content-Type', 'application/json') */
 })
