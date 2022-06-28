@@ -34,7 +34,7 @@ function getUser(id) {
     return new Promise(function (resolve, reject) {
         if (id != 'undefined' && id != null && id != '') {
             resolve()
-        } 
+        }
         const sqlString = `
             SELECT id, username, age, email
             FROM users
@@ -105,7 +105,7 @@ function addUser(user) {
             VALUES (?,?,?,?);
         `;
         getConnection().then(function (connection) {
-            connection.query(sqlString, [user.username, user.age,user.email, user.password], function (err, result) {
+            connection.query(sqlString, [user.username, user.age, user.email, user.password], function (err, result) {
                 connection.release();
                 if (err) {
                     reject(err)
@@ -124,7 +124,7 @@ function addUser(user) {
  * @param user User 
  * @returns Promise that resolves to result
  */
-function changeUser(id,user) {
+function changeUser(id, user) {
     return new Promise(function (resolve, reject) {
         var sqlString = `
             UPDATE users
@@ -132,7 +132,7 @@ function changeUser(id,user) {
             WHERE id=?;
         `;
         getConnection().then(function (connection) {
-            connection.query(sqlString,[user.username, user.age, user.email, user.password,id], function (err, result, fields) {
+            connection.query(sqlString, [user.username, user.age, user.email, user.password, id], function (err, result, fields) {
                 connection.release();
                 if (err) {
                     reject(err)

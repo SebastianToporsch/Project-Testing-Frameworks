@@ -17,7 +17,7 @@ const rest_port = process.env.REST_PORT || 3000;
 var corsOptions = {
   origin: true,
   optionsSuccessStatus: 200,
-  credentials:true
+  credentials: true
 }
 
 app.use(cors(corsOptions))

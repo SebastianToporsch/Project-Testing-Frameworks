@@ -10,12 +10,12 @@ var id;
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {
-    request.get(baseURL +"/health")
+    request.get(baseURL + "/health")
       .then(res => {
         expect(res.statusCode).toBe(200)
         expect(res.text).toBe("Hello there")
-      })  
-  }) 
+      })
+  })
 })
 
 
@@ -41,14 +41,14 @@ describe('Test if rest routes return 200 on success', () => {
         password: "test"
       })
       .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')  
+      .set('Content-Type', 'application/json')
       .then(res => {
-        expect(res.statusCode).toBe(200) 
+        expect(res.statusCode).toBe(200)
         expect(res.body.data.username).toContain("CREATE")
         expect(res.body.data.age).toBe(20)
         expect(res.body.data.email).toBe("test@test.com")
         expect(res.body.data.password).toBe("test")
-      })  
+      })
   })
 
   it('Should return 200 if read all route works', async () => {
@@ -59,22 +59,22 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.body.data[0].age).toBe(20)
         expect(res.body.data[0].email).toBe("test@test.com")*/
 
-        id = res.body.data[0].id 
+        id = res.body.data[0].id
       }).catch(e => {
-      
-    })  
+
+      })
   })
 
   it('Should return 200 if read one route works', async () => {
     await request.get(baseURL + `/user/${id}`)
       .then(res => {
-        expect(res.statusCode).toBe(200) 
+        expect(res.statusCode).toBe(200)
         expect(res.body.data[0].id).toBe(id)
         expect(res.body.data[0].username).toBe("CREATE")
         expect(res.body.data[0].age).toBe(20)
         expect(res.body.data[0].email).toBe("test@test.com")
       }).catch(e => {
-      
+
       })
   })
 
@@ -93,7 +93,7 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.body.data.age).toBe(12)
         expect(res.body.data.email).toBe("test2@test.com")
         expect(res.body.data.password).toBe("test2")
-        
+
       })
   })
 
@@ -172,7 +172,7 @@ describe('Test if rest routes catch error cases', () => {
         expect(res.statusCode).toBe(200)
         expect(res.text).toContain("No user found")
       }).catch(e => {
-      
+
       })
   })
 
@@ -185,7 +185,6 @@ describe('Test if rest routes catch error cases', () => {
       })
   })
 
- 
 })
 afterAll(async () => {
   await request.delete(baseURL + `/user/${id}`)
