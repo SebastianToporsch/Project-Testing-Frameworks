@@ -18,15 +18,16 @@ describe('Test if server is available', () => {
   })
 })
 
+describe('Test if database is empty', () => {
+  it('Should return 404 page if no users are in the database', async () => {
+    request.get(baseURL + "/user/0")
+      .then(res => {
+        expect(res.statusCode).toBe(200);
+        expect(res.text).toBe("No user found");
+      }).catch(e => {
 
-it('Should return 404 page if no users are in the database', async () => {
-  request.get(baseURL + "/user/0")
-    .then(res => {
-      expect(res.statusCode).toBe(200);
-      expect(res.text).toBe("No user found");
-    }).catch(e => {
-
-    })
+      })
+  });
 })
 
 
@@ -54,11 +55,10 @@ describe('Test if rest routes return 200 on success', () => {
   it('Should return 200 if read all route works', async () => {
     await request.get(baseURL + "/user")
       .then(res => {
-        /*expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(200)
         expect(res.body.data[0].username).toBe("CREATE")
         expect(res.body.data[0].age).toBe(20)
-        expect(res.body.data[0].email).toBe("test@test.com")*/
-
+        expect(res.body.data[0].email).toBe("test@test.com")
         id = res.body.data[0].id
       }).catch(e => {
 
@@ -89,11 +89,10 @@ describe('Test if rest routes return 200 on success', () => {
       })
       .then(res => {
         expect(res.statusCode).toBe(200);
-        expect(res.body.data.username).toContain("CREATE2");
+        expect(res.body.data.username).toContain("CREATE2")
         expect(res.body.data.age).toBe(12)
         expect(res.body.data.email).toBe("test2@test.com")
         expect(res.body.data.password).toBe("test2")
-
       })
   })
 
@@ -127,7 +126,6 @@ describe('Test if rest routes return 204 on empty content', () => {
         expect(res.statusCode).toBe(204)
       })
   })
-
 })
 
 describe('Test if rest routes catch error cases', () => {
@@ -182,6 +180,7 @@ describe('Test if rest routes catch error cases', () => {
         expect(res.statusCode).toBe(404)
         expect(res.text).toContain("No user found")
       }).catch(e => {
+
       })
   })
 
