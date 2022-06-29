@@ -36,7 +36,6 @@ export default function makeApp(DBConnection) {
   app.get("/user/:id", async (req, res) => {
     try {
       let id = Number(req.params.id)
-
       const user = await DBConnection.getUser(id);
       if (user == undefined || user == null || user.length == 0) {
         return res.status(404).send({ message: "No user found" })

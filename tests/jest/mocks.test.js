@@ -77,6 +77,7 @@ describe('MOCK: Test if rest routes return 200 on success', () => {
     await request(app).delete(`/user/${id}`).send().then(res => {
       expect(deleteUser.mock.calls.length).toBe(1)
       expect(res.statusCode).toBe(200)
+      expect(res.body.message).toBe("User deleted")
     })
   })
 });

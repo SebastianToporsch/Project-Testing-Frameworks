@@ -33,7 +33,7 @@ app.use('/', express.static('public'));
 // Start listening
 app.listen(rest_port);
 
-console.log(`Example app listening at http://localhost:${rest_port}`);
+console.log(`Rest Server listening at http://localhost:${rest_port}`);
 console.log("Database connection established!");
 
 // create connection to the database

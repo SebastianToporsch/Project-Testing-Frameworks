@@ -19,13 +19,12 @@ describe('Test if server is available', () => {
 })
 
 describe('Test if database is empty', () => {
-  it('Should return 404 page if no users are in the database', async () => {
+  it('Should return 404 if no users are in the database', async () => {
     request.get(baseURL + "/user/0")
       .then(res => {
-        expect(res.statusCode).toBe(200);
-        expect(res.text).toBe("No user found");
-      }).catch(e => {
-
+      }).catch(e=> {
+        expect(e.status).toBe(404);
+        expect(e.response.body.message).toBe("No user found")
       })
   });
 })
@@ -42,7 +41,7 @@ describe('Test if rest routes return 200 on success', () => {
         password: "test"
       })
       .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
+      .set('Content-Type', 'application/json')  
       .then(res => {
         expect(res.statusCode).toBe(200)
         expect(res.body.data.username).toContain("CREATE")
@@ -58,10 +57,8 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.statusCode).toBe(200)
         expect(res.body.data[0].username).toBe("CREATE")
         expect(res.body.data[0].age).toBe(20)
-        expect(res.body.data[0].email).toBe("test@test.com")
+        expect(res.body.data[0].email).toBe("test@test.com")    
         id = res.body.data[0].id
-      }).catch(e => {
-
       })
   })
 
@@ -73,8 +70,6 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.body.data[0].username).toBe("CREATE")
         expect(res.body.data[0].age).toBe(20)
         expect(res.body.data[0].email).toBe("test@test.com")
-      }).catch(e => {
-
       })
   })
 
@@ -98,8 +93,6 @@ describe('Test if rest routes return 200 on success', () => {
 
   it('Should return 200 if delete route works', async () => {
     await request.delete(baseURL + `/user/${id}`)
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json')
       .then(res => {
         expect(res.statusCode).toBe(200)
       })
@@ -166,21 +159,18 @@ describe('Test if rest routes catch error cases', () => {
 
   it('Should return 404 if read all route returns no user', async () => {
     await request.get(baseURL + "/user")
-      .then(res => {
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toContain("No user found")
-      }).catch(e => {
+      .then().catch(e => {
 
+        expect(e.status).toBe(404);
+        expect(e.response.body.message).toBe("No user found")
       })
   })
 
   it('Should return 404 if read one route returns no user', async () => {
     await request.get(baseURL + `/user/0`)
-      .then(res => {
-        expect(res.statusCode).toBe(404)
-        expect(res.text).toContain("No user found")
-      }).catch(e => {
-
+      .then().catch(e => {
+        expect(e.status).toBe(404);
+        expect(e.response.body.message).toBe("No user found")
       })
   })
 

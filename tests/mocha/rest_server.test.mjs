@@ -24,8 +24,6 @@ it('Should return 404 page if no users are in the database', async () => {
     .then(res => {
       expect(res.statusCode).to.equal(200);
       expect(res.text).to.contain("No user found");
-    }).catch(e => {
-
     })
 })
 
@@ -60,8 +58,6 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.body.data[0].email).to.equal("test@test.com")
 
         id = res.body.data[0].id
-      }).catch(e => {
-
       })
   })
 
@@ -73,8 +69,6 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.body.data[0].username).to.equal("CREATE")
         expect(res.body.data[0].age).to.equal(20)
         expect(res.body.data[0].email).to.equal("test@test.com")
-      }).catch(e => {
-
       })
   })
 
@@ -170,8 +164,6 @@ describe('Test if rest routes catch error cases', () => {
       .then(res => {
         expect(res.statusCode).to.equal(404)
         expect(res.text).to.contain("No user found")
-      }).catch(e => {
-
       })
   })
 
@@ -180,11 +172,10 @@ describe('Test if rest routes catch error cases', () => {
       .then(res => {
         expect(res.statusCode).to.equal(404)
         expect(res.text).to.contain("No user found")
-      }).catch(e => {
       })
   })
 
 })
 after(async () => {
-  await request.delete(baseURL + `/user/${id}`)
+  //await request.delete(baseURL + `/user/${id}`)
 })

@@ -22,7 +22,7 @@ app.get('/ws', function (req, res) {
 
 
 const server = app.listen(ws_port, () =>
-  console.log(`Example app listening at http://localhost:${ws_port}`));
+  console.log(`WS Server is listening at http://localhost:${ws_port}`));
 
 const wss = new ws.Server({ server });
 // tslint:disable-next-line: no-shadowed-variable

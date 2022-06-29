@@ -32,9 +32,7 @@ function getConnection() {
  */
 function getUser(id) {
     return new Promise(function (resolve, reject) {
-        if (id != 'undefined' && id != null && id != '') {
-            resolve()
-        }
+        if (id != 'undefined' && id != null && id != '' && id >0) {
         const sqlString = `
             SELECT id, username, age, email
             FROM users
@@ -51,13 +49,16 @@ function getUser(id) {
                     result.forEach(element => {
                         itemList.push(new User(element.id, element.username, element.age, element.email))
                     });
-                    resolve(itemList);
+                    resolve(itemList);  
                 }
             });
+            
         }).catch(function (error) {
-            console.log("test");
             reject(error);
         });
+    } else {
+        resolve()
+    }
     });
 };
 
@@ -83,7 +84,7 @@ function getUsers() {
                     result.forEach(element => {
                         itemList.push(new User(element.id, element.username, element.age, element.email))
                     });
-                    resolve(itemList);
+                    resolve(itemList); 
                 }
             });
         }).catch(function (error) {
