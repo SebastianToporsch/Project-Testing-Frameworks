@@ -31,9 +31,9 @@ describe('MOCK: Test if rest routes return 200 on success', () => {
     await request(app).post(`/user`).send(user).then(res => {
       expect(res.statusCode).toBe(200)
       expect(addUser.mock.calls.length).toBe(1)
-      expect(addUser.mock.calls[0][0].username).toBe("CREATE")
-      expect(addUser.mock.calls[0][0].age).toBe(20);
-      expect(addUser.mock.calls[0][0].email).toBe("test@test.com")
+      expect(addUser.mock.calls[0][0].username).toBe(user.username)
+      expect(addUser.mock.calls[0][0].age).toBe(user.age);
+      expect(addUser.mock.calls[0][0].email).toBe(user.email)
     })
   })
 
@@ -43,7 +43,7 @@ describe('MOCK: Test if rest routes return 200 on success', () => {
     await request(app).get(`/user`).then(res => {
       expect(res.statusCode).toBe(200)
       expect(getUsers.mock.calls.length).toBe(1)
-      expect(getUsers().data.username).toBe("CREATE")
+      expect(getUsers().data.username).toBe(user.username)
       expect(getUsers().data.age).toBe(20)
       expect(getUsers().data.email).toBe("test@test.com")
     })
@@ -55,7 +55,7 @@ describe('MOCK: Test if rest routes return 200 on success', () => {
     await request(app).get(`/user/${id}`).then(res => {
       expect(res.statusCode).toBe(200)
       expect(getUser.mock.calls.length).toBe(1)
-      expect(getUser().data.username).toBe("CREATE")
+      expect(getUser().data.username).toBe(user.username)
       expect(getUser().data.age).toBe(20)
       expect(getUser().data.email).toBe("test@test.com")
     })
@@ -66,9 +66,9 @@ describe('MOCK: Test if rest routes return 200 on success', () => {
     await request(app).put(`/user/${id}`).send(user).then(res => {
       expect(changeUser.mock.calls.length).toBe(1)
       expect(res.statusCode).toBe(200)
-      expect(changeUser.mock.calls[0][1].username).toBe("CREATE");
-      expect(changeUser.mock.calls[0][1].age).toBe(20);
-      expect(changeUser.mock.calls[0][1].email).toBe("test@test.com");
+      expect(changeUser.mock.calls[0][1].username).toBe(user.username);
+      expect(changeUser.mock.calls[0][1].age).toBe(user.age);
+      expect(changeUser.mock.calls[0][1].email).toBe(user.email);
     })
   })
 
@@ -105,8 +105,8 @@ describe('MOCK: Test if rest routes catch error cases', () => {
   it('MOCK:Should return 400 if create request has empty parameters', async () => {
     addUser.mockReset()
     await request(app).post(`/user`).send({
-      username: 'CREATE',
-      age: 0
+      username: user.username,
+      age: user.age
     }).then(res => {
       expect(res.statusCode).toBe(400)
       expect(res.body.message).toBe("One or multiple fields are empty!")
@@ -116,8 +116,8 @@ describe('MOCK: Test if rest routes catch error cases', () => {
   it('MOCK: Should return 400 if update information request has empty parameters', async () => {
     changeUser.mockReset()
     await request(app).put(`/user/${id}`).send({
-      username: 'CREATE',
-      age: 0
+      username: user.username,
+      age: user.age
     }).then(res => {
       expect(res.statusCode).toBe(400)
       expect(res.body.message).toBe("One or multiple fields are empty!")

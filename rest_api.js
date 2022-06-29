@@ -85,12 +85,13 @@ export default function makeApp(DBConnection) {
         return res.status(204).json({ message: "Empty body" });
       }
 
-      if (newUser.username == "" || newUser.age <= 0 || newUser.email <= 0 || newUser.password <= 0) {
-        return res.status(400).json({ message: "One or multiple fields are empty!" })
-      } else {
-        DBConnection.changeUser(id, newUser)
-        return res.status(200).json({ data: newUser })
-      }
+      if (newUser.username == undefined || newUser.age == undefined || newUser.email == undefined || newUser.password == undefined 
+        ||newUser.username == "" || newUser.age <= 0 || newUser.email <= 0 || newUser.password <= 0   ) {
+          return res.status(400).json({ message: "One or multiple fields are empty!" })
+        } else {
+          DBConnection.changeUser(id, newUser)
+          return res.status(200).json({ data: newUser })
+        }
     } catch (error) {
       return res.status(500).send({ error: "Internal Server Error" })
     }

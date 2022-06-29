@@ -89,7 +89,7 @@ describe('Test if rest routes return 200 on success', () => {
       })
       .then(res => {
         expect(res.statusCode).toBe(200);
-        expect(res.body.data.username).toContain("CREATE2")
+        expect(res.body.data.username).toBe("CREATE2")
         expect(res.body.data.age).toBe(12)
         expect(res.body.data.email).toBe("test2@test.com")
         expect(res.body.data.password).toBe("test2")
@@ -186,5 +186,5 @@ describe('Test if rest routes catch error cases', () => {
 
 })
 afterAll(async () => {
-  await request.delete(baseURL + `/user/${id}`)
+  //await request.delete(baseURL + `/user/${id}`)
 })
