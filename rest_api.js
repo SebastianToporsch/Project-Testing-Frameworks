@@ -99,10 +99,11 @@ export default function makeApp(DBConnection) {
 
   //delete
   app.delete("/user/:id", async (req, res) => {
-    let id = Number(req.params.id)
+    const id = req.params.id
     try {
-      DBConnection.deleteUser(id)
-      return res.status(200).json({ message: "User deleted" })
+      await DBConnection.deleteUser(id)
+
+      return res.status(200).json({ message: "User deleted" })  
     } catch (error) {
       return res.status(500).send({ error: "Internal Server Error" })
     }

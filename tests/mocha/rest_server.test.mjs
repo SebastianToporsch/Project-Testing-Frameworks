@@ -22,8 +22,9 @@ describe('Test if server is available', () => {
 it('Should return 404 page if no users are in the database', async () => {
   request.get(baseURL + "/user")
     .then(res => {
-      expect(res.statusCode).to.equal(200);
-      expect(res.text).to.contain("No user found");
+    }).catch(e => {
+      expect(e.status).to.equal(404);
+      expect(e.response.body.message).to.equal("No user found")
     })
 })
 
@@ -56,7 +57,7 @@ describe('Test if rest routes return 200 on success', () => {
         expect(res.body.data[0].username).to.equal("CREATE")
         expect(res.body.data[0].age).to.equal(20)
         expect(res.body.data[0].email).to.equal("test@test.com")
-
+        
         id = res.body.data[0].id
       })
   })
@@ -162,16 +163,18 @@ describe('Test if rest routes catch error cases', () => {
   it('Should return 404 if read all route returns no user', async () => {
     await request.get(baseURL + "/user")
       .then(res => {
-        expect(res.statusCode).to.equal(404)
-        expect(res.text).to.contain("No user found")
+      }).catch(e => {
+        expect(e.status).to.equal(404);
+        expect(e.response.body.message).to.equal("No user found")
       })
   })
 
   it('Should return 404 if read one route returns no user', async () => {
     await request.get(baseURL + `/user/0`)
       .then(res => {
-        expect(res.statusCode).to.equal(404)
-        expect(res.text).to.contain("No user found")
+      }).catch(e => {
+        expect(e.status).to.equal(404);
+        expect(e.response.body.message).to.equal("No user found")
       })
   })
 
