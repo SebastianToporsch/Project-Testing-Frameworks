@@ -1,20 +1,20 @@
-//Setup express and firebase
-import express from "express";
-import mysql from "mysql2";
-import cors from 'cors';
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
-dotenv.config({ path: 'config/.env' });
-import makeApp from './rest_api.js';
-import { DBConnection } from './db/db-connection.js';
+// Setup express and firebase
+import express from 'express'
+import mysql from 'mysql2'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import dotenv from 'dotenv'
+import makeApp from './rest_api.js'
+import { DBConnection } from './db/db-connection.js'
+dotenv.config({ path: 'config/.env' })
 
 const app = makeApp(DBConnection)
-app.use(express.json());
+app.use(express.json())
 
-const rest_port = process.env.REST_PORT || 3000;
+const restPort = process.env.REST_PORT || 3000
 
-//setting the cors options to allow all sources
-var corsOptions = {
+// setting the cors options to allow all sources
+const corsOptions = {
   origin: true,
   optionsSuccessStatus: 200,
   credentials: true
@@ -22,19 +22,18 @@ var corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 // setup view engine
-app.set('view engine', 'pug');
+app.set('view engine', 'pug')
 
-app.use('/', express.static('public'));
-
+app.use('/', express.static('public'))
 
 // Start listening
-app.listen(rest_port);
+app.listen(restPort)
 
-console.log(`Rest Server listening at http://localhost:${rest_port}`);
-console.log("Database connection established!");
+console.log(`Rest Server listening at http://localhost:${restPort}`)
+console.log('Database connection established!')
 
 // create connection to the database
 export const database = mysql.createConnection({
@@ -43,6 +42,6 @@ export const database = mysql.createConnection({
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   multipleStatements: true
-});
+})
 
-export default app;
+export default app

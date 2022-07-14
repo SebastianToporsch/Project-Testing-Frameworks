@@ -1,38 +1,36 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'
 
-export async function encryptPassword(pw) {
+export async function encryptPassword (pw) {
   const hashedPassword = await new Promise((resolve, reject) => {
     bcrypt.hash(pw, 10, (_err, _hash) => {
-      resolve(_hash);
-    });
-  });
+      resolve(_hash)
+    })
+  })
 
-  return hashedPassword;
+  return hashedPassword
 }
 
-export async function decryptPassword(hashedPassword, password) {
+export async function decryptPassword (hashedPassword, password) {
   const validPassword = await new Promise((resolve, reject) => {
     bcrypt.compare(password, hashedPassword, (_err, _hash) => {
-      resolve(_hash);
-    });
-  });
-  return validPassword;
+      resolve(_hash)
+    })
+  })
+  return validPassword
 }
 
-export async function validateEmail(email) {
-
-  let regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
+export async function validateEmail (email) {
+  const regex = '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
 
   if (String(email).match(regex)) {
-    return true;
-  } else
-    return false;
+    return true
+  } else { return false }
 }
 
 const functions = {
-  encryptPassword: encryptPassword,
-  decryptPassword: decryptPassword,
-  validateEmail: validateEmail,
+  encryptPassword,
+  decryptPassword,
+  validateEmail
 }
 
-export default functions;
+export default functions
