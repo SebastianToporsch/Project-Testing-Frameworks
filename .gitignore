@@ -3,3 +3,4 @@
 /build
 .env
 coverage
+/ws_tests

@@ -2,9 +2,12 @@
 import request from 'superagent'
 import { expect } from '@jest/globals'
 import dotenv from 'dotenv'
+import flush from 'flush-cache'
 dotenv.config({ path: 'config/.env' })
 const restPort = process.env.REST_PORT || 3000
 const baseURL = `http://localhost:${restPort}`
+
+beforeEach(function () { flush() })
 
 let id
 

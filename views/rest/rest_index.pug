@@ -1,4 +1,32 @@
 extends layout
 block content
-    a.btn(href="/user") Press to see all users
-    h1= "The message is:" + message
+    div.container
+        div.row
+            div.text-center.col-12.pb-5.pt-3
+                a.btn(href="/users") Press to see all users
+                h1.pt-5= "Welcome to Project-Testing-Frameworks"
+        div.row.text-center.pb-5
+            div.col-3
+                h2= "Checkbox"
+                input.checkbox(type="checkbox" id="checkbox1" checked)
+            div.col-3
+                h2= "Icon"
+            div.col-3
+                h2= "Image"
+            div.col-3
+                h2= "Input"
+        div.row.text-center.pb-5
+            div.col-3
+                h2= "List Item"
+            div.col-3
+                h2= "Switch"
+            div.col-3
+                h2= "Radio Button"
+            div.col-3
+                h2= "Text"
+        div.row.text-center
+            div.col-6
+                h2= "Text Button"
+            div.col-6
+                h2= "Date-Picker"
+                

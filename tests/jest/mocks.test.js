@@ -2,6 +2,7 @@
 import request from 'supertest'
 import makeApp from '../../rest_api.js'
 import { jest, expect } from '@jest/globals'
+import flush from 'flush-cache'
 
 const addUser = jest.fn()
 const getUser = jest.fn()
@@ -21,6 +22,7 @@ const app = makeApp({
 })
 
 const id = 1
+beforeEach(function () { flush() })
 
 beforeAll(() => {
   jest.resetAllMocks()

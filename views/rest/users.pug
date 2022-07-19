@@ -1,7 +1,10 @@
 extends layout
 block content
-  a.btn(href="/") Go back
-  h1="Id / Username / Age"
-    ul
-    for item in message
-      li= "ID: " + item.id +" /  Username: "+ item.username
+    div.container
+        div.row
+          div.text-center.col-12
+            a.btn(href="/") Go back
+            h1="Id / Username / Age"
+            ul
+            for item in message
+              li= "ID: " + item.id +" /  Username: "+ item.username

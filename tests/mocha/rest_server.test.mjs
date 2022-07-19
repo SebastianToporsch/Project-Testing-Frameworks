@@ -2,11 +2,14 @@
 import { expect } from 'chai'
 import dotenv from 'dotenv'
 import request from 'superagent'
+import flush from 'flush-cache'
 dotenv.config({ path: './config/.env' })
 const restPort = process.env.REST_PORT || 8083
 const baseURL = `http://localhost:${restPort}`
 
 let id
+
+beforeEach(function () { flush() })
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {

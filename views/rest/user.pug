@@ -1,8 +1,11 @@
 extends layout
 block content
-    a.btn(href="/") Go back
-    h1= "The user is"
-      h2=message.id
-      h2=message.username
-      h2=message.age
-      h2=message.email
+  div.container
+        div.row
+          div.text-center.col-12
+            a.btn(href="/") Go back
+            h1= "The user is"
+              h2=message.id
+              h2=message.username
+              h2=message.age
+              h2=message.email

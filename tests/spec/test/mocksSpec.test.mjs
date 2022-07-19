@@ -2,6 +2,7 @@
 import sinon from 'sinon'
 import makeApp from '../../../rest_api.js'
 import request from 'supertest'
+import flush from 'flush-cache'
 
 const addUser = sinon.mock()
 const getUser = sinon.mock()
@@ -21,8 +22,7 @@ const id = 1
 
 const user = { username: 'CREATE', age: 20, email: 'test@test.com', password: 'test' }
 
-beforeEach(() => {
-})
+beforeEach(function () { flush() })
 
 describe('MOCK: Test if rest routes return 200 on success', () => {
   it('Should return 200 if create route works', async () => {

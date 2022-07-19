@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
+import flush from 'flush-cache'
+import { decryptPassword, encryptPassword, validateEmail } from '../../util/database-functions'
 require('dotenv').config({ path: 'config/.env' })
-const { decryptPassword, encryptPassword, validateEmail } = require('../../util/database-functions')
+
+beforeEach(function () { flush() })
 
 describe('Test encrypt function', () => {
   it('Should encrypt a password ', async () => {

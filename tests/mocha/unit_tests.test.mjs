@@ -2,7 +2,10 @@
 import { expect } from 'chai'
 import dotenv from 'dotenv'
 import { decryptPassword, encryptPassword, validateEmail } from '../../util/database-functions.js'
+import flush from 'flush-cache'
 dotenv.config({ path: 'config/.env' })
+
+beforeEach(function () { flush() })
 
 describe('Test encrypt function', () => {
   it('Should encrypt a password ', async () => {

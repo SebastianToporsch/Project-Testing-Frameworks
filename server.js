@@ -31,6 +31,10 @@ app.get('/', function (req, res) {
   return res.render('rest/rest_index', { message: 'Hello there!' })
 })
 
+app.get('/users', async function (req, res) {
+  return res.render('rest/users', { message: '' })
+})
+
 app.get('/404', function (req, res) {
   return res.render('rest/404')
 })

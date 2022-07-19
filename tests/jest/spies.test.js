@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
+import flush from 'flush-cache'
 const functions = require('../../util/database-functions.js')
+
+beforeEach(function () { flush() })
 
 const test = {
   testFunction: function test (param1, param2) {
