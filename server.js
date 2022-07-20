@@ -28,15 +28,15 @@ app.use('/', express.static('public'))
 
 // home screen
 app.get('/', function (req, res) {
-  return res.render('rest/rest_index', { message: 'Hello there!' })
+  return res.render('ui/rest_index', { message: 'Hello there!' })
 })
 
 app.get('/users', async function (req, res) {
-  return res.render('rest/users', { message: '' })
+  return res.render('ui/users', { message: '' })
 })
 
 app.get('/404', function (req, res) {
-  return res.render('rest/404')
+  return res.render('ui/404')
 })
 
 // Start listening
