@@ -3,30 +3,109 @@ block content
     div.container
         div.row
             div.text-center.col-12.pb-5.pt-3
-                a.btn(href="/users") Press to see all users
+                // a.btn(href="/users") Press to see all users
                 h1.pt-5= "Welcome to Project-Testing-Frameworks"
-        div.row.text-center.pb-5
-            div.col-3
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "Checkbox"
-                input.checkbox(type="checkbox" id="checkbox1" checked)
-            div.col-3
-                h2= "Icon"
-            div.col-3
+            .col-3
+                input.checkbox(type="checkbox" id="checkbox1") 
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5
+            .col-12.text-center
+                h2="Icon"
+            .col-3
+                i(class="fas fa-clock")
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "Image"
-            div.col-3
-                h2= "Input"
-        div.row.text-center.pb-5
-            div.col-3
+            .col-3
+                img(src="", alt="")
+        .row.tile.pb-5
+            .col-12.text-center
+                h2="Input"
+            .col-3
+                input(type="text", value="")
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "List Item"
-            div.col-3
+                    .justify-content-start.d-flex
+                        ul
+                            li="test"
+                    .justify-content-start.d-flex
+                        ol
+                            li="test"
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "Switch"
-            div.col-3
+            .col-3
+                label(class="switch") 
+                    input(id="switch1", type="checkbox")
+                    span(class="slider round")
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5                
+            .col-12.text-center
                 h2= "Radio Button"
-            div.col-3
+            .col-3
+                input(id="input_radio_1" type="radio")
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "Text"
-        div.row.text-center
-            div.col-6
+            .col-3        
+                p="test"
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "Text Button"
-            div.col-6
+            .col-3
+                button(id="button1")="info"
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
+        .row.tile.pb-5
+            .col-12.text-center
                 h2= "Date-Picker"
-                
+            .col-3
+                input(type="date")
+            .col-3
+                p="test"
+            .col-3
+                p="test2"
+            .col-3
+                p="test3"
