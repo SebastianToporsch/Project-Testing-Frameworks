@@ -4,108 +4,91 @@ block content
         div.row
             div.text-center.col-12.pb-5.pt-3
                 // a.btn(href="/users") Press to see all users
-                h1.pt-5= "Welcome to Project-Testing-Frameworks"
-        .row.tile.pb-5
-            .col-12.text-center
+                h1.pt-5="Welcome to Project-Testing-Frameworks"
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
                 h2= "Checkbox"
-            .col-3
-                input.checkbox(type="checkbox" id="checkbox1") 
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5
-            .col-12.text-center
-                h2="Icon"
-            .col-3
-                i(class="fas fa-clock")
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5
-            .col-12.text-center
-                h2= "Image"
-            .col-3
-                img(src="", alt="")
-        .row.tile.pb-5
-            .col-12.text-center
-                h2="Input"
-            .col-3
-                input(type="text", value="")
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5
-            .col-12.text-center
-                h2= "List Item"
-                    .justify-content-start.d-flex
-                        ul
-                            li="test"
-                    .justify-content-start.d-flex
-                        ol
-                            li="test"
-        .row.tile.pb-5
-            .col-12.text-center
-                h2= "Switch"
-            .col-3
-                label(class="switch") 
-                    input(id="switch1", type="checkbox")
-                    span(class="slider round")
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5                
-            .col-12.text-center
-                h2= "Radio Button"
-            .col-3
-                input(id="input_radio_1" type="radio")
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5
-            .col-12.text-center
-                h2= "Text"
-            .col-3        
-                p="test"
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5
-            .col-12.text-center
-                h2= "Text Button"
-            .col-3
-                button(id="button1")="info"
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
-        .row.tile.pb-5
+            .col-4
+                input.checkbox(type="checkbox" id="checkbox1" onclick="check()" checked) 
+            .col-4
+                input.checkbox(type="checkbox" id="checkbox2" onclick="" disabled) 
+            .col-4.pb-5
+                input.checkbox(type="checkbox" id="checkbox3" onclick="" readonly) 
+            .col-4
+                p(id="checkboxText1")="test1"
+            .col-4
+                p(id="checkboxText2")="test2"
+            .col-4
+                p(id="checkboxText3")="test3"
+        .row.tile.text-center.pb-5.pt-3
             .col-12.text-center
                 h2= "Date-Picker"
-            .col-3
-                input(type="date")
-            .col-3
-                p="test"
-            .col-3
-                p="test2"
-            .col-3
-                p="test3"
+            .col-4
+                input(id="date1" type="date" max="2022-07-31" min="2022-07-01")
+            .col-4
+                input(id="date2" type="date" step="2")
+            .col-4
+                input(id="date3" type="date" value="2022-07-23")
+        .row.tile.text-center.pb-5.pt-3
+            .col-12.text-center
+                h2= "Image"
+            .col-4
+                img(id="image1" src="/img/image.png" alt="Image 1")
+            .col-4
+                img(id="image2" src="/img/image.png" height="60px")
+            .col-4
+                img(id="image3" src="/img/image.png" width="70px")
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2="Image Button"
+            .col-4
+                input(id="imageButton1" type="image" alt="" src="/img/image.png")
+            .col-4
+                input(id="imageButton2" type="image" height="60px" src="/img/image.png")
+            .col-4
+                input(id="imageButton3" type="image" width="70px" src="/img/image.png")
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2="Input"
+            .col-4
+                input(id="textInput1" type="text" alt="Text Input 1")
+            .col-4
+                input(id="textInput2" type="text" maxlength="10" minlength="5")
+            .col-4
+                input(id="textInput3" type="text" placeholder="Input Text here")
+        .row.tile.text-center.pb-5.pt-3
+            .col-12.text-center
+                h2="Number Stepper"
+            .col-4
+                input(id="number1" type="number" max="10" min="5")
+            .col-4
+                input(id="number2" type="number" placeholder="5")
+            .col-4
+                input(id="number3" type="number" step="2")
+        .row.tile.text-center.pb-5.pt-3               
+            .col-12.text-center
+                h2="Radio Button"
+            .col-4
+                input(id="radio1" type="radio" checked)
+            .col-4
+                input(id="radio2" type="radio" disabled)
+            .col-4
+                input(id="radio3" type="radio" name="radio")
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2="Text"
+            .col-4       
+                p(id="text1" accesskey="s")="test1"
+            .col-4
+                p(id="text2" autofocus )="test2"
+            .col-4
+                p(id="text3" dir="rtl")="test3"
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2= "Text Button"
+            .col-4
+                button(id="button1" autofocus)="test1"
+            .col-4
+                button(id="button2" disabled)="test2"
+            .col-4
+                button(id="button3" value="button3")="test3"

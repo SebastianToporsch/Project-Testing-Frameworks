@@ -9,22 +9,36 @@
     "start_rest": "nodemon rest_server.js",
     "start_ws": "nodemon ws_server.js",
     "create-db": "node db/create-db.js",
-    "test_mocha": "mocha tests/mocha",
     "test_jest": "jest --clearCache && jest tests/jest",
+    "test_jest_coverage": "jest --clearCache && jest --coverage tests/jest",
+    "test_jest_details": "jest --clearCache && jest --verbose tests/jest",
+    "test_jest_dom_interaction": "jest --clearCache && jest tests/jest/dom_interaction.test.js",
+    "test_jest_dom": "jest --clearCache && jest tests/jest/dom.test.js",
     "test_jest_mocks": "jest --clearCache && jest tests/jest/mocks.test.js",
     "test_jest_rest": "jest --clearCache && jest tests/jest/rest_server.test.js",
     "test_jest_spies": "jest --clearCache && jest tests/jest/spies.test.js",
     "test_jest_unit": "jest --clearCache && jest tests/jest/unit_tests.test.js",
-    "jest_version": "jest --version",
-    "mocha_version": "mocha --version",
-    "jasmine_version": "jasmine -v",
-    "test_jest_cache": "jest --clearCache",
-    "test_jest_coverage": "jest --clearCache && jest --coverage tests/jest",
-    "test_jest_details": "jest --clearCache && jest --verbose tests/jest",
     "test_jest_workers_25": "jest --clearCache && jest --maxWorkers=25% tests/jest",
     "test_jest_workers_50": "jest --clearCache && jest --maxWorkers=50% tests/jest",
     "test_jest_inBand": "jest --clearCache && jest --runInBand tests/jest",
-    "test_jasmine": "cd tests && npx jasmine  "
+    "test_jest_cache": "jest --clearCache",
+    "jest_version": "jest --version",
+    "test_mocha": "mocha tests/mocha",
+    "test_mocha_dom_interaction": "mocha tests/mocha/dom_interaction.test.mjs",
+    "test_mocha_dom": "mocha tests/mocha/dom.test.mjs",
+    "test_mocha_mocks": "mocha tests/mocha/mocks.test.mjs",
+    "test_mocha_rest": "mocha tests/mocha/rest_server.test.mjs",
+    "test_mocha_spies": "mocha tests/mocha/spies.test.mjs",
+    "test_mocha_unit": "mocha tests/mocha/unit_tests.test.mjs",
+    "mocha_version": "mocha --version",
+    "test_jasmine": "cd tests && npx jasmine",
+    "test_jasmine_dom_interaction": "cd tests && npx jasmine spec/test/dom_interaction.test.mjs",
+    "test_jasmine_dom": "cd tests && npx jasmine spec/test/dom.test.mjs",
+    "test_jasmine_mocks": "cd tests && npx jasmine spec/test/mocks.test.mjs",
+    "test_jasmine_rest": "cd tests && npx jasmine spec/test/rest_server.test.mjs",
+    "test_jasmine_spies": "cd tests && npx jasmine spec/test/spies.test.mjs",
+    "test_jasmine_unit": "cd tests && npx jasmine spec/test/unit_tests.test.mjs",
+    "jasmine_version": "jasmine -v"
   },
   "author": "Sebastian Toporsch",
   "license": "ISC",
@@ -32,10 +46,18 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "chai": "^4.3.4",
+    "chai-dom": "^1.11.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jasmine_dom_matchers": "^1.4.0",
+    "jasmine-core": "^3.99.1",
+    "jasmine-jquery": "^2.1.1",
     "jasmine-snapshot": "^1.8.1",
+    "jest-fixtures": "^0.6.0",
+    "jquery": "^3.6.0",
+    "js-fixtures": "^1.5.3",
+    "jsdom": "^16.7.0",
     "mocha-chai-jest-snapshot": "^1.1.4",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.14",
@@ -57,15 +79,31 @@
     "testEnvironment": "jest-environment-node",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.js"
+    ]
+  },
+  "jasmine": {
+    "compilerOptions": {
+      "types": [
+        "jasmine",
+        "node",
+        "@testing-library/jasmine-dom"
+      ]
     }
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
+    "@testing-library/dom": "^8.16.0",
+    "@testing-library/jasmine-dom": "^1.2.0",
+    "@testing-library/jest-dom": "^5.16.4",
     "@tsconfig/node14": "^1.0.1",
     "@types/body-parser": "^1.19.2",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
+    "@types/jsdom": "^16.2.15",
     "@types/mysql": "^2.15.19",
     "@types/node": "^14.18.1",
     "babel-jest": "^27.5.1",
@@ -77,6 +115,7 @@
     "flush-cache": "^1.0.1",
     "jasmine": "^3.10.0",
     "jest": "^27.3.1",
+    "jest-environment-jsdom": "^27.5.1",
     "mocha": "^9.1.3"
   }
 }
