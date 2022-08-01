@@ -3,6 +3,9 @@
 import { JSDOM } from 'jsdom'
 import pug from 'pug'
 import 'jasmine_dom_matchers'
+import flush from 'flush-cache'
+
+beforeEach(function () { flush() })
 
 const html = pug.renderFile('../views/ui/rest_index.pug')
 const dom = new JSDOM(html).window.document
@@ -165,26 +168,6 @@ describe('Test the radio buttons', () => {
     expect(checkbox).toExist()
     expect(checkbox).toContainText('')
     expect(checkbox).toHaveAttr('name')
-  })
-})
-
-describe('Test the text elements', () => {
-  it('should test the accesskey text', () => {
-    const checkbox = dom.getElementById('text1')
-    expect(checkbox).toExist()
-    expect(checkbox).toHaveAttr('accesskey')
-  })
-
-  it('should test the alt autofocus text', () => {
-    const checkbox = dom.getElementById('text2')
-    expect(checkbox).toExist()
-    expect(checkbox).toHaveAttr('autofocus')
-  })
-
-  it('should test the alt dir text', () => {
-    const checkbox = dom.getElementById('text3')
-    expect(checkbox).toExist()
-    expect(checkbox).toHaveAttr('dir')
   })
 })
 

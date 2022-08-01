@@ -3,23 +3,35 @@ block content
     div.container
         div.row
             div.text-center.col-12.pb-5.pt-3
-                // a.btn(href="/users") Press to see all users
                 h1.pt-5="Welcome to Project-Testing-Frameworks"
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2= "Reset"
+                button(id="reset" onclick="reset()")="RESET" 
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2= "To manipulate"
+            .col-4
+                p(id="manipulateText1")="test1"
+            .col-4
+                p(id="manipulateText2")="test2"
+            .col-4
+                p(id="manipulateText3")="test3"
+            .col-4
+                input(id="manipulateInput1" type="text" alt="Text Input 1")
+            .col-4
+                input(id="manipulateInput2" type="text" maxlength="10" minlength="5")
+            .col-4
+                input(id="manipulateInput3" type="text" placeholder="Input Text here")
         .row.tile.text-center.pb-5.pt-3
             .col-12
                 h2= "Checkbox"
             .col-4
-                input.checkbox(type="checkbox" id="checkbox1" onclick="check()" checked) 
+                input.checkbox(type="checkbox" id="checkbox1" checked) 
             .col-4
-                input.checkbox(type="checkbox" id="checkbox2" onclick="" disabled) 
+                input.checkbox(type="checkbox" id="checkbox2" disabled) 
             .col-4.pb-5
-                input.checkbox(type="checkbox" id="checkbox3" onclick="" readonly) 
-            .col-4
-                p(id="checkboxText1")="test1"
-            .col-4
-                p(id="checkboxText2")="test2"
-            .col-4
-                p(id="checkboxText3")="test3"
+                input.checkbox(type="checkbox" id="checkbox3" onclick="check()" readonly)
         .row.tile.text-center.pb-5.pt-3
             .col-12.text-center
                 h2= "Date-Picker"
@@ -28,7 +40,7 @@ block content
             .col-4
                 input(id="date2" type="date" step="2")
             .col-4
-                input(id="date3" type="date" value="2022-07-23")
+                input(id="date3" type="date" value="2022-07-23" onchange="check()")
         .row.tile.text-center.pb-5.pt-3
             .col-12.text-center
                 h2= "Image"
@@ -74,15 +86,6 @@ block content
                 input(id="radio2" type="radio" disabled)
             .col-4
                 input(id="radio3" type="radio" name="radio")
-        .row.tile.text-center.pb-5.pt-3
-            .col-12
-                h2="Text"
-            .col-4       
-                p(id="text1" accesskey="s")="test1"
-            .col-4
-                p(id="text2" autofocus )="test2"
-            .col-4
-                p(id="text3" dir="rtl")="test3"
         .row.tile.text-center.pb-5.pt-3
             .col-12
                 h2= "Text Button"

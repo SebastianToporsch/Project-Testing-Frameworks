@@ -4,7 +4,7 @@
     "**/*.test.?(m)?(c)js"
   ],
   "helpers": [
-    "helpers/*.mjs"
+    "helpers/*.(m)js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false
