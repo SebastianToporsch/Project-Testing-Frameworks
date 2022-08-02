@@ -6,23 +6,98 @@ block content
                 h1.pt-5="Welcome to Project-Testing-Frameworks"
         .row.tile.text-center.pb-5.pt-3
             .col-12
-                h2= "Reset"
-                button(id="reset" onclick="reset()")="RESET" 
-        .row.tile.text-center.pb-5.pt-3
-            .col-12
                 h2= "To manipulate"
-            .col-4
-                p(id="manipulateText1")="test1"
-            .col-4
-                p(id="manipulateText2")="test2"
-            .col-4
-                p(id="manipulateText3")="test3"
-            .col-4
-                input(id="manipulateInput1" type="text" alt="Text Input 1")
-            .col-4
-                input(id="manipulateInput2" type="text" maxlength="10" minlength="5")
-            .col-4
-                input(id="manipulateInput3" type="text" placeholder="Input Text here")
+
+            .col-3
+                input.checkbox(id="manipulateCheckbox1" type="checkbox" ) 
+            .col-3
+                input.checkbox(id="manipulateCheckbox2" type="checkbox" ) 
+            .col-3
+                input.checkbox(id="manipulateCheckbox3" type="checkbox" )
+            .col-3.pb-5
+                button(id="manipulateCheckboxes")="change"
+                button(id="resetCheckboxes")="reset"
+
+            .col-3
+                input(id="manipulateDatePicker1" type="date")
+            .col-3
+                input(id="manipulateDatePicker2" type="date")
+            .col-3
+                input(id="manipulateDatePicker3" type="date")
+            .col-3.pb-5
+                button(id="manipulateDatePickers")="change"
+                button(id="resetDatePickers")="reset"
+
+            .col-3
+                img(id="manipulateImage1" src="/img/image.png")
+            .col-3
+                img(id="manipulateImage2" src="/img/image.png")
+            .col-3
+                img(id="manipulateImage3" src="/img/image.png")
+            .col-3.pb-5
+                button(id="manipulateImages")="change"
+                button(id="resetImages")="reset"
+
+            .col-3
+                input(id="manipulateImageButton1" type="image" src="/img/image.png")
+            .col-3
+                input(id="manipulateImageButton2" type="image" src="/img/image.png")
+            .col-3
+                input(id="manipulateImageButton3" type="image" src="/img/image.png")
+            .col-3.pb-5
+                button(id="manipulateImageButtons")="change"
+                button(id="resetImageButtons")="reset"
+
+            .col-3
+                input(id="manipulateInput1" type="text")
+            .col-3
+                input(id="manipulateInput2" type="text")
+            .col-3
+                input(id="manipulateInput3" type="text")
+            .col-3.pb-5
+                button(id="manipulateInputs")="change"
+                button(id="resetInputs")="reset"
+
+            .col-3
+                input(id="manipulateNumberStepper1" type="number")
+            .col-3
+                input(id="manipulateNumberStepper2" type="number")
+            .col-3
+                input(id="manipulateNumberStepper3" type="number")
+            .col-3.pb-5
+                button(id="manipulateNumberSteppers")="change"
+                button(id="resetNumberSteppers")="reset"
+
+            .col-3
+                input(id="manipulateRadio1" type="radio")
+            .col-3
+                input(id="manipulateRadio2" type="radio")
+            .col-3
+                input(id="manipulateRadio3" type="radio")
+            .col-3.pb-5
+                button(id="manipulateRadios")="change"
+                button(id="resetRadioButtons")="reset"
+
+            .col-3
+                p(id="manipulateText1")="test"
+            .col-3
+                p(id="manipulateText2")="test"
+            .col-3
+                p(id="manipulateText3")="test"
+            .col-3.pb-5
+                button(id="manipulateTexts")="change" 
+                button(id="resetTexts")="reset"
+            
+            .col-3
+                button(id="manipulateButton1")="test"
+            .col-3
+                button(id="manipulateButton2")="test"
+            .col-3
+                button(id="manipulateButton3")="test"
+            .col-3.pb-5
+                button(id="manipulateTextButtons")="change"
+                button(id="resetTextButtons")="reset"
+
         .row.tile.text-center.pb-5.pt-3
             .col-12
                 h2= "Checkbox"
@@ -31,7 +106,7 @@ block content
             .col-4
                 input.checkbox(type="checkbox" id="checkbox2" disabled) 
             .col-4.pb-5
-                input.checkbox(type="checkbox" id="checkbox3" onclick="check()" readonly)
+                input.checkbox(type="checkbox" id="checkbox3" readonly)
         .row.tile.text-center.pb-5.pt-3
             .col-12.text-center
                 h2= "Date-Picker"
@@ -40,7 +115,7 @@ block content
             .col-4
                 input(id="date2" type="date" step="2")
             .col-4
-                input(id="date3" type="date" value="2022-07-23" onchange="check()")
+                input(id="date3" type="date" value="2022-07-23")
         .row.tile.text-center.pb-5.pt-3
             .col-12.text-center
                 h2= "Image"
@@ -86,6 +161,16 @@ block content
                 input(id="radio2" type="radio" disabled)
             .col-4
                 input(id="radio3" type="radio" name="radio")
+        
+        .row.tile.text-center.pb-5.pt-3
+            .col-12
+                h2="Text"
+            .col-4       
+                p(id="text1" accesskey="s")="test1"
+            .col-4
+                p(id="text2" autofocus )="test2"
+            .col-4
+                p(id="text3" dir="rtl")="test3"
         .row.tile.text-center.pb-5.pt-3
             .col-12
                 h2= "Text Button"
