@@ -14,10 +14,6 @@ const dom = new JSDOM(html)
 const { window } = dom
 const $ = jquery(window)
 
-beforeAll(() => {
-  jasmine.getEnv().addMatchers(JasmineDOM)
-})
-
 // flush cache and click events
 beforeEach(async function () {
   flush()
