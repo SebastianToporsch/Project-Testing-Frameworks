@@ -62,9 +62,7 @@ const text3Element = $('#manipulateText3')
 // text buttons
 const textButton1Element = $('#manipulateButton1')
 const textButton2Element = $('#manipulateButton2')
-const textButton3Element = $('#manipulateButton3'
-
-)
+const textButton3Element = $('#manipulateButton3')
 
 // checkboxes
 const checkbox1 = $('#manipulateCheckbox1')[0]
@@ -116,7 +114,7 @@ const textButton3 = $('#manipulateButton3')[0]
 function manipulateCheckboxes () {
   checkbox1Element
     .attr('testAttribute', 'test1')
-    .addClass('testClass', 'test1')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .css('width', '60px')
@@ -124,13 +122,13 @@ function manipulateCheckboxes () {
   checkbox2Element
     .attr('checked', 'true')
     .attr('testAttribute', 'test2')
-    .addClass('testClass', 'test2')
+    .addClass('testClass')
     .attr('disabled', 'true')
     .css('width', '70px')
 
   checkbox3Element
     .attr('testAttribute', 'test3')
-    .addClass('testClass', 'test3')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .css('width', '80px')
@@ -139,21 +137,21 @@ function manipulateCheckboxes () {
 function manipulateDatePickers () {
   datePicker1Element
     .attr('testAttribute', 'test4')
-    .addClass('testClass', 'test4')
+    .addClass('testClass')
     .attr('max', '2017-06-01')
     .attr('min', '2016-06-01')
     .val('2017-06-01')
 
   datePicker2Element
     .attr('testAttribute', 'test5')
-    .addClass('testClass', 'test5')
+    .addClass('testClass')
     .attr('max', '2017-06-02')
     .attr('min', '2016-06-02')
     .val('2017-06-02')
 
   datePicker3Element
     .attr('testAttribute', 'test6')
-    .addClass('testClass', 'test6')
+    .addClass('testClass')
     .attr('max', '2017-06-03')
     .attr('min', '2016-06-03')
     .val('2017-06-03')
@@ -162,21 +160,21 @@ function manipulateDatePickers () {
 function manipulateImages () {
   image1Element
     .attr('testAttribute', 'test7')
-    .addClass('testClass', 'test7')
+    .addClass('testClass')
     .attr('height', '60px')
     .attr('width', '60px')
     .attr('alt', 'image1')
 
   image2Element
     .attr('testAttribute', 'test8')
-    .addClass('testClass', 'test8')
+    .addClass('testClass')
     .attr('height', '70px')
     .attr('width', '70px')
     .attr('alt', 'image2')
 
   image3Element
     .attr('testAttribute', 'test9')
-    .addClass('testClass', 'test9')
+    .addClass('testClass')
     .attr('height', '80px')
     .attr('width', '80px')
     .attr('alt', 'image3')
@@ -185,21 +183,21 @@ function manipulateImages () {
 function manipulateImageButtons () {
   imageButton1Element
     .attr('testAttribute', 'test10')
-    .addClass('testClass', 'test10')
+    .addClass('testClass')
     .attr('height', '60px')
     .attr('width', '60px')
     .attr('alt', 'imageButton1')
 
   imageButton2Element
     .attr('testAttribute', 'test11')
-    .addClass('testClass', 'test11')
+    .addClass('testClass')
     .attr('height', '70px')
     .attr('width', '70px')
     .attr('alt', 'imageButton2')
 
   imageButton3Element
     .attr('testAttribute', 'test12')
-    .addClass('testClass', 'test12')
+    .addClass('testClass')
     .attr('height', '80px')
     .attr('width', '80px')
     .attr('alt', 'imageButton3')
@@ -209,21 +207,21 @@ function manipulateInputs () {
   input1Element
     .html('CHECK13')
     .attr('testAttribute', 'test13')
-    .addClass('testClass', 'test13')
+    .addClass('testClass')
     .val('test13')
     .css('background-color', 'red')
 
   input2Element
     .html('CHECK14')
     .attr('testAttribute', 'test14')
-    .addClass('testClass', 'test14')
+    .addClass('testClass')
     .val('test14')
     .css('background-color', 'green')
 
   input3Element
     .html('CHECK15')
     .attr('testAttribute', 'test15')
-    .addClass('testClass', 'test15')
+    .addClass('testClass')
     .val('test15')
     .css('background-color', 'blue')
 }
@@ -231,21 +229,21 @@ function manipulateInputs () {
 function manipulateNumberSteppers () {
   numberStepper1Element
     .attr('testAttribute', 'test16')
-    .addClass('testClass', 'test16')
+    .addClass('testClass')
     .attr('step', '2')
     .val('16')
     .css('background-color', 'red')
 
   numberStepper2Element
     .attr('testAttribute', 'test17')
-    .addClass('testClass', 'test17')
+    .addClass('testClass')
     .attr('step', '3')
     .val('17')
     .css('background-color', 'green')
 
   numberStepper3Element
     .attr('testAttribute', 'test18')
-    .addClass('testClass', 'test18')
+    .addClass('testClass')
     .attr('step', '4')
     .val('18')
     .css('background-color', 'blue')
@@ -254,21 +252,21 @@ function manipulateNumberSteppers () {
 function manipulateRadios () {
   radio1Element
     .attr('testAttribute', 'test19')
-    .addClass('testClass', 'test19')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .attr('name', 'radio1')
 
   radio2Element
     .attr('testAttribute', 'test20')
-    .addClass('testClass', 'test20')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .attr('name', 'radio2')
 
   radio3Element
     .attr('testAttribute', 'test21')
-    .addClass('testClass', 'test21')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .attr('name', 'radio3')
@@ -278,21 +276,21 @@ function manipulateTexts () {
   text1Element
     .html('CHECK22')
     .attr('testAttribute', 'test22')
-    .addClass('testClass', 'test22')
+    .addClass('testClass')
     .css('color', 'red')
     .css('font-size', '18px')
 
   text2Element
     .html('CHECK23')
     .attr('testAttribute', 'test23')
-    .addClass('testClass', 'test23')
+    .addClass('testClass')
     .css('color', 'green')
     .css('font-size', '20px')
 
   text3Element
     .html('CHECK24')
     .attr('testAttribute', 'test24')
-    .addClass('testClass', 'test24')
+    .addClass('testClass')
     .css('color', 'blue')
     .css('font-size', '22px')
 }
@@ -301,21 +299,21 @@ function manipulateTextButtons () {
   textButton1Element
     .html('CHECK25')
     .attr('testAttribute', 'test25')
-    .addClass('testClass', 'test25')
+    .addClass('testClass')
     .css('background-color', 'red')
     .css('font-size', '18px')
 
   textButton2Element
     .html('CHECK26')
     .attr('testAttribute', 'test26')
-    .addClass('testClass', 'test26')
+    .addClass('testClass')
     .css('background-color', 'green')
     .css('font-size', '20px')
 
   textButton3Element
     .html('CHECK27')
     .attr('testAttribute', 'test27')
-    .addClass('testClass', 'test27')
+    .addClass('testClass')
     .css('background-color', 'blue')
     .css('font-size', '22px')
 }

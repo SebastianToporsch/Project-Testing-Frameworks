@@ -72,7 +72,7 @@ const textButton3 = $('#manipulateButton3')
 function manipulateCheckboxes () {
   checkbox1
     .attr('testAttribute', 'test1')
-    .addClass('testClass', 'test1')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .css('width', '60px')
@@ -80,13 +80,13 @@ function manipulateCheckboxes () {
   checkbox2
     .attr('checked', 'true')
     .attr('testAttribute', 'test2')
-    .addClass('testClass', 'test2')
+    .addClass('testClass')
     .attr('disabled', 'true')
     .css('width', '70px')
 
   checkbox3
     .attr('testAttribute', 'test3')
-    .addClass('testClass', 'test3')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .css('width', '80px')
@@ -95,21 +95,21 @@ function manipulateCheckboxes () {
 function manipulateDatePickers () {
   datePicker1
     .attr('testAttribute', 'test4')
-    .addClass('testClass', 'test4')
+    .addClass('testClass')
     .attr('max', '2017-06-01')
     .attr('min', '2016-06-01')
     .val('2017-06-01')
 
   datePicker2
     .attr('testAttribute', 'test5')
-    .addClass('testClass', 'test5')
+    .addClass('testClass')
     .attr('max', '2017-06-02')
     .attr('min', '2016-06-02')
     .val('2017-06-02')
 
   datePicker3
     .attr('testAttribute', 'test6')
-    .addClass('testClass', 'test6')
+    .addClass('testClass')
     .attr('max', '2017-06-03')
     .attr('min', '2016-06-03')
     .val('2017-06-03')
@@ -118,21 +118,21 @@ function manipulateDatePickers () {
 function manipulateImages () {
   image1
     .attr('testAttribute', 'test7')
-    .addClass('testClass', 'test7')
+    .addClass('testClass')
     .attr('height', '60px')
     .attr('width', '60px')
     .attr('alt', 'image1')
 
   image2
     .attr('testAttribute', 'test8')
-    .addClass('testClass', 'test8')
+    .addClass('testClass')
     .attr('height', '70px')
     .attr('width', '70px')
     .attr('alt', 'image2')
 
   image3
     .attr('testAttribute', 'test9')
-    .addClass('testClass', 'test9')
+    .addClass('testClass')
     .attr('height', '80px')
     .attr('width', '80px')
     .attr('alt', 'image3')
@@ -141,21 +141,21 @@ function manipulateImages () {
 function manipulateImageButtons () {
   imageButton1
     .attr('testAttribute', 'test10')
-    .addClass('testClass', 'test10')
+    .addClass('testClass')
     .attr('height', '60px')
     .attr('width', '60px')
     .attr('alt', 'imageButton1')
 
   imageButton2
     .attr('testAttribute', 'test11')
-    .addClass('testClass', 'test11')
+    .addClass('testClass')
     .attr('height', '70px')
     .attr('width', '70px')
     .attr('alt', 'imageButton2')
 
   imageButton3
     .attr('testAttribute', 'test12')
-    .addClass('testClass', 'test12')
+    .addClass('testClass')
     .attr('height', '80px')
     .attr('width', '80px')
     .attr('alt', 'imageButton3')
@@ -165,21 +165,21 @@ function manipulateInputs () {
   input1
     .html('CHECK13')
     .attr('testAttribute', 'test13')
-    .addClass('testClass', 'test13')
+    .addClass('testClass')
     .val('test13')
     .css('background-color', 'red')
 
   input2
     .html('CHECK14')
     .attr('testAttribute', 'test14')
-    .addClass('testClass', 'test14')
+    .addClass('testClass')
     .val('test14')
     .css('background-color', 'green')
 
   input3
     .html('CHECK15')
     .attr('testAttribute', 'test15')
-    .addClass('testClass', 'test15')
+    .addClass('testClass')
     .val('test15')
     .css('background-color', 'blue')
 }
@@ -187,21 +187,21 @@ function manipulateInputs () {
 function manipulateNumberSteppers () {
   numberStepper1
     .attr('testAttribute', 'test16')
-    .addClass('testClass', 'test16')
+    .addClass('testClass')
     .attr('step', '2')
     .val('16')
     .css('background-color', 'red')
 
   numberStepper2
     .attr('testAttribute', 'test17')
-    .addClass('testClass', 'test17')
+    .addClass('testClass')
     .attr('step', '3')
     .val('17')
     .css('background-color', 'green')
 
   numberStepper3
     .attr('testAttribute', 'test18')
-    .addClass('testClass', 'test18')
+    .addClass('testClass')
     .attr('step', '4')
     .val('18')
     .css('background-color', 'blue')
@@ -210,21 +210,21 @@ function manipulateNumberSteppers () {
 function manipulateRadios () {
   radio1
     .attr('testAttribute', 'test19')
-    .addClass('testClass', 'test19')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .attr('name', 'radio1')
 
   radio2
     .attr('testAttribute', 'test20')
-    .addClass('testClass', 'test20')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .attr('name', 'radio2')
 
   radio3
     .attr('testAttribute', 'test21')
-    .addClass('testClass', 'test21')
+    .addClass('testClass')
     .attr('checked', 'true')
     .attr('disabled', 'true')
     .attr('name', 'radio3')
@@ -234,21 +234,21 @@ function manipulateTexts () {
   text1
     .html('CHECK22')
     .attr('testAttribute', 'test22')
-    .addClass('testClass', 'test22')
+    .addClass('testClass')
     .css('color', 'red')
     .css('font-size', '18px')
 
   text2
     .html('CHECK23')
     .attr('testAttribute', 'test23')
-    .addClass('testClass', 'test23')
+    .addClass('testClass')
     .css('color', 'green')
     .css('font-size', '20px')
 
   text3
     .html('CHECK24')
     .attr('testAttribute', 'test24')
-    .addClass('testClass', 'test24')
+    .addClass('testClass')
     .css('color', 'blue')
     .css('font-size', '22px')
 }
@@ -257,21 +257,21 @@ function manipulateTextButtons () {
   textButton1
     .html('CHECK25')
     .attr('testAttribute', 'test25')
-    .addClass('testClass', 'test25')
+    .addClass('testClass')
     .css('background-color', 'red')
     .css('font-size', '18px')
 
   textButton2
     .html('CHECK26')
     .attr('testAttribute', 'test26')
-    .addClass('testClass', 'test26')
+    .addClass('testClass')
     .css('background-color', 'green')
     .css('font-size', '20px')
 
   textButton3
     .html('CHECK27')
     .attr('testAttribute', 'test27')
-    .addClass('testClass', 'test27')
+    .addClass('testClass')
     .css('background-color', 'blue')
     .css('font-size', '22px')
 }
@@ -401,13 +401,13 @@ describe('Checkbox Manipulation Tests', () => {
 
   it('should add class to the checkboxes', async () => {
     resetCheckboxes()
-    expect(checkbox1).not.toHaveClass('testClass', 'test1')
-    expect(checkbox2).not.toHaveClass('testClass', 'test2')
-    expect(checkbox3).not.toHaveClass('testClass', 'test3')
+    expect(checkbox1).not.toHaveClass('testClass')
+    expect(checkbox2).not.toHaveClass('testClass')
+    expect(checkbox3).not.toHaveClass('testClass')
     await $('#manipulateCheckboxes').click()
-    expect(checkbox1).toHaveClass('testClass', 'test1')
-    expect(checkbox2).toHaveClass('testClass', 'test2')
-    expect(checkbox3).toHaveClass('testClass', 'test3')
+    expect(checkbox1).toHaveClass('testClass')
+    expect(checkbox2).toHaveClass('testClass')
+    expect(checkbox3).toHaveClass('testClass')
   })
 
   it('should add checked attribute to the checkboxes', async () => {
@@ -459,13 +459,13 @@ describe('Date Picker Manipulation Tests', () => {
 
   it('should add class to the date pickers', async () => {
     resetDatePickers()
-    expect(datePicker1).not.toHaveClass('testClass', 'test4')
-    expect(datePicker2).not.toHaveClass('testClass', 'test5')
-    expect(datePicker3).not.toHaveClass('testClass', 'test6')
+    expect(datePicker1).not.toHaveClass('testClass')
+    expect(datePicker2).not.toHaveClass('testClass')
+    expect(datePicker3).not.toHaveClass('testClass')
     await $('#manipulateDatePickers').click()
-    expect(datePicker1).toHaveClass('testClass', 'test4')
-    expect(datePicker2).toHaveClass('testClass', 'test5')
-    expect(datePicker3).toHaveClass('testClass', 'test6')
+    expect(datePicker1).toHaveClass('testClass')
+    expect(datePicker2).toHaveClass('testClass')
+    expect(datePicker3).toHaveClass('testClass')
   })
 
   it('should add max attribute to the date pickers', async () => {
@@ -517,13 +517,13 @@ describe('Image Manipulation Tests', () => {
 
   it('should add class to the image', async () => {
     resetImages()
-    expect(image1).not.toHaveClass('testClass', 'test7')
-    expect(image2).not.toHaveClass('testClass', 'test8')
-    expect(image3).not.toHaveClass('testClass', 'test9')
+    expect(image1).not.toHaveClass('testClass')
+    expect(image2).not.toHaveClass('testClass')
+    expect(image3).not.toHaveClass('testClass')
     await $('#manipulateImages').click()
-    expect(image1).toHaveClass('testClass', 'test7')
-    expect(image2).toHaveClass('testClass', 'test8')
-    expect(image3).toHaveClass('testClass', 'test9')
+    expect(image1).toHaveClass('testClass')
+    expect(image2).toHaveClass('testClass')
+    expect(image3).toHaveClass('testClass')
   })
 
   it('should add height attribute to the image', async () => {
@@ -575,13 +575,13 @@ describe('Image Button Manipulation Tests', () => {
 
   it('should add class to the image', async () => {
     resetImageButtons()
-    expect(imageButton1).not.toHaveClass('testClass', 'test10')
-    expect(imageButton1).not.toHaveClass('testClass', 'test11')
-    expect(imageButton1).not.toHaveClass('testClass', 'test12')
+    expect(imageButton1).not.toHaveClass('testClass')
+    expect(imageButton1).not.toHaveClass('testClass')
+    expect(imageButton1).not.toHaveClass('testClass')
     await $('#manipulateImageButtons').click()
-    expect(imageButton1).toHaveClass('testClass', 'test10')
-    expect(imageButton2).toHaveClass('testClass', 'test11')
-    expect(imageButton3).toHaveClass('testClass', 'test12')
+    expect(imageButton1).toHaveClass('testClass')
+    expect(imageButton2).toHaveClass('testClass')
+    expect(imageButton3).toHaveClass('testClass')
   })
 
   it('should add height attribute to the image', async () => {
@@ -644,13 +644,13 @@ describe('Input Manipulation Tests', () => {
 
   it('should add class to the inputs', async () => {
     resetInputs()
-    expect(input1).not.toHaveClass('testClass', 'test13')
-    expect(input2).not.toHaveClass('testClass', 'test14')
-    expect(input3).not.toHaveClass('testClass', 'test15')
+    expect(input1).not.toHaveClass('testClass')
+    expect(input2).not.toHaveClass('testClass')
+    expect(input3).not.toHaveClass('testClass')
     await $('#manipulateInputs').click()
-    expect(input1).toHaveClass('testClass', 'test13')
-    expect(input2).toHaveClass('testClass', 'test14')
-    expect(input3).toHaveClass('testClass', 'test15')
+    expect(input1).toHaveClass('testClass')
+    expect(input2).toHaveClass('testClass')
+    expect(input3).toHaveClass('testClass')
   })
 
   it('should add value to the inputs', async () => {
@@ -691,13 +691,13 @@ describe('Number Stepper Manipulation Tests', () => {
 
   it('should add class to the number steppers', async () => {
     resetNumberSteppers()
-    expect(numberStepper1).not.toHaveClass('testClass', 'test16')
-    expect(numberStepper2).not.toHaveClass('testClass', 'test17')
-    expect(numberStepper3).not.toHaveClass('testClass', 'test18')
+    expect(numberStepper1).not.toHaveClass('testClass')
+    expect(numberStepper2).not.toHaveClass('testClass')
+    expect(numberStepper3).not.toHaveClass('testClass')
     await $('#manipulateNumberSteppers').click()
-    expect(numberStepper1).toHaveClass('testClass', 'test16')
-    expect(numberStepper2).toHaveClass('testClass', 'test17')
-    expect(numberStepper3).toHaveClass('testClass', 'test18')
+    expect(numberStepper1).toHaveClass('testClass')
+    expect(numberStepper2).toHaveClass('testClass')
+    expect(numberStepper3).toHaveClass('testClass')
   })
 
   it('should add step attribute to the number steppers', async () => {
@@ -749,13 +749,13 @@ describe('Radio Button Manipulation Tests', () => {
 
   it('should add class to the radio buttons', async () => {
     resetRadios()
-    expect(radio1).not.toHaveClass('testClass', 'test19')
-    expect(radio2).not.toHaveClass('testClass', 'test20')
-    expect(radio3).not.toHaveClass('testClass', 'test21')
+    expect(radio1).not.toHaveClass('testClass')
+    expect(radio2).not.toHaveClass('testClass')
+    expect(radio3).not.toHaveClass('testClass')
     await $('#manipulateRadios').click()
-    expect(radio1).toHaveClass('testClass', 'test19')
-    expect(radio2).toHaveClass('testClass', 'test20')
-    expect(radio3).toHaveClass('testClass', 'test21')
+    expect(radio1).toHaveClass('testClass')
+    expect(radio2).toHaveClass('testClass')
+    expect(radio3).toHaveClass('testClass')
   })
 
   it('should add checked attribute to the radio buttons', async () => {
@@ -818,13 +818,13 @@ describe('Text Manipulation Tests', () => {
 
   it('should add class to the texts', async () => {
     resetTexts()
-    expect(text1).not.toHaveClass('testClass', 'test22')
-    expect(text2).not.toHaveClass('testClass', 'test23')
-    expect(text3).not.toHaveClass('testClass', 'test24')
+    expect(text1).not.toHaveClass('testClass')
+    expect(text2).not.toHaveClass('testClass')
+    expect(text3).not.toHaveClass('testClass')
     await $('#manipulateTexts').click()
-    expect(text1).toHaveClass('testClass', 'test22')
-    expect(text2).toHaveClass('testClass', 'test23')
-    expect(text3).toHaveClass('testClass', 'test24')
+    expect(text1).toHaveClass('testClass')
+    expect(text2).toHaveClass('testClass')
+    expect(text3).toHaveClass('testClass')
   })
 
   it('should add color to the texts', async () => {
@@ -876,13 +876,13 @@ describe('Text Button Manipulation Tests', () => {
 
   it('should add class to the text buttons', async () => {
     resetTextButtons()
-    expect(textButton1).not.toHaveClass('testClass', 'test25')
-    expect(textButton2).not.toHaveClass('testClass', 'test26')
-    expect(textButton3).not.toHaveClass('testClass', 'test27')
+    expect(textButton1).not.toHaveClass('testClass')
+    expect(textButton2).not.toHaveClass('testClass')
+    expect(textButton3).not.toHaveClass('testClass')
     await $('#manipulateTextButtons').click()
-    expect(textButton1).toHaveClass('testClass', 'test25')
-    expect(textButton2).toHaveClass('testClass', 'test26')
-    expect(textButton3).toHaveClass('testClass', 'test27')
+    expect(textButton1).toHaveClass('testClass')
+    expect(textButton2).toHaveClass('testClass')
+    expect(textButton3).toHaveClass('testClass')
   })
 
   it('should add color to the text buttons', async () => {
