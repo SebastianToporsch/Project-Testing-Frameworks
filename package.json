@@ -12,6 +12,8 @@
     "test_jest": "jest --clearCache && jest tests/jest",
     "test_jest_coverage": "jest --clearCache && jest --coverage tests/jest",
     "test_jest_details": "jest --clearCache && jest --verbose tests/jest",
+    "test_jest_dom_creation": "jest --clearCache && jest tests/jest/dom_creation.test.js",
+    "test_jest_dom_deletion": "jest --clearCache && jest tests/jest/dom_deletion.test.js",
     "test_jest_dom_interaction": "jest --clearCache && jest tests/jest/dom_interaction.test.js",
     "test_jest_dom": "jest --clearCache && jest tests/jest/dom.test.js",
     "test_jest_mocks": "jest --clearCache && jest tests/jest/mocks.test.js",
