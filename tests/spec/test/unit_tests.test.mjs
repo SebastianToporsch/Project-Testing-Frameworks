@@ -4,7 +4,10 @@ import { decryptPassword, encryptPassword, validateEmail } from '../../../util/d
 import flush from 'flush-cache'
 dotenv.config({ path: 'config/.env' })
 
-beforeEach(function () { flush() })
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 describe('Test encrypt function', () => {
   it('Should encrypt a password ', async () => {

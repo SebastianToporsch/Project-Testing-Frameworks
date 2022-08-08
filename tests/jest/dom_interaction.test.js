@@ -3,6 +3,7 @@ import jsdom from 'jsdom'
 import jquery from 'jquery'
 import flush from 'flush-cache'
 import pug from 'pug'
+import { expect } from '@jest/globals'
 
 const { JSDOM } = jsdom
 
@@ -13,8 +14,8 @@ const dom = new JSDOM(html)
 const { window } = dom
 const $ = jquery(window)
 
-// flush cache and click events
-beforeEach(async function () {
+// flush cache
+beforeEach(function () {
   flush()
 })
 

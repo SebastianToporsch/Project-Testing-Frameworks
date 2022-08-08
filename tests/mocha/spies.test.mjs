@@ -3,7 +3,10 @@ import sinon from 'sinon'
 import functions from '../../util/database-functions.js'
 import flush from 'flush-cache'
 
-beforeEach(function () { flush() })
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 const test = {
   testFunction: function test (param1, param2) {

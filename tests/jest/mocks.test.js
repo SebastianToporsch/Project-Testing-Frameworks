@@ -22,7 +22,11 @@ const app = makeApp({
 })
 
 const id = 1
-beforeEach(function () { flush() })
+
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 beforeAll(() => {
   jest.resetAllMocks()

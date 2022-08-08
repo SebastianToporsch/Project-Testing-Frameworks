@@ -2,13 +2,13 @@
 import jsdom from 'jsdom'
 import jquery from 'jquery'
 import flush from 'flush-cache'
+import 'jasmine_dom_matchers'
 import pug from 'pug'
-import { expect } from '@jest/globals'
 
 const { JSDOM } = jsdom
 
 // setup JSDOM and jquery
-const html = pug.renderFile('./views/ui/rest_index.pug')
+const html = pug.renderFile('../views/ui/rest_index.pug')
 const dom = new JSDOM(html)
 global.window = dom.window
 global.document = dom.window.document
@@ -26,26 +26,26 @@ beforeEach(function () {
 
 describe('Remove Element with remove Method', () => {
   it('should delete element', () => {
-    expect(testElement).toBeInTheDocument()
+    expect(testElement).toExist()
     $('#manipulateText1').remove()
-    expect(testElement).not.toBeInTheDocument()
+    expect($('#manipulateText1')).not.toExist()
     container.append(testElement)
   })
 
   it('should test attributes before deleting element', () => {
-    expect(testElement).toBeInTheDocument()
-    expect(testElement).toHaveTextContent('test')
+    expect(testElement).toExist()
+    expect(testElement).toContainText('test')
     $('#manipulateText1').remove()
-    expect(testElement).not.toBeInTheDocument()
-    expect(testElement).toHaveTextContent('test')
+    expect($('#manipulateText1')).not.toExist()
+    expect(testElement).toContainText('test')
     container.append(testElement)
   })
 
   it('should test if Element is undefined after deleting it', () => {
-    expect(testElement).toBeInTheDocument()
-    expect(testElement).toHaveTextContent('test')
+    expect(testElement).toExist()
+    expect(testElement).toContainText('test')
     $('#manipulateText1').remove()
-    expect(testElement).not.toBeInTheDocument()
+    expect($('#manipulateText1')).not.toExist()
     expect($('#manipulateText1')[0]).toBe(undefined)
     container.append(testElement)
   })
@@ -53,29 +53,29 @@ describe('Remove Element with remove Method', () => {
 
 describe('Remove Element with empty Method', () => {
   it('should remove Element inside testElement', () => {
-    expect(testElement).toBeInTheDocument()
-    expect(testElement).toHaveTextContent('test')
+    expect(testElement).toExist()
+    expect(testElement).toContainText('test')
     $('#manipulateText1').empty()
-    expect(testElement).toBeEmptyDOMElement()
+    expect(testElement).toContainText('')
     $('#manipulateText1').html('test')
   })
 
   it('should remove Element that was added to testElement', () => {
-    expect(testElement).toBeInTheDocument()
-    expect(testElement).toHaveTextContent('test')
+    expect(testElement).toExist()
+    expect(testElement).toContainText('test')
     $('#manipulateText1').html('test2')
-    expect(testElement).toHaveTextContent('test2')
+    expect(testElement).toContainText('test2')
     $('#manipulateText1').empty()
-    expect(testElement).not.toHaveTextContent('test2')
+    expect(testElement).not.toContainText('test2')
     $('#manipulateText1').html('test')
   })
 
   it('should test if container is empty after using empty Method', () => {
-    expect(container[0]).toBeInTheDocument()
-    expect(testElement).toBeInTheDocument()
-    expect(testElement).toHaveTextContent('test')
+    expect(container[0]).toExist()
+    expect(testElement).toExist()
+    expect(testElement).toContainText('test')
     $('.container').empty()
-    expect(container[0]).toBeEmptyDOMElement()
+    expect(container[0]).toContainText('')
     expect(container[0]).not.toContain(testElement)
   })
 })

@@ -5,7 +5,10 @@ import pug from 'pug'
 import 'jasmine_dom_matchers'
 import flush from 'flush-cache'
 
-beforeEach(function () { flush() })
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 const html = pug.renderFile('../views/ui/rest_index.pug')
 const dom = new JSDOM(html).window.document
@@ -57,8 +60,8 @@ describe('Test the date pickers', () => {
 describe('Test the images', () => {
   it('should test the alt image', () => {
     const image = dom.getElementById('image1')
-    expect(image).toBeInTheDocument
-    expect(image).toBeEmptyDOMElement
+    expect(image).toExist()
+    expect(image).toContainText('')
     expect(image).toHaveAttr('alt')
   })
 

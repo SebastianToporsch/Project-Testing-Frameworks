@@ -15,7 +15,7 @@ const { window } = dom
 const $ = jquery(window)
 
 // flush cache
-beforeEach(async function () {
+beforeEach(function () {
   flush()
 })
 

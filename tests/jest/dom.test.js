@@ -1,10 +1,16 @@
 /* eslint-disable no-undef */
 import { JSDOM } from 'jsdom'
 import pug from 'pug'
+import flush from 'flush-cache'
 import { expect } from '@jest/globals'
 
 const html = pug.renderFile('./views/ui/rest_index.pug')
 const dom = new JSDOM(html).window.document
+
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 describe('Test the checkboxes', () => {
   it('should test the checked checkbox', () => {

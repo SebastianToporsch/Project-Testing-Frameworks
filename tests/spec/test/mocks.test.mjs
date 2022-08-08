@@ -22,6 +22,11 @@ const id = 1
 
 const user = { username: 'CREATE', age: 20, email: 'test@test.com', password: 'test' }
 
+// flush cache
+beforeEach(function () {
+  flush()
+})
+
 beforeEach(function () { flush() })
 
 describe('MOCK: Test if rest routes return 200 on success', () => {

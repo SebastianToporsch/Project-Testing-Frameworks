@@ -9,7 +9,10 @@ const baseURL = `http://localhost:${restPort}`
 
 let id
 
-beforeEach(function () { flush() })
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 describe('Test if server is available', () => {
   it('Should return 200 if server available', async () => {

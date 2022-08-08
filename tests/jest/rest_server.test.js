@@ -7,7 +7,10 @@ dotenv.config({ path: 'config/.env' })
 const restPort = process.env.REST_PORT || 3000
 const baseURL = `http://localhost:${restPort}`
 
-beforeEach(function () { flush() })
+// flush cache
+beforeEach(function () {
+  flush()
+})
 
 let id
 

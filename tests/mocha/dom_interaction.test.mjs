@@ -19,7 +19,7 @@ const $ = jquery(window)
 global.window = dom.window
 
 // flush cache
-beforeEach(async function () {
+beforeEach(function () {
   flush()
 })
 
